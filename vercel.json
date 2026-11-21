@@ -1,1 +1,1 @@
-{"functions":{"api/index.js":{"includeFiles":"public/**"}},"redirects":[{"source":"/","destination":"/index.html","permanent":false}],"rewrites":[{"source":"/(.*)","destination":"/api"}]}
+{"functions":{"api/index.js":{"includeFiles":"web/**"}},"rewrites":[{"source":"/","destination":"/api"},{"source":"/(.*)","destination":"/api"}]}
