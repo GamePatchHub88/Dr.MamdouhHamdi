@@ -41,6 +41,7 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 #edn{display:none;background:#d9b25a22;border:1px solid #d9b25a66;color:var(--gold);padding:8px 14px;border-radius:12px;margin-bottom:8px;font-weight:600;font-size:14px}
 #toast{position:fixed;inset:auto 0 26px;margin:auto;width:max-content;max-width:90%;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:11px 20px;box-shadow:var(--sh);font-weight:600;z-index:99;transform:translateY(30px);opacity:0;pointer-events:none;transition:.3s}#toast.on{transform:none;opacity:1}#toast.e{border-color:var(--dg);color:var(--dg)}#toast.s{border-color:var(--ok)}
 .mt{display:none}
+.tbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.tbar .hint{color:var(--mu);font-size:13.5px;flex:1;min-width:220px}.f1{grid-column:1/-1}.chg{border-color:#d9b25a !important}.kv{color:var(--gold);font-size:11.5px;font-weight:500;margin-inline-start:6px}textarea.tx{min-height:76px;resize:vertical}
 @media(max-width:900px){.shell{grid-template-columns:1fr}aside{position:fixed;inset:auto 0 0;height:auto;flex-direction:row;padding:6px 8px calc(6px + env(safe-area-inset-bottom));border-inline-end:0;border-top:1px solid var(--bd);z-index:50;gap:2px}.logo,.sp,.lo{display:none}.nv{flex-direction:column;gap:2px;padding:7px 4px;font-size:11.5px;justify-content:center;align-items:center;text-align:center}.nv .i{width:22px;height:22px}.bdg{position:absolute;top:2px;inset-inline-start:calc(50% + 6px);margin:0;font-size:10px;min-width:18px}main{padding:18px 16px 110px}.stats{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.mt{display:grid}.top h1{font-size:22px}.row{flex-wrap:wrap}.row .ac{width:100%}}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -70,6 +71,7 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 <button class="nv on" data-v="dash"><svg class="i"><use href="#a-home"/></svg>الرئيسية</button>
 <button class="nv" data-v="content"><svg class="i"><use href="#a-file"/></svg>المحتوى</button>
 <button class="nv" data-v="bookings"><svg class="i"><use href="#a-cal"/></svg>الحجوزات<span class="bdg z" id="nb"></span></button>
+<button class="nv" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button>
 <button class="nv" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
 <div class="sp"></div><a class="nv lo" href="/" target="_blank"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="nv lo" id="out"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></aside>
 <main>
@@ -93,6 +95,8 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 <div class="view" id="v-bookings"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>طلبات الحجز</h3>
 <div class="tools"><input id="bq" placeholder="ابحث بالاسم أو الهاتف..."><div class="chips" id="bf"><button class="ch on" data-s="">الكل</button><button class="ch" data-s="new">جديد</button><button class="ch" data-s="done">تمت المعالجة</button></div></div><div id="bk"></div></div></div>
 
+<div class="view" id="v-texts"><div class="tbar"><div class="hint">عدّل أي نص ثم اضغط «حفظ النصوص». الحقول المعدّلة تُميَّز بإطار ذهبي. إعادة النص الأصلي: اضغط «استرجاع» بجانب الحقل ثم احفظ.</div><button class="btn" id="tsv1"><svg class="i"><use href="#a-ck"/></svg>حفظ النصوص</button></div><div id="tx"><div class="empty">جارٍ التحميل…</div></div><button class="btn" id="tsv2" style="margin-top:6px"><svg class="i"><use href="#a-ck"/></svg>حفظ النصوص</button></div>
+
 <div class="view" id="v-settings"><div class="card"><h3><svg class="i"><use href="#a-ph"/></svg>بيانات التواصل</h3><p class="sub">تظهر في الموقع (قسم الحجز والفوتر وزر الاتصال).</p>
 <div class="g2"><div><label>رقم الهاتف</label><input id="phone" dir="ltr" placeholder="+201001234567"></div><div><label>واتساب (بالصيغة الدولية بدون +)</label><input id="whatsapp" dir="ltr" placeholder="201001234567"></div><div><label>البريد الإلكتروني</label><input id="email" dir="ltr" placeholder="name@example.com"></div><div><label>العنوان</label><input id="address" placeholder="المدينة / العنوان"></div></div><label>مواعيد العمل</label><input id="hours" placeholder="مثال: يومياً من 10 صباحاً إلى 8 مساءً"></div>
 <div class="card"><h3><svg class="i"><use href="#a-ext"/></svg>روابط التواصل الاجتماعي</h3><p class="sub">أدخل الرابط كاملاً (يبدأ بـ https://). اترك الفارغ ليختفي.</p>
@@ -106,7 +110,7 @@ let tk=localStorage.tk||'',ITEMS=[],BK=[],ft='',bs='',editing=null;
 const U=n=>'<svg class="i"><use href="#a-'+n+'"/></svg>';
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const N={article:'مقال',podcast:'بودكاست',book:'كتاب',course:'دورة'},IC={article:'file',podcast:'mic',book:'book',course:'cap'};
-const VT={dash:['الرئيسية','نظرة عامة على نشاط الموقع'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
+const VT={dash:['الرئيسية','نظرة عامة على نشاط الموقع'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],texts:['نصوص الموقع','تعديل كل النصوص الظاهرة في الصفحة الرئيسية'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
 function toast(m,t=''){const e=$('toast');e.textContent=m;e.className='on '+t;clearTimeout(toast.t);toast.t=setTimeout(()=>e.className='',2600)}
 async function api(u,m='GET',b){try{const r=await fetch('/api/'+u,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+tk},body:b?JSON.stringify(b):undefined});if(r.status==401){localStorage.removeItem('tk');location.reload();return null}if(!r.ok)return null;return await r.json()}catch(e){return null}}
 /* theme */
@@ -122,7 +126,7 @@ Q('.nv[data-v]').forEach(b=>b.onclick=()=>go(b.dataset.v));
 Q('[data-go]').forEach(b=>b.onclick=()=>{go(b.dataset.go);if(b.dataset.new){resetForm();$('type').value=b.dataset.new}});
 /* init */
 async function init(){if(!tk)return;$('lg').style.display='none';$('app').style.display='block';
-const s=await api('settings')||{};['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram'].forEach(k=>$(k).value=s[k]||'');await load()}
+const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram'].forEach(k=>$(k).value=s[k]||'');await load();drawTexts()}
 async function load(){const[a,b]=await Promise.all([api('items'),api('bookings')]);ITEMS=Array.isArray(a)?a:[];BK=Array.isArray(b)?b:[];drawAll()}
 function drawAll(){stats();drawItems();drawBK();drawRecent()}
 const nw=b=>b.status!='done';
@@ -152,5 +156,31 @@ if(bd&&confirm('تأكيد حذف هذا الطلب؟')){const r=await api('book
 $('bk').onclick=bAct;$('rb').onclick=bAct;
 /* settings */
 $('ss').onclick=async()=>{const d={};['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram'].forEach(k=>d[k]=$(k).value.trim());const r=await api('settings','PUT',d);r?toast('تم حفظ الإعدادات','s'):toast('تعذر الحفظ','e')};
+
+/* ===== texts editor ===== */
+let SET={};const DEF={};
+const TG=[
+['الشعار والقوائم',[['brand','اسم الموقع (الشعار)'],['brand_sub','الاسم تحت الشعار'],['nav_home','قائمة: الرئيسية'],['nav_about','قائمة: من أنا؟'],['nav_services','قائمة: خدماتنا'],['nav_articles','قائمة: المقالات'],['nav_podcast','قائمة: البودكاست'],['nav_library','قائمة: المكتبة النفسية'],['nav_courses','قائمة: الدورات (الشريط العلوي)'],['courses_full','الدورات التدريبية (القائمة الجانبية والفوتر)'],['btn_book','زر: احجز استشارتك'],['btn_book_now','زر: احجز استشارتك الآن'],['call_label','زر الاتصال (الجوال)']]],
+['الواجهة الرئيسية (الهيرو)',[['hero_pill','الشارة أعلى العنوان'],['hero_t1','العنوان — الجزء الأول (أبيض)'],['hero_t2','العنوان — الكلمات الذهبية'],['hero_t3','العنوان — الجزء الأخير (أبيض)'],['hero_lead','الفقرة تحت العنوان',1],['btn_discover','زر: اكتشف خدماتنا'],['trust1','ميزة 1'],['trust2','ميزة 2'],['trust3','ميزة 3']]],
+['الإحصائيات',[['stat1_n','الرقم 1'],['stat1_l','الوصف 1'],['stat2_n','الرقم 2'],['stat2_l','الوصف 2'],['stat3_n','الرقم 3'],['stat3_l','الوصف 3'],['stat4_n','الرقم 4'],['stat4_l','الوصف 4']]],
+['قسم الخدمات',[['svc_ey','الكلمة الصغيرة فوق العنوان'],['svc_h2','العنوان'],['svc_p','الوصف',1],['svc1_t','البطاقة الزرقاء الكبيرة — العنوان'],['svc1_d','البطاقة الزرقاء الكبيرة — الوصف',1],['svc2_t','البطاقة الثانية — العنوان'],['svc2_d','البطاقة الثانية — الوصف',1],['svc3_t','البطاقة الثالثة — العنوان'],['svc3_d','البطاقة الثالثة — الوصف',1],['svc4_t','البطاقة العريضة — العنوان'],['svc4_d','البطاقة العريضة — الوصف',1],['svc4_btn','البطاقة العريضة — نص الزر']]],
+['كيف نعمل',[['proc_ey','الكلمة الصغيرة'],['proc_h2','العنوان'],['proc_p','الوصف',1],['st1_t','الخطوة 1 — العنوان'],['st1_d','الخطوة 1 — الوصف',1],['st2_t','الخطوة 2 — العنوان'],['st2_d','الخطوة 2 — الوصف',1],['st3_t','الخطوة 3 — العنوان'],['st3_d','الخطوة 3 — الوصف',1]]],
+['من أنا',[['about_ey','الكلمة الصغيرة'],['about_h2','العنوان'],['about_p','النبذة',1],['about_c1','نقطة 1'],['about_c2','نقطة 2'],['about_c3','نقطة 3']]],
+['عناوين أقسام المحتوى',[['art_ey','المقالات — الكلمة الصغيرة'],['art_h2','المقالات — العنوان'],['pod_ey','البودكاست — الكلمة الصغيرة'],['pod_h2','البودكاست — العنوان'],['lib_ey','المكتبة — الكلمة الصغيرة'],['lib_h2','المكتبة — العنوان'],['crs_ey','الدورات — الكلمة الصغيرة'],['crs_h2','الدورات — العنوان']]],
+['بطاقات المحتوى',[['chip_article','وسم المقال','مقال'],['chip_podcast','وسم البودكاست','بودكاست'],['chip_book','وسم الكتاب','كتاب'],['chip_course','وسم الدورة','دورة'],['read_time','وقت القراءة (استخدم {n} لعدد الدقائق)','قراءة {n} د'],['read_more','زر القراءة','اقرأ المزيد'],['open','زر الفتح','فتح'],['empty','رسالة عدم وجود محتوى','سيتم إضافة المحتوى قريباً']]],
+['الأسئلة الشائعة',[['faq_ey','الكلمة الصغيرة'],['faq_h2','العنوان'],['faq1_q','سؤال 1'],['faq1_a','جواب 1',1],['faq2_q','سؤال 2'],['faq2_a','جواب 2',1],['faq3_q','سؤال 3'],['faq3_a','جواب 3',1],['faq4_q','سؤال 4'],['faq4_a','جواب 4',1]]],
+['الحجز',[['book_ey','الكلمة الصغيرة'],['book_h2','العنوان'],['book_p','الوصف',1],['ph_name','حقل الاسم (النص الإرشادي)'],['ph_phone','حقل الهاتف (النص الإرشادي)'],['ph_msg','حقل الرسالة (النص الإرشادي)'],['book_send','زر الإرسال'],['form_ok','رسالة نجاح الحجز','تم استلام طلبك، سنتواصل معك قريباً'],['form_err','رسالة فشل الحجز','حدث خطأ، حاول مرة أخرى'],['wa_label','نص واتساب']]],
+['الفوتر',[['fcta_h','الشريط الأزرق — العنوان'],['fcta_p','الشريط الأزرق — الوصف',1],['ft1','ميزة 1'],['ft2','ميزة 2'],['f_tag','الشعار النصي'],['f_about','نبذة الفوتر',1],['f_links','عنوان: روابط سريعة'],['f_services','عنوان: خدماتنا'],['f_faq','رابط: أسئلة شائعة'],['f_contact','عنوان: تواصل معنا'],['f_send','رابط: أرسل طلب الحجز'],['f_note','ملاحظة أسفل الصفحة',1],['copy','حقوق النشر']]],
+['عنوان تبويب المتصفح',[['page_title','عنوان الصفحة']]]
+];
+async function loadDefaults(){try{const r=await fetch('/');const d=new DOMParser().parseFromString(await r.text(),'text/html');d.querySelectorAll('[data-t]').forEach(e=>{const k=e.dataset.t;if(!(k in DEF))DEF[k]=e.textContent.replace(/\s+/g,' ').trim()});d.querySelectorAll('[data-tp]').forEach(e=>{DEF[e.dataset.tp]=e.getAttribute('placeholder')||''});DEF.page_title=d.title||''}catch(e){}}
+async function drawTexts(){await loadDefaults();const box=$('tx');
+box.innerHTML=TG.map((g,gi)=>`<div class="card"><h3>${U('ed')}${E(g[0])}</h3><div class="g2">${g[1].map(f=>{const k=f[0],d=(k in DEF&&DEF[k])?DEF[k]:(f[2]&&typeof f[2]=='string'?f[2]:''),v=(SET['t_'+k]||'').trim()||d,long=f[2]===1||v.length>70;
+return `<div class="${long?'f1':''}"><label>${E(f[1])}<span class="kv" data-r="${k}" style="cursor:pointer;display:none">↺ استرجاع</span></label>${long?`<textarea class="tx" rows="3" data-k="${k}" data-d="${E(d)}">${E(v)}</textarea>`:`<input data-k="${k}" data-d="${E(d)}" value="${E(v)}">`}</div>`}).join('')}</div></div>`).join('');
+box.querySelectorAll('[data-k]').forEach(el=>{const mark=()=>{const c=el.value.trim()!==el.dataset.d;el.classList.toggle('chg',c);const r=el.parentNode.querySelector('[data-r]');if(r)r.style.display=c?'inline':'none'};el.oninput=mark;mark()});
+box.onclick=e=>{const r=e.target.closest('[data-r]');if(!r)return;const el=box.querySelector('[data-k="'+r.dataset.r+'"]');el.value=el.dataset.d;el.oninput()}}
+async function saveTexts(){const d={};document.querySelectorAll('#tx [data-k]').forEach(el=>{const v=el.value.trim();d['t_'+el.dataset.k]=(v&&v!==el.dataset.d)?v:''});
+const bs=[$('tsv1'),$('tsv2')];bs.forEach(b=>b.disabled=true);const r=await api('settings','PUT',d);bs.forEach(b=>b.disabled=false);if(r){Object.assign(SET,d);toast('تم حفظ النصوص — ستظهر في الموقع فوراً','s')}else toast('تعذر الحفظ','e')}
+$('tsv1').onclick=$('tsv2').onclick=saveTexts;
 init();
 </script></body></html>
