@@ -16,7 +16,7 @@ label{display:block;font-size:13px;font-weight:600;color:var(--mu);margin:12px 0
 .card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:22px;box-shadow:var(--sh);margin-bottom:18px}.card h3{font-size:17px;margin-bottom:4px;display:flex;gap:9px;align-items:center}.card h3 .i{color:var(--gold)}.card .sub{color:var(--mu);font-size:13.5px;margin-bottom:8px}
 /* login */
 #lg{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(800px 400px at 80% 0,#2b7bd033,transparent 70%),radial-gradient(600px 380px at 0 100%,#d9b25a1f,transparent 70%),var(--bg)}
-#lg .box{width:100%;max-width:400px;text-align:center}#lg img{width:96px;height:96px;border-radius:50%;background:#fff;padding:8px;border:3px solid var(--gold);margin-bottom:12px;object-fit:contain}#lg h2{margin-bottom:2px}#lg p{color:var(--mu);margin-bottom:14px;font-size:14px}#lg .btn{width:100%;margin-top:14px}
+#lg .box{width:100%;max-width:400px;text-align:center}#lg img{width:96px;height:96px;border-radius:50%;background:#fff;padding:8px;border:3px solid var(--gold);margin-bottom:12px;object-fit:contain}#lg h2{margin-bottom:2px}#lg p{color:var(--mu);margin-bottom:14px;font-size:14px}#lg .btn{width:100%;margin-top:14px}#lg input{direction:ltr;text-align:left;unicode-bidi:plaintext;letter-spacing:.5px}#lg input::placeholder{letter-spacing:2px}
 /* shell */
 #app{display:none;min-height:100vh}.shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
 aside{background:var(--sb);border-inline-end:1px solid var(--bd);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
@@ -63,7 +63,7 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 <symbol id="a-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
 </defs></svg>
 
-<div id="lg"><div class="card box"><img src="/img/mark.png" alt="دوبامين"><h2>لوحة الإدارة</h2><p>دوبامين — د. ممدوح حمدي</p><label style="text-align:start">كلمة المرور</label><input id="pw" type="password" placeholder="••••••••" autocomplete="current-password"><button class="btn" id="lgb">دخول</button></div></div>
+<div id="lg"><div class="card box"><img src="/img/mark.png" alt="دوبامين"><h2>لوحة الإدارة</h2><p>دوبامين — د. ممدوح حمدي</p><label style="text-align:start">كلمة المرور</label><input id="pw" name="password" type="password" dir="ltr" placeholder="••••••••" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go"><button class="btn" id="lgb">دخول</button></div></div>
 
 <div id="app"><div class="shell">
 <aside><div class="logo"><img src="/img/mark.png" alt=""><span><b>دوبامين</b><small>لوحة الإدارة</small></span></div>
@@ -113,8 +113,8 @@ async function api(u,m='GET',b){try{const r=await fetch('/api/'+u,{method:m,head
 R.dataset.theme=localStorage.at||'dark';const sy=()=>$('th').innerHTML=U(R.dataset.theme=='dark'?'sun':'moon');sy();
 $('th').onclick=()=>{R.dataset.theme=R.dataset.theme=='dark'?'light':'dark';localStorage.at=R.dataset.theme;sy()};
 /* auth */
-async function login(){const b=$('lgb');b.disabled=true;try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:$('pw').value})});if(!r.ok){toast('كلمة المرور غير صحيحة','e');return}tk=(await r.json()).token;localStorage.tk=tk;init()}catch(e){toast('تعذر الاتصال بالخادم','e')}finally{b.disabled=false}}
-$('lgb').onclick=login;$('pw').onkeydown=e=>e.key=='Enter'&&login();
+async function login(){const b=$('lgb'),v=$('pw').value;if(!v){toast('أدخل كلمة المرور','e');$('pw').focus();return}b.disabled=true;try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:v})});if(r.status==401){toast('كلمة المرور غير صحيحة','e');$('pw').select();return}if(!r.ok){toast('خطأ في الخادم ('+r.status+') — تحقق من إعدادات ADMIN_PASSWORD و JWT_SECRET','e');return}tk=(await r.json()).token;localStorage.tk=tk;init()}catch(e){toast('تعذر الاتصال بالخادم','e')}finally{b.disabled=false}}
+$('lgb').onclick=login;$('pw').onkeydown=e=>{if(e.key=='Enter'&&!e.isComposing){e.preventDefault();login()}};
 const logout=()=>{localStorage.removeItem('tk');location.reload()};$('out').onclick=$('out2').onclick=logout;
 /* nav */
 function go(v){Q('.view').forEach(x=>x.classList.toggle('on',x.id=='v-'+v));Q('.nv[data-v]').forEach(x=>x.classList.toggle('on',x.dataset.v==v));$('ttl').textContent=VT[v][0];$('sbt').textContent=VT[v][1];scrollTo({top:0})}
