@@ -41,6 +41,8 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 #edn{display:none;background:#d9b25a22;border:1px solid #d9b25a66;color:var(--gold);padding:8px 14px;border-radius:12px;margin-bottom:8px;font-weight:600;font-size:14px}
 #toast{position:fixed;inset:auto 0 26px;margin:auto;width:max-content;max-width:90%;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:11px 20px;box-shadow:var(--sh);font-weight:600;z-index:99;transform:translateY(30px);opacity:0;pointer-events:none;transition:.3s}#toast.on{transform:none;opacity:1}#toast.e{border-color:var(--dg);color:var(--dg)}#toast.s{border-color:var(--ok)}
 .mt{display:none}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}.fc{border:1px solid var(--bd);border-radius:14px;padding:14px;background:var(--in);cursor:pointer;transition:.2s;position:relative}.fc:hover{border-color:var(--p2);transform:translateY(-2px)}.fc.sel{border-color:var(--gold);box-shadow:0 0 0 2px #d9b25a55}.fc .nm{font-size:12px;color:var(--mu);font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif;display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}.fc .sm{font-size:22px;line-height:1.6;margin-top:6px}.fc .tg2{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}.fc .tg2 span{font-size:11px;font-weight:700;padding:0 8px;border-radius:20px;background:#d9b25a2e;color:var(--gold);font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif}
+.tgt{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.tgt .ch b{font-weight:700}.fprev{border-radius:16px;padding:26px;background:linear-gradient(135deg,#0b2a4a,#143e6b);color:#fff;margin:12px 0}.fprev .h1{font-size:38px;line-height:1.4;font-weight:700}.fprev .h1 em{font-style:normal;color:#f3dc96}.fprev .h2{font-size:22px;margin-top:14px;font-weight:700}.fprev p{opacity:.85;margin-top:6px;line-height:1.9}
 .tbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.tbar .hint{color:var(--mu);font-size:13.5px;flex:1;min-width:220px}.f1{grid-column:1/-1}.chg{border-color:#d9b25a !important}.kv{color:var(--gold);font-size:11.5px;font-weight:500;margin-inline-start:6px}textarea.tx{min-height:76px;resize:vertical}
 @media(max-width:900px){.shell{grid-template-columns:1fr}aside{position:fixed;inset:auto 0 0;height:auto;flex-direction:row;padding:6px 8px calc(6px + env(safe-area-inset-bottom));border-inline-end:0;border-top:1px solid var(--bd);z-index:50;gap:2px}.logo,.sp,.lo{display:none}.nv{flex-direction:column;gap:2px;padding:7px 4px;font-size:11.5px;justify-content:center;align-items:center;text-align:center}.nv .i{width:22px;height:22px}.bdg{position:absolute;top:2px;inset-inline-start:calc(50% + 6px);margin:0;font-size:10px;min-width:18px}main{padding:18px 16px 110px}.stats{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.mt{display:grid}.top h1{font-size:22px}.row{flex-wrap:wrap}.row .ac{width:100%}}
 </style></head><body>
@@ -72,6 +74,7 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 <button class="nv" data-v="content"><svg class="i"><use href="#a-file"/></svg>المحتوى</button>
 <button class="nv" data-v="bookings"><svg class="i"><use href="#a-cal"/></svg>الحجوزات<span class="bdg z" id="nb"></span></button>
 <button class="nv" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button>
+<button class="nv" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button>
 <button class="nv" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
 <div class="sp"></div><a class="nv lo" href="/" target="_blank"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="nv lo" id="out"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></aside>
 <main>
@@ -97,6 +100,11 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 
 <div class="view" id="v-texts"><div class="tbar"><div class="hint">عدّل أي نص ثم اضغط «حفظ النصوص». الحقول المعدّلة تُميَّز بإطار ذهبي. إعادة النص الأصلي: اضغط «استرجاع» بجانب الحقل ثم احفظ.</div><button class="btn" id="tsv1"><svg class="i"><use href="#a-ck"/></svg>حفظ النصوص</button></div><div id="tx"><div class="empty">جارٍ التحميل…</div></div><button class="btn" id="tsv2" style="margin-top:6px"><svg class="i"><use href="#a-ck"/></svg>حفظ النصوص</button></div>
 
+<div class="view" id="v-fonts"><div class="card"><h3><svg class="i"><use href="#a-ed"/></svg> الخطوط</h3><p class="sub">اختر الجزء الذي تريد تغيير خطه، ثم اضغط على أي خط من القائمة لتجربته فوراً في المعاينة. بعد الاختيار اضغط «حفظ الخطوط» ليظهر في الموقع.</p>
+<div class="tgt" id="ft"></div><div class="fprev" id="fpv"><div class="h1" id="fp1">رحلتك نحو <em>التوازن النفسي</em> والأسري تبدأ من هنا</div><div class="h2" id="fp2">كيف يمكننا مساعدتك؟</div><p id="fp3">د. ممدوح حمدي — نساعدك على فهم نفسك وحل مشكلاتك وبناء حياة أكثر هدوءاً وسعادة، بخصوصية تامة واحترافية.</p></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="fsv"><svg class="i"><use href="#a-ck"/></svg>حفظ الخطوط</button><button class="btn o" id="frs">إرجاع الخط الافتراضي للجزء المحدد</button></div></div>
+<div class="card"><h3><svg class="i"><use href="#a-file"/></svg> الخطوط المتاحة <span class="tag" style="margin:0" id="fcn"></span></h3><div class="fgrid" id="fg"></div></div></div>
+
 <div class="view" id="v-settings"><div class="card"><h3><svg class="i"><use href="#a-ph"/></svg>بيانات التواصل</h3><p class="sub">تظهر في الموقع (قسم الحجز والفوتر وزر الاتصال).</p>
 <div class="g2"><div><label>رقم الهاتف</label><input id="phone" dir="ltr" placeholder="+201001234567"></div><div><label>واتساب (بالصيغة الدولية بدون +)</label><input id="whatsapp" dir="ltr" placeholder="201001234567"></div><div><label>البريد الإلكتروني</label><input id="email" dir="ltr" placeholder="name@example.com"></div><div><label>العنوان</label><input id="address" placeholder="المدينة / العنوان"></div></div><label>مواعيد العمل</label><input id="hours" placeholder="مثال: يومياً من 10 صباحاً إلى 8 مساءً"></div>
 <div class="card"><h3><svg class="i"><use href="#a-ext"/></svg>روابط التواصل الاجتماعي</h3><p class="sub">أدخل الرابط كاملاً (يبدأ بـ https://). اترك الفارغ ليختفي.</p>
@@ -110,7 +118,7 @@ let tk=localStorage.tk||'',ITEMS=[],BK=[],ft='',bs='',editing=null;
 const U=n=>'<svg class="i"><use href="#a-'+n+'"/></svg>';
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const N={article:'مقال',podcast:'بودكاست',book:'كتاب',course:'دورة'},IC={article:'file',podcast:'mic',book:'book',course:'cap'};
-const VT={dash:['الرئيسية','نظرة عامة على نشاط الموقع'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],texts:['نصوص الموقع','تعديل كل النصوص الظاهرة في الصفحة الرئيسية'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
+const VT={dash:['الرئيسية','نظرة عامة على نشاط الموقع'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],texts:['نصوص الموقع','تعديل كل النصوص الظاهرة في الصفحة الرئيسية'],fonts:['الخطوط','جرّب أكثر من 25 خطاً واختر الأنسب لكل جزء من الموقع'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
 function toast(m,t=''){const e=$('toast');e.textContent=m;e.className='on '+t;clearTimeout(toast.t);toast.t=setTimeout(()=>e.className='',2600)}
 async function api(u,m='GET',b){try{const r=await fetch('/api/'+u,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+tk},body:b?JSON.stringify(b):undefined});if(r.status==401){localStorage.removeItem('tk');location.reload();return null}if(!r.ok)return null;return await r.json()}catch(e){return null}}
 /* theme */
@@ -126,7 +134,7 @@ Q('.nv[data-v]').forEach(b=>b.onclick=()=>go(b.dataset.v));
 Q('[data-go]').forEach(b=>b.onclick=()=>{go(b.dataset.go);if(b.dataset.new){resetForm();$('type').value=b.dataset.new}});
 /* init */
 async function init(){if(!tk)return;$('lg').style.display='none';$('app').style.display='block';
-const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram'].forEach(k=>$(k).value=s[k]||'');await load();drawTexts()}
+const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram'].forEach(k=>$(k).value=s[k]||'');await load();drawTexts();drawFonts()}
 async function load(){const[a,b]=await Promise.all([api('items'),api('bookings')]);ITEMS=Array.isArray(a)?a:[];BK=Array.isArray(b)?b:[];drawAll()}
 function drawAll(){stats();drawItems();drawBK();drawRecent()}
 const nw=b=>b.status!='done';
@@ -182,5 +190,21 @@ box.onclick=e=>{const r=e.target.closest('[data-r]');if(!r)return;const el=box.q
 async function saveTexts(){const d={};document.querySelectorAll('#tx [data-k]').forEach(el=>{const v=el.value.trim();d['t_'+el.dataset.k]=(v&&v!==el.dataset.d)?v:''});
 const bs=[$('tsv1'),$('tsv2')];bs.forEach(b=>b.disabled=true);const r=await api('settings','PUT',d);bs.forEach(b=>b.disabled=false);if(r){Object.assign(SET,d);toast('تم حفظ النصوص — ستظهر في الموقع فوراً','s')}else toast('تعذر الحفظ','e')}
 $('tsv1').onclick=$('tsv2').onclick=saveTexts;
+
+/* ===== fonts ===== */
+const FN={'IBM Plex Sans Arabic':'IBM+Plex+Sans+Arabic:wght@400;500;600;700','El Messiri':'El+Messiri:wght@500;600;700','Cairo':'Cairo:wght@400;500;600;700','Tajawal':'Tajawal:wght@400;500;700','Almarai':'Almarai:wght@400;700','Amiri':'Amiri:wght@400;700','Aref Ruqaa':'Aref+Ruqaa:wght@400;700','Reem Kufi':'Reem+Kufi:wght@400;500;600;700','Lalezar':'Lalezar','Changa':'Changa:wght@400;500;600;700','Harmattan':'Harmattan:wght@400;500;600;700','Lemonada':'Lemonada:wght@400;500;600;700','Markazi Text':'Markazi+Text:wght@400;500;600;700','Noto Kufi Arabic':'Noto+Kufi+Arabic:wght@400;500;600;700','Noto Naskh Arabic':'Noto+Naskh+Arabic:wght@400;500;600;700','Rakkas':'Rakkas','Scheherazade New':'Scheherazade+New:wght@400;500;600;700','Mada':'Mada:wght@400;500;600;700','Baloo Bhaijaan 2':'Baloo+Bhaijaan+2:wght@400;500;600;700','Readex Pro':'Readex+Pro:wght@400;500;600;700','Alexandria':'Alexandria:wght@400;500;600;700','Zain':'Zain:wght@400;700','Kufam':'Kufam:wght@400;500;600;700','Rubik':'Rubik:wght@400;500;600;700','Vibes':'Vibes','Katibeh':'Katibeh','Jomhuria':'Jomhuria','Blaka':'Blaka'};
+const FD={f_hero:'El Messiri',f_head:'IBM Plex Sans Arabic',f_body:'IBM Plex Sans Arabic'},FL={f_hero:'العنوان الرئيسي',f_head:'عناوين الأقسام',f_body:'النصوص العامة'};
+let FS={},FT='f_hero',fLoaded=false;
+const fq=k=>FS[k]||FD[k];
+function fontPrev(){$('fp1').style.fontFamily="'"+fq('f_hero')+"',sans-serif";$('fp2').style.fontFamily="'"+fq('f_head')+"',sans-serif";$('fp3').style.fontFamily="'"+fq('f_body')+"',sans-serif"}
+function drawFonts(){
+if(!fLoaded){fLoaded=true;const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?'+Object.values(FN).map(x=>'family='+x).join('&')+'&display=swap';document.head.appendChild(l);['f_hero','f_head','f_body'].forEach(k=>FS[k]=(SET[k]||'').trim()&&FN[SET[k].trim()]?SET[k].trim():'')}
+$('ft').innerHTML=['f_hero','f_head','f_body'].map(k=>`<button class="ch ${k==FT?'on':''}" data-ft="${k}">${FL[k]}: <b>${E(fq(k))}</b></button>`).join('');
+$('fcn').textContent=Object.keys(FN).length;
+$('fg').innerHTML=Object.keys(FN).map(n=>{const tg=['f_hero','f_head','f_body'].filter(k=>fq(k)==n).map(k=>`<span>${FL[k]}</span>`).join('');return `<div class="fc ${fq(FT)==n?'sel':''}" data-fn="${E(n)}"><div class="nm"><b>${E(n)}</b></div><div class="sm" style="font-family:'${E(n)}',sans-serif">رحلتك نحو التوازن النفسي</div><div class="tg2">${tg}</div></div>`}).join('');fontPrev()}
+$('ft').onclick=e=>{const b=e.target.closest('[data-ft]');if(!b)return;FT=b.dataset.ft;drawFonts()};
+$('fg').onclick=e=>{const c=e.target.closest('[data-fn]');if(!c)return;FS[FT]=c.dataset.fn;drawFonts()};
+$('frs').onclick=()=>{FS[FT]='';drawFonts()};
+$('fsv').onclick=async()=>{const d={};['f_hero','f_head','f_body'].forEach(k=>d[k]=(FS[k]&&FS[k]!=FD[k])?FS[k]:'');const b=$('fsv');b.disabled=true;const r=await api('settings','PUT',d);b.disabled=false;if(r){Object.assign(SET,d);toast('تم حفظ الخطوط — ستظهر في الموقع بعد التحديث','s')}else toast('تعذر الحفظ','e')};
 init();
 </script></body></html>
