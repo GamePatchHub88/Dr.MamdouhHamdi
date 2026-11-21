@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>لوحة الإدارة - دوبامين</title>
+<style>
+body{font-family:Tahoma,sans-serif;background:#0f1b16;color:#f3ede0;margin:0;padding:20px}.w{max-width:900px;margin:auto}
+.c{background:#1b2f26;border:1px solid #2c4639;border-radius:16px;padding:20px;margin-bottom:18px}
+input,textarea,select{width:100%;padding:11px;margin:5px 0;border-radius:10px;border:1px solid #2c4639;background:#12231c;color:#fff;font:inherit;box-sizing:border-box}
+button{background:#d9b25f;color:#111;border:0;border-radius:30px;padding:9px 20px;font-weight:700;cursor:pointer}button.d{background:#b04a4a;color:#fff;padding:4px 12px}
+.r{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2c4639;padding:8px 0;gap:10px}h3{color:#f0d28a;margin-top:0}
+</style></head><body><div class="w">
+<div class="c" id="lg"><h3>تسجيل الدخول</h3><input id="pw" type="password" placeholder="كلمة المرور"><button onclick="login()">دخول</button></div>
+<div id="app" style="display:none">
+<div class="c"><h3>إعدادات التواصل</h3><input id="phone" placeholder="رقم الهاتف (مثال: +201001234567)" dir="ltr"><input id="whatsapp" placeholder="رقم واتساب بالصيغة الدولية بدون + (اختياري)" dir="ltr"><button onclick="saveS()">حفظ</button> <span id="sm"></span></div>
+<div class="c"><h3>إضافة محتوى</h3><select id="type"><option value="article">مقال</option><option value="podcast">حلقة بودكاست</option><option value="book">كتاب (مكتبة نفسية)</option><option value="course">دورة تدريبية</option></select>
+<input id="title" placeholder="العنوان"><textarea id="desc" rows="2" placeholder="وصف مختصر"></textarea><textarea id="body" rows="7" placeholder="نص المقال الكامل (للمقالات)"></textarea><input id="url" dir="ltr" placeholder="رابط (ملف صوتي mp3 للبودكاست / رابط الكتاب أو الدورة)"><input id="image" dir="ltr" placeholder="رابط صورة (اختياري)"><button onclick="add()">نشر</button></div>
+<div class="c"><h3>المحتوى</h3><div id="items"></div></div>
+<div class="c"><h3>طلبات الحجز</h3><div id="bk"></div></div></div></div>
+<script>
+const $=s=>document.getElementById(s);let tk=localStorage.tk||'';
+const api=(u,m='GET',b)=>fetch('/api/'+u,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+tk},body:b?JSON.stringify(b):undefined}).then(r=>{if(r.status==401){localStorage.tk='';location.reload()}return r.json()});
+const E=s=>(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])),N={article:'مقال',podcast:'بودكاست',book:'كتاب',course:'دورة'};
+async function login(){const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw.value})});if(!r.ok)return alert('كلمة المرور خاطئة');tk=(await r.json()).token;localStorage.tk=tk;init()}
+async function init(){if(!tk)return;lg.style.display='none';app.style.display='block';const s=await api('settings');phone.value=s.phone||'';whatsapp.value=s.whatsapp||'';load()}
+async function saveS(){await api('settings','PUT',{phone:phone.value,whatsapp:whatsapp.value});sm.textContent='تم الحفظ ✅'}
+async function add(){if(!title.value)return;await api('items','POST',{type:type.value,title:title.value,desc:desc.value,body:body.value,url:url.value,image:image.value});[title,desc,body,url,image].forEach(x=>x.value='');load()}
+async function load(){const L=await api('items');items.innerHTML=L.map(i=>`<div class="r"><span>[${N[i.type]}] ${E(i.title)}</span><button class="d" onclick="del('items','${i._id}')">حذف</button></div>`).join('')||'لا يوجد';
+const B=await api('bookings');bk.innerHTML=B.map(b=>`<div class="r"><span><b>${E(b.name)}</b> — <a style="color:#f0d28a" href="tel:${E(b.phone)}">${E(b.phone)}</a><br>${E(b.message)}</span><button class="d" onclick="del('bookings','${b._id}')">حذف</button></div>`).join('')||'لا توجد طلبات'}
+async function del(c,id){if(confirm('تأكيد الحذف؟')){await api(c+'/'+id,'DELETE');load()}}
+init();
+</script></body></html>
