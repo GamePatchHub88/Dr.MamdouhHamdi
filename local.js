@@ -1,1 +1,1 @@
-require('dotenv').config();require('./lib/app').listen(process.env.PORT||3000,()=>console.log('http://localhost:'+(process.env.PORT||3000)));
+require('dotenv').config();const app=require('./lib/app');app.use(require('express').static('public'));app.listen(process.env.PORT||3000,()=>console.log('http://localhost:'+(process.env.PORT||3000)));
