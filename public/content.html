@@ -75,10 +75,11 @@ const jget=async u=>{try{const r=await fetch(u);if(!r.ok)return null;return awai
 const FN={'IBM Plex Sans Arabic':'IBM+Plex+Sans+Arabic:wght@400;500;600;700','El Messiri':'El+Messiri:wght@500;600;700','Cairo':'Cairo:wght@400;500;600;700','Tajawal':'Tajawal:wght@400;500;700','Almarai':'Almarai:wght@400;700','Amiri':'Amiri:wght@400;700','Aref Ruqaa':'Aref+Ruqaa:wght@400;700','Reem Kufi':'Reem+Kufi:wght@400;500;600;700','Lalezar':'Lalezar','Changa':'Changa:wght@400;500;600;700','Harmattan':'Harmattan:wght@400;500;600;700','Lemonada':'Lemonada:wght@400;500;600;700','Markazi Text':'Markazi+Text:wght@400;500;600;700','Noto Kufi Arabic':'Noto+Kufi+Arabic:wght@400;500;600;700','Noto Naskh Arabic':'Noto+Naskh+Arabic:wght@400;500;600;700','Rakkas':'Rakkas','Scheherazade New':'Scheherazade+New:wght@400;500;600;700','Mada':'Mada:wght@400;500;600;700','Baloo Bhaijaan 2':'Baloo+Bhaijaan+2:wght@400;500;600;700','Readex Pro':'Readex+Pro:wght@400;500;600;700','Alexandria':'Alexandria:wght@400;500;600;700','Zain':'Zain:wght@400;700','Kufam':'Kufam:wght@400;500;600;700','Rubik':'Rubik:wght@400;500;600;700','Vibes':'Vibes','Katibeh':'Katibeh','Jomhuria':'Jomhuria','Blaka':'Blaka'};
 function applyT(){document.querySelectorAll('[data-t]').forEach(e=>{const v=(S['t_'+e.dataset.t]||'').trim();if(v)e.textContent=v})}
 function applyF(){const g=new Set(),css=[],pick=(k,sel)=>{const n=(S[k]||'').trim();if(!FN[n])return;g.add('family='+FN[n]);css.push(sel+"{font-family:'"+n+"','IBM Plex Sans Arabic',Tahoma,sans-serif!important}")};pick('f_body','body');pick('f_head','h1,h2,h3,.brand');if(!g.size)return;const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?'+[...g].join('&')+'&display=swap';document.head.appendChild(l);const st=document.createElement('style');st.textContent=css.join('');document.head.appendChild(st)}
-const SP=jget('/api/settings').then(s=>{s=s&&typeof s=='object'?s:{};Object.assign(S,s);applyT();applyF()}).catch(()=>{});
-const TABS=[['article','المقالات','file','مقالات نفسية وأسرية للتوعية العامة.'],['podcast','البودكاست','mic','استمع إلى حلقاتنا في أي وقت.'],['book','المكتبة النفسية','book','كتب ومراجع مختارة.'],['course','الدورات','cap','دورات تدريبية لتطوير نفسك.']];
+const SP=jget('/api/settings').then(s=>{s=s&&typeof s=='object'?s:{};Object.assign(S,s);applyT();applyF();if(s.img_mark)document.querySelectorAll('.brand img').forEach(i=>i.src=s.img_mark)}).catch(()=>{});
+if(new URLSearchParams(location.search).get('tab')=='article')location.replace('/articles.html'+(new URLSearchParams(location.search).get('id')?'?id='+encodeURIComponent(new URLSearchParams(location.search).get('id')):''));
+const TABS=[['podcast','البودكاست','mic','استمع إلى حلقاتنا في أي وقت.'],['book','المكتبة النفسية','book','كتب ومراجع مختارة.'],['course','الدورات','cap','دورات تدريبية لتطوير نفسك.']];
 const NM={article:'مقال',podcast:'بودكاست',book:'كتاب',course:'دورة'},IC={article:'file',podcast:'mic',book:'book',course:'cap'};
-const qs=new URLSearchParams(location.search),PAGE=9;let cur=TABS.some(t=>t[0]==qs.get('tab'))?qs.get('tab'):'article',L=[],shown=PAGE;
+const qs=new URLSearchParams(location.search),PAGE=9;let cur=TABS.some(t=>t[0]==qs.get('tab'))?qs.get('tab'):'podcast',L=[],shown=PAGE;
 const fmtD=d=>{try{return new Date(d).toLocaleDateString('ar-EG',{year:'numeric',month:'long',day:'numeric'})}catch(e){return ''}};
 const rtOf=w=>Math.max(1,Math.round(w/180));
 const lnk=(t,i)=>'/content.html?tab='+t+'&id='+encodeURIComponent(i._id);
@@ -108,6 +109,7 @@ prevBlank=false});cu();return h}
 async function openReader(id){listv.style.display='none';readv.style.display='block';scrollTo(0,0);
 rd.innerHTML='<div class="sk" style="height:420px"></div>';rel.innerHTML='';
 let i=await jget('/api/items?id='+encodeURIComponent(id));if(!i||!i._id)i=await jget('/api/items/'+encodeURIComponent(id));
+if(i&&i.type=='article'){location.replace('/articles.html?id='+encodeURIComponent(id));return}
 if(!i||!i._id){rd.innerHTML=`<a class="back" href="/content.html?tab=${cur}">${U('arr')}العودة للمحتوى</a><div class="empty"><b>عذراً، لم نعثر على هذا المحتوى</b><span>ربما تم حذفه أو تغيّر رابطه.</span><a class="btn sm" href="/content.html?tab=${cur}">تصفّح المحتوى</a></div>`;return}
 const t=NM[i.type]?i.type:cur,w=(i.body||'').trim().split(/\s+/).filter(Boolean).length,meta=[];
 if(i.createdAt)meta.push(U('cal')+esc(fmtD(i.createdAt)));if(t=='article'&&w)meta.push(U('clk')+esc(T('read_time','قراءة {n} د').replace('{n}',rtOf(w))));
