@@ -89,6 +89,23 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 
 .cp{position:fixed;inset:0;z-index:95;display:none;background:#000a;padding:10vh 16px}.cp.on{display:block}.cp .bx{max-width:560px;margin:auto;background:var(--card);border:1px solid var(--bd);border-radius:18px;box-shadow:var(--sh);overflow:hidden}.cp .rs{max-height:50vh;overflow:auto}.cp .rs button{display:flex;gap:10px;width:100%;text-align:start;padding:11px 16px;background:none;border:0;border-top:1px solid var(--bd);color:var(--tx);cursor:pointer}.cp .rs button:hover{background:#4aa8ee22}.cp small{color:var(--mu);margin-inline-start:auto}
 .topr small{text-align:end}
+
+/* ===== responsive fixes ===== */
+.shell{grid-template-columns:250px minmax(0,1fr)}main{min-width:0}.two{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.alr button{min-width:min(200px,100%)}.tools select{max-width:100%}.card,.row .m,.topr b{min-width:0}.ctb{display:block;overflow-x:auto}
+@media(max-width:900px){
+.shell{grid-template-columns:minmax(0,1fr)!important}.two{grid-template-columns:minmax(0,1fr)!important}.g2{grid-template-columns:minmax(0,1fr)!important}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}.stat b{font-size:24px}
+.row .th{width:44px;height:44px}.row .m{flex:1 1 calc(100% - 120px)}.row .ac{flex-wrap:wrap}.row .ac .btn{flex:1 1 30%}
+.bulk{top:4px}.bulk .btn{flex:1}.bulk b{flex:1 0 100%}
+.tbar .hint{min-width:0;flex:1 1 100%}.tbar .btn,.tbar select{flex:1 1 auto}
+.topr{flex-wrap:wrap}.topr b{flex:1 1 60%}.topr small{flex:1 1 100%;text-align:start}
+.bk .ac .btn,.cmr .ac .btn{flex:1 1 40%}.chart{gap:2px}
+.cp{padding:6vh 10px}.fgrid,.igs{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.tools input{min-width:0;flex:1 1 100%}.tools .chips{flex:1 1 100%}.tools select{flex:1 1 auto}
+.pvbox{max-height:60vh}.fprev .h1{font-size:26px}.big{font-size:26px}
+}
+@media(max-width:420px){.stat{padding:14px}.stat .i{width:32px;height:32px;padding:7px;margin-bottom:6px}.stat b{font-size:22px}.stat span{font-size:12px}.top h1{font-size:19px}.card{padding:14px!important}}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
