@@ -78,6 +78,14 @@ main{padding:16px 14px calc(96px + env(safe-area-inset-bottom))!important}
 .etb .btn{flex:1 1 auto}
 body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 }
+
+/* ===== v2 upgrades ===== */
+.chart{display:flex;align-items:flex-end;gap:4px;height:120px;margin-top:14px}.chart i{flex:1;background:var(--gr);border-radius:5px 5px 0 0;min-height:3px;opacity:.9}.chart i:hover{opacity:1}.chart i.z{background:var(--bd)}.chart-l{display:flex;justify-content:space-between;color:var(--mu);font-size:11.5px;margin-top:6px}
+.alr{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.alr:empty{display:none}.alr button{flex:1;min-width:200px;text-align:start;padding:14px 16px;border-radius:14px;border:1px solid #d9b25a77;background:#d9b25a1a;color:var(--tx);cursor:pointer;font-weight:600}.alr b{color:var(--gold);font-size:20px;margin-inline-end:6px}
+.ck2{width:20px;height:20px;accent-color:#2b7bd0;flex:none}
+.bulk{display:none;gap:8px;flex-wrap:wrap;align-items:center;position:sticky;top:8px;z-index:20;background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:10px 14px;margin-bottom:10px;box-shadow:var(--sh)}.bulk.on{display:flex}.bulk b{margin-inline-end:auto}
+.cnt2{font-size:12px;color:var(--mu);margin-top:4px}.cnt2.bad{color:var(--dg)}.cnt2.good{color:var(--ok)}
+.topr{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--bd)}.topr:last-child{border:0}.topr b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
@@ -121,6 +129,8 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 
 <div class="view on" id="v-dash">
 <div class="stats"><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s1">0</b><span>إجمالي المحتوى</span></div><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s2">0</b><span>مقالات</span></div><div class="stat g"><svg class="i"><use href="#a-cal"/></svg><b id="s3">0</b><span>طلبات جديدة</span></div><div class="stat"><svg class="i"><use href="#a-cal"/></svg><b id="s4">0</b><span>إجمالي الحجوزات</span></div><div class="stat"><svg class="i"><use href="#a-ext"/></svg><b id="s5">0</b><span>مشاهدات المقالات</span></div><div class="stat g"><svg class="i"><use href="#a-ck"/></svg><b id="s6">0</b><span>إعجابات المقالات</span></div></div>
+<div class="alr" id="alr"></div>
+<div class="two"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>الحجوزات آخر 30 يوماً <span class="tag" id="c30" style="margin:0"></span></h3><div class="chart" id="chart"></div><div class="chart-l"><span id="cl1"></span><span id="cl2"></span></div></div><div class="card"><h3><svg class="i"><use href="#a-file"/></svg>الأكثر مشاهدة</h3><div id="topa"></div></div></div>
 <div class="two"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>أحدث الحجوزات</h3><div id="rb"></div></div>
 <div class="card"><h3><svg class="i"><use href="#a-plus"/></svg>إجراءات سريعة</h3><div class="qa" style="margin-top:10px"><button class="btn" data-go="content" data-new="article">إضافة مقال</button><button class="btn o" data-go="content" data-new="podcast">إضافة حلقة بودكاست</button><button class="btn o" data-go="content" data-new="book">إضافة كتاب</button><button class="btn o" data-go="content" data-new="course">إضافة دورة</button><button class="btn o" data-go="settings">إعدادات التواصل</button></div></div></div></div>
 
@@ -137,7 +147,8 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 <label class="sw" style="margin-top:14px"><input type="checkbox" id="draft"> حفظ كمسودة (لا تظهر للزوار حتى تنشرها)</label>
 <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap"><button class="btn" id="sv"><svg class="i"><use href="#a-ck"/></svg><span id="svt">نشر</span></button><button class="btn o" id="cn" style="display:none">إلغاء التعديل</button></div></div>
 <div class="card"><h3><svg class="i"><use href="#a-file"/></svg>المحتوى المنشور <span class="tag" id="cnt" style="margin:0"></span></h3>
-<div class="tools"><input id="q" placeholder="ابحث بالعنوان..."><div class="chips" id="fl"><button class="ch on" data-t="">الكل</button><button class="ch" data-t="article">مقالات</button><button class="ch" data-t="podcast">بودكاست</button><button class="ch" data-t="book">كتب</button><button class="ch" data-t="course">دورات</button></div></div><div id="items"></div></div></div>
+<div class="tools"><input id="q" placeholder="ابحث بالعنوان..."><div class="chips" id="fl"><button class="ch on" data-t="">الكل</button><button class="ch" data-t="article">مقالات</button><button class="ch" data-t="podcast">بودكاست</button><button class="ch" data-t="book">كتب</button><button class="ch" data-t="course">دورات</button></div></div><div class="tools"><div class="chips" id="sfl2"><button class="ch on" data-p="">كل الحالات</button><button class="ch" data-p="pub">منشور</button><button class="ch" data-p="draft">مسودة</button></div><select id="srt" style="width:auto"><option value="new">الأحدث</option><option value="views">الأكثر مشاهدة</option><option value="likes">الأكثر إعجاباً</option><option value="title">أبجدياً</option></select><label class="sw" style="margin:0"><input type="checkbox" id="selall"> تحديد الكل</label></div>
+<div class="bulk" id="bulk"><b id="bn"></b><button class="btn ok sm" data-b="publish">نشر</button><button class="btn o sm" data-b="draft">تحويل لمسودة</button><button class="btn d sm" data-b="delete">حذف</button></div><div id="items"></div></div></div>
 
 <div class="view" id="v-comments"><div class="card"><h3><svg class="i"><use href="#a-msg"/></svg>تعليقات الزوار</h3><p class="sub">تظهر التعليقات المعتمدة فقط أسفل كل مقال.</p>
 <label class="sw"><input type="checkbox" id="cmod"> اعتماد التعليقات يدوياً قبل ظهورها (إن لم تفعّله تظهر مباشرة)</label>
@@ -146,7 +157,7 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 <div class="view" id="v-storage"><div id="stBox"><div class="empty">جارٍ التحميل…</div></div></div>
 
 <div class="view" id="v-bookings"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>طلبات الحجز</h3>
-<div class="tools"><input id="bq" placeholder="ابحث بالاسم أو الهاتف..."><div class="chips" id="bf"><button class="ch on" data-s="">الكل</button><button class="ch" data-s="new">جديد</button><button class="ch" data-s="done">تمت المعالجة</button></div></div><div id="bk"></div></div></div>
+<div class="tools"><input id="bq" placeholder="ابحث بالاسم أو الهاتف..."><div class="chips" id="bf"><button class="ch on" data-s="">الكل</button><button class="ch" data-s="new">جديد</button><button class="ch" data-s="done">تمت المعالجة</button></div></div><div class="tbar"><span class="hint" id="bsum"></span><button class="btn o sm" id="bx">تصدير CSV</button><button class="btn o sm" id="bdn">تعليم كل الجديد كمعالَج</button></div><div id="bk"></div></div></div>
 
 <div class="view" id="v-texts"><div class="tbar"><div class="hint">عدّل أي نص ثم اضغط «حفظ النصوص». الحقول المعدّلة تُميَّز بإطار ذهبي. إعادة النص الأصلي: اضغط «استرجاع» بجانب الحقل ثم احفظ.</div><button class="btn" id="tsv1"><svg class="i"><use href="#a-ck"/></svg>حفظ النصوص</button></div><div id="tx"><div class="empty">جارٍ التحميل…</div></div><button class="btn" id="tsv2" style="margin-top:6px"><svg class="i"><use href="#a-ck"/></svg>حفظ النصوص</button></div>
 
@@ -164,6 +175,7 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 <label>صورة الغلاف (خلفية الواجهة الرئيسية)</label><div class="upl"><input id="img_hero" dir="ltr" placeholder="الصورة الأصلية"><button type="button" class="btn o sm" data-up="img_hero"><svg class="i"><use href="#a-up"/></svg>رفع</button><button type="button" class="btn d sm" data-clr="img_hero">استرجاع الأصلية</button></div><img id="pv_img_hero" class="prev" alt="">
 <label>صورة قسم «من أنا؟»</label><div class="upl"><input id="img_about" dir="ltr" placeholder="الصورة الأصلية"><button type="button" class="btn o sm" data-up="img_about"><svg class="i"><use href="#a-up"/></svg>رفع</button><button type="button" class="btn d sm" data-clr="img_about">استرجاع الأصلية</button></div><img id="pv_img_about" class="prev" alt="">
 <label>شعار الموقع (الدائرة بجانب الاسم)</label><div class="upl"><input id="img_mark" dir="ltr" placeholder="الشعار الأصلي"><button type="button" class="btn o sm" data-up="img_mark"><svg class="i"><use href="#a-up"/></svg>رفع</button><button type="button" class="btn d sm" data-clr="img_mark">استرجاع الأصلي</button></div><img id="pv_img_mark" class="prev" alt="" style="max-height:90px;background:#fff;padding:6px"></div>
+<div class="card"><h3><svg class="i"><use href="#a-db"/></svg>نسخة احتياطية</h3><p class="sub">تنزيل ملف JSON كامل بالمحتوى والإعدادات والحجوزات والتعليقات (بدون الصور).</p><button class="btn o" id="bkp">تنزيل نسخة احتياطية</button></div>
 <div style="padding:0 0 4px"><button class="btn" id="ss" style="margin-top:2px"><svg class="i"><use href="#a-ck"/></svg>حفظ الإعدادات</button></div></div>
 <input type="file" id="file" accept="image/*" hidden>
 </main></div></div>
@@ -184,7 +196,7 @@ async function api(u,m='GET',b){try{const r=await fetch('/api/'+u,{method:m,head
 R.dataset.theme=localStorage.at||'dark';const sy=()=>$('th').innerHTML=U(R.dataset.theme=='dark'?'sun':'moon');sy();
 $('th').onclick=()=>{R.dataset.theme=R.dataset.theme=='dark'?'light':'dark';localStorage.at=R.dataset.theme;sy()};
 /* auth */
-async function login(){const b=$('lgb'),v=$('pw').value;if(!v){toast('أدخل كلمة المرور','e');$('pw').focus();return}b.disabled=true;try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:v})});if(r.status==401){toast('كلمة المرور غير صحيحة','e');$('pw').select();return}if(!r.ok){toast('خطأ في الخادم ('+r.status+') — تحقق من إعدادات ADMIN_PASSWORD و JWT_SECRET','e');return}tk=(await r.json()).token;localStorage.tk=tk;init()}catch(e){toast('تعذر الاتصال بالخادم','e')}finally{b.disabled=false}}
+async function login(){const b=$('lgb'),v=$('pw').value;if(!v){toast('أدخل كلمة المرور','e');$('pw').focus();return}b.disabled=true;try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:v})});if(r.status==429){toast('محاولات كثيرة خاطئة — انتظر 15 دقيقة','e');return}if(r.status==401){toast('كلمة المرور غير صحيحة','e');$('pw').select();return}if(!r.ok){toast('خطأ في الخادم ('+r.status+') — تحقق من إعدادات ADMIN_PASSWORD و JWT_SECRET','e');return}tk=(await r.json()).token;localStorage.tk=tk;init()}catch(e){toast('تعذر الاتصال بالخادم','e')}finally{b.disabled=false}}
 $('lgb').onclick=login;$('pw').onkeydown=e=>{if(e.key=='Enter'&&!e.isComposing){e.preventDefault();login()}};
 const logout=()=>{localStorage.removeItem('tk');location.reload()};$('out').onclick=$('out2').onclick=logout;
 /* nav */
@@ -193,21 +205,25 @@ Q('.nv[data-v]').forEach(b=>b.onclick=()=>go(b.dataset.v));
 Q('[data-go]').forEach(b=>b.onclick=()=>{go(b.dataset.go);if(b.dataset.new){resetForm();$('type').value=b.dataset.new}});
 /* init */
 async function init(){if(!tk)return;$('lg').style.display='none';$('app').style.display='block';
-const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram','img_hero','img_about','img_mark'].forEach(k=>$(k).value=s[k]||'');$('cmod').checked=s.comments_mode=='moderate';['image','img_hero','img_about','img_mark'].forEach(showPrev);await load();loadComments(true);drawTexts();drawFonts()}
+const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram','img_hero','img_about','img_mark'].forEach(k=>$(k).value=s[k]||'');$('cmod').checked=s.comments_mode=='moderate';['image','img_hero','img_about','img_mark'].forEach(showPrev);await load();loadComments(true);restoreDraft();drawTexts();drawFonts()}
 async function load(){const[a,b]=await Promise.all([api('items'),api('bookings')]);ITEMS=Array.isArray(a)?a:[];BK=Array.isArray(b)?b:[];drawAll()}
-function drawAll(){stats();drawItems();drawBK();drawRecent()}
+function drawAll(){stats();drawItems();drawBK();drawRecent();drawDash()}
 const nw=b=>b.status!='done';
 function stats(){$('s1').textContent=ITEMS.length;$('s2').textContent=ITEMS.filter(i=>i.type=='article').length;const n=BK.filter(nw).length;$('s3').textContent=n;$('s4').textContent=BK.length;const A=ITEMS.filter(i=>i.type=='article');$('s5').textContent=A.reduce((a,i)=>a+(i.views||0),0).toLocaleString('ar-EG');$('s6').textContent=A.reduce((a,i)=>a+(i.likes||0),0).toLocaleString('ar-EG');const nb=$('nb');nb.textContent=n||'';nb.classList.toggle('z',!n)}
 const dt=d=>d?new Date(d).toLocaleString('ar-EG',{dateStyle:'medium',timeStyle:'short'}):'';
 const waNum=p=>{let d=String(p||'').replace(/\D/g,'');if(d.startsWith('00'))d=d.slice(2);else if(d.startsWith('0'))d='20'+d.slice(1);return d};
 /* content */
-function drawItems(){const q=$('q').value.trim().toLowerCase();const L=ITEMS.filter(i=>(!ft||i.type==ft)&&(!q||(i.title||'').toLowerCase().includes(q)));$('cnt').textContent=L.length;
-$('items').innerHTML=L.map(i=>`<div class="row"><div class="th">${/^(https?:|\/api\/img\/)/i.test(i.image||'')?`<img src="${E(i.image)}" alt="" loading="lazy">`:U(IC[i.type]||'file')}</div><div class="m"><b>${E(i.title)}</b><small><span class="tag">${N[i.type]||''}</span>${i.draft?'<span class="tag dr">مسودة</span>':''}${dt(i.createdAt)}${i.type=='article'?` · ${i.views||0} مشاهدة · ${i.likes||0} إعجاب`:''}</small></div><div class="ac">${i.type=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${encodeURIComponent(i.slug||i._id)}">${U('ext')}عرض</a>`:''}<button class="btn o sm" data-ed="${E(i._id)}">${U('ed')}تعديل</button><button class="btn d sm" data-dl="${E(i._id)}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا يوجد محتوى</div>'}
+let ps='',SRT='new',SELI=new Set();
+const IS={new:(a,b)=>new Date(b.createdAt)-new Date(a.createdAt),views:(a,b)=>(b.views||0)-(a.views||0),likes:(a,b)=>(b.likes||0)-(a.likes||0),title:(a,b)=>(a.title||'').localeCompare(b.title||'','ar')};
+const shown=()=>{const q=$('q').value.trim().toLowerCase();return ITEMS.filter(i=>(!ft||i.type==ft)&&(!ps||(ps=='draft')==!!i.draft)&&(!q||((i.title||'')+' '+(i.desc||'')).toLowerCase().includes(q))).sort(IS[SRT])};
+function bulkUI(){$('bulk').classList.toggle('on',SELI.size>0);$('bn').textContent=SELI.size+' عنصر محدد'}
+function drawItems(){const L=shown();SELI=new Set([...SELI].filter(id=>ITEMS.some(i=>i._id==id)));$('cnt').textContent=L.length;
+$('items').innerHTML=L.map(i=>`<div class="row"><input type="checkbox" class="ck2" data-ck="${E(i._id)}" ${SELI.has(i._id)?'checked':''}><div class="th">${/^(https?:|\/api\/img\/)/i.test(i.image||'')?`<img src="${E(i.image)}" alt="" loading="lazy">`:U(IC[i.type]||'file')}</div><div class="m"><b>${E(i.title)}</b><small><span class="tag">${N[i.type]||''}</span>${i.draft?'<span class="tag dr">مسودة</span>':''}${dt(i.createdAt)}${i.type=='article'?` · ${i.views||0} مشاهدة · ${i.likes||0} إعجاب`:''}</small></div><div class="ac">${i.type=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${encodeURIComponent(i.slug||i._id)}">${U('ext')}عرض</a>`:''}<button class="btn o sm" data-ed="${E(i._id)}">${U('ed')}تعديل</button><button class="btn o sm" data-dp="${E(i._id)}">نسخ</button><button class="btn d sm" data-dl="${E(i._id)}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا يوجد محتوى</div>';bulkUI()}
 $('q').oninput=drawItems;$('fl').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;ft=b.dataset.t;Q('#fl .ch').forEach(x=>x.classList.toggle('on',x==b));drawItems()};
 $('items').onclick=async e=>{const ed=e.target.closest('[data-ed]'),dl=e.target.closest('[data-dl]');
 if(ed){const i=ITEMS.find(x=>x._id==ed.dataset.ed);if(!i)return;editing=i._id;['type','title','slug','desc','body','url','image'].forEach(k=>$(k).value=i[k]||'');$('draft').checked=!!i.draft;wordc();slugTouched=true;applyType();slugPrev();$('fmt').innerHTML=U('ed')+'تعديل المحتوى';$('svt').textContent='حفظ التعديلات';$('cn').style.display='';$('edn').style.display='block';$('edn').textContent='تعديل: '+i.title;prevImg();$('fm').scrollIntoView({behavior:'smooth'})}
 if(dl&&confirm('تأكيد حذف هذا العنصر؟')){const r=await api('items?id='+dl.dataset.dl,'DELETE');if(r){toast('تم الحذف','s');if(editing==dl.dataset.dl)resetForm();load()}else toast('تعذر الحذف','e')}};
-function resetForm(){editing=null;$('draft').checked=false;slugTouched=false;['title','slug','desc','body','url','image'].forEach(k=>$(k).value='');$('bpvbox').style.display='none';$('type').value='article';applyType();slugPrev();$('fmt').innerHTML=U('plus')+'إضافة محتوى جديد';$('svt').textContent='نشر';$('cn').style.display='none';$('edn').style.display='none';prevImg()}
+function resetForm(){setTimeout(seo,0);editing=null;$('draft').checked=false;slugTouched=false;['title','slug','desc','body','url','image'].forEach(k=>$(k).value='');$('bpvbox').style.display='none';$('type').value='article';applyType();slugPrev();$('fmt').innerHTML=U('plus')+'إضافة محتوى جديد';$('svt').textContent='نشر';$('cn').style.display='none';$('edn').style.display='none';prevImg()}
 $('cn').onclick=resetForm;
 const PV={image:'prev',img_hero:'pv_img_hero',img_about:'pv_img_about',img_mark:'pv_img_mark'};
 function showPrev(id){const v=$(id).value.trim(),p=$(PV[id]);if(/^(https?:\/\/|\/api\/img\/)/i.test(v)){p.src=v;p.style.display='block'}else p.style.display='none'}
@@ -227,7 +243,7 @@ Q('[data-up]').forEach(b=>b.onclick=()=>pickImg(b.dataset.up));
 $('sv').onclick=async()=>{if(!$('title').value.trim())return toast('العنوان مطلوب','e');const c=TF[$('type').value]||TF.article,d={type:$('type').value,title:$('title').value.trim(),desc:$('desc').value,image:$('image').value.trim(),draft:$('draft').checked};
 if(c.slug)d.slug=$('slug').value.trim();if(c.body)d.body=$('body').value;if(c.url)d.url=$('url').value.trim();
 const b=$('sv');b.disabled=true;const r=editing?await api('items?id='+editing,'PUT',d):await api('items','POST',d);b.disabled=false;
-if(r){toast(d.draft?'تم الحفظ كمسودة':editing?'تم حفظ التعديلات':'تم النشر','s');resetForm();load()}
+if(r){localStorage.removeItem('dr');toast(d.draft?'تم الحفظ كمسودة':editing?'تم حفظ التعديلات':'تم النشر','s');resetForm();load()}
 else{const e=api.err||{};if(editing&&e.status==404){toast('هذا العنصر لم يعد موجوداً على الخادم — تم تحديث القائمة','e');resetForm();load()}else toast('تعذر الحفظ'+(e.status?' ('+e.status+(e.msg?' — '+e.msg:'')+')':''),'e')}};
 /* ===== fields by content type ===== */
 const TF={article:{slug:1,body:1,bt:1,url:0,lbd:'ملخص المقال (يظهر في بطاقة المقال وأعلى صفحته)',lbb:'نص المقال',lbi:'صورة الغلاف (ارفعها من جهازك أو الصق رابطاً)'},
@@ -238,7 +254,7 @@ let slugTouched=false;
 function applyType(){const c=TF[$('type').value]||TF.article;$('f-slug').style.display=c.slug?'':'none';$('f-body').style.display=c.body?'':'none';$('etb').style.display=c.bt?'':'none';$('bhint').style.display=c.bt?'':'none';$('bpvbox').style.display='none';$('f-url').style.display=c.url?'':'none';$('f-image').classList.toggle('f1',!c.url);
 $('lb-desc').textContent=c.lbd;$('lb-body').textContent=c.lbb||'';$('lb-url').textContent=c.lbu||'';$('lb-img').textContent=c.lbi}
 $('type').onchange=applyType;
-function wordc(){const n=($('body').value.trim().match(/\S+/g)||[]).length;$('wc').textContent=n?n.toLocaleString('ar-EG')+' كلمة · وقت القراءة تقريباً '+Math.max(1,Math.round(n/180)).toLocaleString('ar-EG')+' د':''}
+function wordc(){seo();const n=($('body').value.trim().match(/\S+/g)||[]).length;$('wc').textContent=n?n.toLocaleString('ar-EG')+' كلمة · وقت القراءة تقريباً '+Math.max(1,Math.round(n/180)).toLocaleString('ar-EG')+' د':''}
 $('body').addEventListener('input',wordc);
 const SLG=t=>String(t||'').normalize('NFKC').replace(/[\u064B-\u065F\u0670\u0640]/g,'').toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-+|-+$/g,'').slice(0,80).replace(/-+$/,'');
 function slugPrev(){const v=SLG($('slug').value)||SLG($('title').value);$('slugPrev').textContent=v?location.origin+'/articles/'+v:''}
@@ -269,11 +285,11 @@ else{cu();const nx=(ln[k+1]||'').trim();if(prev&&nx&&l.length<=70&&!/[.،,؛:!؟
 $('bpv').onclick=()=>{const bx=$('bpvbox');if(bx.style.display=='none'){bx.innerHTML=pvFmt($('body').value)||'<div class="empty">لا يوجد نص بعد</div>';bx.style.display='block';$('bpv').textContent='إخفاء المعاينة'}else{bx.style.display='none';$('bpv').textContent='معاينة'}};
 applyType();
 /* bookings */
-function bkHTML(b){const d=b.status=='done';return `<div class="bk ${d?'':'new'}"><div class="h"><div><b>${E(b.name)}</b> <span class="tag ${d?'k':'n'}">${d?'تمت المعالجة':'جديد'}</span><br><a dir="ltr" style="color:var(--pt);font-weight:600" href="tel:${E(b.phone)}">${E(b.phone)}</a></div><small style="color:var(--mu)">${dt(b.createdAt)}</small></div>${b.message?`<div class="msg">${E(b.message)}</div>`:'<div style="height:10px"></div>'}<div class="ac"><a class="btn sm" href="tel:${E(b.phone)}">${U('ph')}اتصال</a><a class="btn ok sm" target="_blank" rel="noopener" href="https://wa.me/${waNum(b.phone)}">${U('wa')}واتساب</a><button class="btn o sm" data-st="${E(b._id)}" data-to="${d?'new':'done'}">${U('ck')}${d?'إعادة كجديد':'تمت المعالجة'}</button><button class="btn d sm" data-bd="${E(b._id)}">${U('tr')}حذف</button></div></div>`}
+function bkHTML(b){const d=b.status=='done';return `<div class="bk ${d?'':'new'}"><div class="h"><div><b>${E(b.name)}</b> <span class="tag ${d?'k':'n'}">${d?'تمت المعالجة':'جديد'}</span><br><a dir="ltr" style="color:var(--pt);font-weight:600" href="tel:${E(b.phone)}">${E(b.phone)}</a></div><small style="color:var(--mu)">${dt(b.createdAt)}</small></div>${b.message?`<div class="msg">${E(b.message)}</div>`:'<div style="height:10px"></div>'}${b.note?`<div class="msg" style="color:var(--gold)">📝 ${E(b.note)}</div>`:''}<div class="ac"><a class="btn sm" href="tel:${E(b.phone)}">${U('ph')}اتصال</a><a class="btn ok sm" target="_blank" rel="noopener" href="https://wa.me/${waNum(b.phone)}">${U('wa')}واتساب</a><button class="btn o sm" data-st="${E(b._id)}" data-to="${d?'new':'done'}">${U('ck')}${d?'إعادة كجديد':'تمت المعالجة'}</button><button class="btn o sm" data-nt="${E(b._id)}">📝 ملاحظة</button><button class="btn d sm" data-bd="${E(b._id)}">${U('tr')}حذف</button></div></div>`}
 function drawBK(){const q=$('bq').value.trim().toLowerCase();const L=BK.filter(b=>(!bs||(bs=='done'?b.status=='done':nw(b)))&&(!q||(b.name||'').toLowerCase().includes(q)||(b.phone||'').includes(q)));$('bk').innerHTML=L.map(bkHTML).join('')||'<div class="empty">لا توجد طلبات</div>'}
 function drawRecent(){$('rb').innerHTML=BK.slice(0,4).map(bkHTML).join('')||'<div class="empty">لا توجد طلبات بعد</div>'}
 $('bq').oninput=drawBK;$('bf').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;bs=b.dataset.s;Q('#bf .ch').forEach(x=>x.classList.toggle('on',x==b));drawBK()};
-async function bAct(e){const st=e.target.closest('[data-st]'),bd=e.target.closest('[data-bd]');
+async function bAct(e){const nt=e.target.closest('[data-nt]');if(nt){const b=BK.find(x=>x._id==nt.dataset.nt),v=prompt('ملاحظة داخلية على هذا الطلب:',b.note||'');if(v===null)return;const r=await api('bookings/'+b._id,'PUT',{note:v.trim()});if(r){toast('تم حفظ الملاحظة','s');load()}else toast('تعذر الحفظ','e');return}const st=e.target.closest('[data-st]'),bd=e.target.closest('[data-bd]');
 if(st){const r=await api('bookings/'+st.dataset.st,'PUT',{status:st.dataset.to});if(r){toast('تم التحديث','s');load()}else toast('تعذر التحديث — حدّث ملف lib/app.js على الخادم','e')}
 if(bd&&confirm('تأكيد حذف هذا الطلب؟')){const r=await api('bookings/'+bd.dataset.bd,'DELETE');if(r){toast('تم الحذف','s');load()}else toast('تعذر الحذف','e')}}
 $('bk').onclick=bAct;$('rb').onclick=bAct;
@@ -352,7 +368,7 @@ $('stBox').onchange=e=>{const c=e.target.closest('[data-sel]');if(c){c.checked?S
 
 /* ===== comments ===== */
 let CMS=[],cfs='';
-async function loadComments(silent){const r=await api('admin/comments');if(!Array.isArray(r)){if(!silent)toast('تعذر تحميل التعليقات','e');return}CMS=r;const n=r.filter(c=>c.status=='pending').length,nc=$('nc');nc.textContent=n||'';nc.classList.toggle('z',!n);drawComments()}
+async function loadComments(silent){const r=await api('admin/comments');if(!Array.isArray(r)){if(!silent)toast('تعذر تحميل التعليقات','e');return}CMS=r;const n=r.filter(c=>c.status=='pending').length,nc=$('nc');nc.textContent=n||'';nc.classList.toggle('z',!n);drawComments();drawDash()}
 function drawComments(){const q=$('cq').value.trim().toLowerCase();const L=CMS.filter(c=>(!cfs||c.status==cfs)&&(!q||((c.name||'')+' '+(c.text||'')+' '+(c.itemTitle||'')).toLowerCase().includes(q)));
 $('cml').innerHTML=L.map(c=>`<div class="cmr ${c.status=='pending'?'p':''}"><div class="h"><div><b>${E(c.name)}</b> <span class="tag ${c.status=='pending'?'n':'k'}">${c.status=='pending'?'بانتظار الاعتماد':'معتمد'}</span><br><small style="color:var(--mu)">على: ${E(c.itemTitle)}</small></div><small style="color:var(--mu)">${dt(c.createdAt)}</small></div><div class="t">${E(c.text)}</div><div class="ac">${c.status=='pending'?`<button class="btn ok sm" data-cs="${c._id}" data-to="ok">${U('ck')}اعتماد</button>`:`<button class="btn o sm" data-cs="${c._id}" data-to="pending">إخفاء</button>`}${c.itemType=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${E(c.item)}#comments">${U('ext')}المقال</a>`:''}<button class="btn d sm" data-cd="${c._id}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا توجد تعليقات</div>'}
 $('cq').oninput=drawComments;$('cfl').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;cfs=b.dataset.s;Q('#cfl .ch').forEach(x=>x.classList.toggle('on',x==b));drawComments()};
@@ -372,5 +388,37 @@ document.addEventListener('focusin',e=>{if(innerWidth<=900&&/^(INPUT|TEXTAREA|SE
 document.addEventListener('focusout',()=>setTimeout(()=>{if(!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||''))document.body.classList.remove('kb')},120));
 /* warn before leaving with an unsaved article */
 addEventListener('beforeunload',e=>{if(($('title').value.trim()||$('body').value.trim())&&!editing&&$('v-content').classList.contains('on')){e.preventDefault();e.returnValue=''}});
+
+/* ===== v2: dashboard ===== */
+function drawDash(){const t0=new Date(),k=d=>d.toLocaleDateString('en-CA'),D=[],fm=d=>d.toLocaleDateString('ar-EG',{day:'numeric',month:'short'});
+for(let j=29;j>=0;j--){const d=new Date(t0.getFullYear(),t0.getMonth(),t0.getDate()-j);D.push({d,k:k(d),n:0})}
+BK.forEach(b=>{const o=D.find(x=>x.k==k(new Date(b.createdAt)));if(o)o.n++});const mx=Math.max(1,...D.map(x=>x.n)),tot=D.reduce((s,x)=>s+x.n,0);
+$('c30').textContent=tot;$('chart').innerHTML=D.map(x=>`<i class="${x.n?'':'z'}" style="height:${x.n?Math.max(10,x.n/mx*100):3}%" title="${fm(x.d)}: ${x.n}"></i>`).join('');$('cl1').textContent=fm(D[0].d);$('cl2').textContent='اليوم';
+const T=ITEMS.filter(i=>i.type=='article'&&!i.draft).sort(IS.views).slice(0,5);
+$('topa').innerHTML=T.map((i,n)=>`<div class="topr"><span class="tag n" style="margin:0">${n+1}</span><b>${E(i.title)}</b><small style="color:var(--mu)">${(i.views||0).toLocaleString('ar-EG')} مشاهدة · ${i.likes||0} ♥</small></div>`).join('')||'<div class="empty">لا توجد مقالات منشورة بعد</div>';
+const nb=BK.filter(nw).length,pc=CMS.filter(c=>c.status=='pending').length,dr=ITEMS.filter(i=>i.draft).length;
+$('alr').innerHTML=[[nb,'طلب حجز جديد بانتظار الرد','bookings'],[pc,'تعليق بانتظار الاعتماد','comments'],[dr,'مسودة غير منشورة','content']].filter(a=>a[0]).map(a=>`<button data-al="${a[2]}"><b>${a[0]}</b>${a[1]}</button>`).join('');
+$('bsum').textContent=BK.length+' طلب · '+nb+' جديد'}
+$('alr').onclick=e=>{const b=e.target.closest('[data-al]');if(b)go(b.dataset.al)};
+/* ===== v2: content bulk / sort / duplicate ===== */
+$('items').addEventListener('change',e=>{const c=e.target.closest('[data-ck]');if(!c)return;c.checked?SELI.add(c.dataset.ck):SELI.delete(c.dataset.ck);bulkUI()});
+$('selall').onchange=e=>{shown().forEach(i=>e.target.checked?SELI.add(i._id):SELI.delete(i._id));drawItems()};
+$('sfl2').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;ps=b.dataset.p;Q('#sfl2 .ch').forEach(x=>x.classList.toggle('on',x==b));drawItems()};
+$('srt').onchange=e=>{SRT=e.target.value;drawItems()};
+$('bulk').onclick=async e=>{const b=e.target.closest('[data-b]');if(!b)return;const a=b.dataset.b,n=SELI.size;if(a=='delete'&&!confirm('حذف '+n+' عنصر نهائياً مع تعليقاتها وصورها؟'))return;const r=await api('items/bulk','POST',{action:a,ids:[...SELI]});if(r){toast('تم التنفيذ على '+n+' عنصر','s');SELI.clear();$('selall').checked=false;load()}else toast('تعذر التنفيذ — حدّث lib/app.js','e')};
+$('items').addEventListener('click',async e=>{const d=e.target.closest('[data-dp]');if(!d)return;const i=ITEMS.find(x=>x._id==d.dataset.dp);if(!i)return;const r=await api('items','POST',{type:i.type,title:i.title+' (نسخة)',desc:i.desc,body:i.body,url:i.url,image:i.image,draft:true});if(r){toast('تم إنشاء نسخة كمسودة','s');load()}else toast('تعذر النسخ','e')});
+/* ===== v2: editor — SEO counters, autosave, Ctrl+S ===== */
+$('title').insertAdjacentHTML('afterend','<div class="cnt2" id="tc"></div>');$('desc').insertAdjacentHTML('afterend','<div class="cnt2" id="dc"></div>');
+function seo(){const a=$('type').value=='article',m=(el,n,lo,hi,l)=>{el.textContent=a&&n?l+': '+n+' حرفاً (الأمثل '+lo+'–'+hi+' لمحركات البحث)':'';el.className='cnt2 '+(n<lo||n>hi?'bad':'good')};m($('tc'),$('title').value.trim().length,20,65,'العنوان');m($('dc'),$('desc').value.trim().length,80,160,'الملخص')}
+const svDr=()=>{if(editing||$('type').value!='article')return;const d={title:$('title').value,slug:$('slug').value,desc:$('desc').value,body:$('body').value,image:$('image').value};if(d.title.trim()||d.body.trim())localStorage.dr=JSON.stringify(d)};
+['title','desc','body','image'].forEach(k=>$(k).addEventListener('input',()=>{clearTimeout(svDr.t);svDr.t=setTimeout(svDr,800);seo()}));
+function restoreDraft(){try{const d=JSON.parse(localStorage.dr||'null');if(!d)return;if(!editing&&!$('title').value&&confirm('وُجد مقال غير محفوظ من جلسة سابقة ("'+(d.title||'بدون عنوان')+'"). استعادته؟')){['title','slug','desc','body','image'].forEach(k=>$(k).value=d[k]||'');slugTouched=!!d.slug;wordc();slugPrev();prevImg();go('content')}else localStorage.removeItem('dr')}catch(e){}}
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='s'){e.preventDefault();if($('v-content').classList.contains('on'))$('sv').click();else if($('v-settings').classList.contains('on'))$('ss').click();else if($('v-texts').classList.contains('on'))saveTexts()}});
+/* ===== v2: bookings export / bulk, backup ===== */
+const dl=(b,n)=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4e3)},today=()=>new Date().toISOString().slice(0,10);
+const getF=async(p,n,ok)=>{const r=await fetch('/api/'+p,{headers:{Authorization:'Bearer '+tk}});if(!r.ok)return toast('تعذر التنزيل — حدّث lib/app.js على الخادم','e');dl(await r.blob(),n);toast(ok,'s')};
+$('bx').onclick=()=>getF('bookings/export','bookings-'+today()+'.csv','تم تصدير الحجوزات');
+$('bkp').onclick=()=>getF('admin/backup','backup-'+today()+'.json','تم تنزيل النسخة الاحتياطية');
+$('bdn').onclick=async()=>{const ids=BK.filter(nw).map(b=>b._id);if(!ids.length)return toast('لا توجد طلبات جديدة');if(!confirm('تعليم '+ids.length+' طلب كمعالَج؟'))return;const r=await api('bookings/bulk','POST',{action:'done',ids});if(r){toast('تم التحديث','s');load()}else toast('تعذر التحديث','e')};
 init();
 </script></body></html>
