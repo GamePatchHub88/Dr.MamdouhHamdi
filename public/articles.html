@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="ar" dir="rtl" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#2b7bd0"><meta name="description" id="md" content="مقالات د. ممدوح حمدي في الصحة النفسية والأسرية وتعديل السلوك.">
 <title>المقالات | دوبامين — د. ممدوح حمدي</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--p:#2b7bd0;--p2:#4aa8ee;--r:24px;--gr:linear-gradient(135deg,var(--p),var(--p2));--gold:linear-gradient(135deg,#d9b25a,#f3dc96)}
@@ -112,11 +113,12 @@ const BASE=location.origin+'/articles/',aurl=i=>'/articles/'+encodeURIComponent(
 let A=null,sortBy='new',shown=9;const PAGE=9,qs=new URLSearchParams(location.search);
 const getA=async()=>{if(A)return A;const r=await jget('/api/items?type=article&lite=1');return Array.isArray(r)?(A=r):null};
 const stats=i=>`<div class="st">${i.createdAt?`<span>${U('cal')}${esc(fmtD(i.createdAt))}</span>`:''}${i.words?`<span>${U('clk')}${esc(T('read_time','قراءة {n} د').replace('{n}',nf(rtOf(i.words))))}</span>`:''}<span>${U('eye')}${nf(i.views)}</span><span>${U('heart')}${nf(i.likes)}</span></div>`;
-function card(i,f){const go=aurl(i);return `<div class="card${f?' feat':''}"><span class="chip">${esc(T('chip_article','مقال'))}</span>${i.image?`<img src="${esc(i.image)}" alt="" loading="lazy">`:`<div class="th">${U('file')}</div>`}<div class="b"><h3><a href="${go}">${esc(i.title)}</a></h3>${stats(i)}<p>${esc((i.desc||'').slice(0,f?220:140))}</p><a class="btn sm" href="${go}">${esc(T('read_more','اقرأ المزيد'))}</a></div></div>`}
+function card(i,f){const go=aurl(i);return `<div class="card${f?' feat':''}"><span class="chip">${esc(T('chip_article','مقال'))}</span>${i.image?`<img src="${esc(i.image)}" alt="${esc(i.title)}" loading="lazy">`:`<div class="th">${U('file')}</div>`}<div class="b"><h3><a href="${go}">${esc(i.title)}</a></h3>${stats(i)}<p>${esc((i.desc||'').slice(0,f?220:140))}</p><a class="btn sm" href="${go}">${esc(T('read_more','اقرأ المزيد'))}</a></div></div>`}
 function draw(){const k=q.value.trim().toLowerCase();let F=A.filter(i=>!k||((i.title||'')+' '+(i.desc||'')).toLowerCase().includes(k));
 if(sortBy=='views')F=[...F].sort((a,b)=>(b.views||0)-(a.views||0));if(sortBy=='likes')F=[...F].sort((a,b)=>(b.likes||0)-(a.likes||0));
 grid.innerHTML=F.length?F.slice(0,shown).map((i,n)=>card(i,n==0&&!k&&sortBy=='new')).join(''):'<div class="empty">'+U('file')+'<b>'+esc(k?'لا توجد نتائج مطابقة':T('empty','سيتم إضافة المحتوى قريباً'))+'</b></div>';lm.style.display=F.length>shown?'':'none'}
-async function showList(){listv.style.display='';readv.style.display='none';document.title='المقالات | دوبامين — د. ممدوح حمدي';grid.innerHTML='<div class="sk"></div><div class="sk"></div><div class="sk"></div>';
+function listSeo(){if(R.dataset.ssr)return;try{const u=location.origin+'/articles';let c=document.head.querySelector('link[rel=canonical]');if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c)}c.href=u;metaT('og:type','website');metaT('og:title','المقالات | دوبامين — د. ممدوح حمدي');metaT('og:url',u);metaT('og:image',location.origin+'/img/hero.jpg')}catch(e){}}
+async function showList(){listv.style.display='';readv.style.display='none';document.title='المقالات | دوبامين — د. ممدوح حمدي';listSeo();grid.innerHTML='<div class="sk"></div><div class="sk"></div><div class="sk"></div>';
 if(!await getA()){grid.innerHTML='<div class="empty"><b>تعذّر تحميل المقالات حالياً</b><button class="btn sm" id="rt">إعادة المحاولة</button></div>';$('#rt').onclick=showList;return}draw()}
 sort.onclick=e=>{const b=e.target.closest('button');if(!b)return;sortBy=b.dataset.s;shown=PAGE;document.querySelectorAll('#sort button').forEach(x=>x.classList.toggle('on',x==b));if(A)draw()};
 q.oninput=()=>{shown=PAGE;if(A)draw()};lm.onclick=()=>{shown+=PAGE;draw()};
@@ -134,7 +136,7 @@ if(m=t.match(/^!\[([^\]]*)\]\(\s*((?:https?:\/\/|\/api\/img\/)[^\s)]+)\s*\)$/))r
 if(m=t.match(/^(?:\[(?:video|فيديو)\]\(\s*(\S+?)\s*\)|@(?:video|فيديو)\s+(\S+)|(https?:\/\/\S+))$/i)){const v=vid(m[1]||m[2]||m[3]);if(v)return v}
 return ''}
 const metaT=(k,v,a)=>{a=a||'property';let e=document.head.querySelector('meta['+a+'="'+k+'"]');if(!e){e=document.createElement('meta');e.setAttribute(a,k);document.head.appendChild(e)}e.content=v};
-function seo(i,u,d){try{const img=i.image?new URL(i.image,location.origin).href:location.origin+'/img/hero.jpg';let c=document.head.querySelector('link[rel=canonical]');if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c)}c.href=u;
+function seo(i,u,d){try{if(R.dataset.ssr)return;const img=i.image?new URL(i.image,location.origin).href:location.origin+'/img/hero.jpg';let c=document.head.querySelector('link[rel=canonical]');if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c)}c.href=u;
 metaT('og:type','article');metaT('og:title',i.title);metaT('og:description',d);metaT('og:url',u);metaT('og:image',img);metaT('og:locale','ar_AR');metaT('twitter:card','summary_large_image','name');
 let j=document.getElementById('ld');if(!j){j=document.createElement('script');j.type='application/ld+json';j.id='ld';document.head.appendChild(j)}
 j.textContent=JSON.stringify({'@context':'https://schema.org','@type':'Article',headline:i.title,description:d,image:[img],datePublished:i.createdAt,dateModified:i.updatedAt||i.createdAt,author:{'@type':'Person',name:'د. ممدوح حمدي'},mainEntityOfPage:u})}catch(e){}}
@@ -149,17 +151,17 @@ const strip=h=>h.replace(/<[^>]+>/g,'');
 /* ---- reader ---- */
 let cid='';
 async function openReader(id){cid=id;listv.style.display='none';readv.style.display='block';scrollTo(0,0);
-rd.innerHTML='<div class="sk" style="height:420px"></div>';aft.innerHTML='';rel.innerHTML='';
+if(!(R.dataset.ssr&&rd.firstElementChild))rd.innerHTML='<div class="sk" style="height:420px"></div>';aft.innerHTML='';
 const [full,list]=await Promise.all([jget('/api/items?id='+encodeURIComponent(id)).then(r=>r&&r._id?r:jget('/api/items/'+encodeURIComponent(id))),getA()]);
 if(!full||!full._id||full.type&&full.type!='article'&&full.type){if(full&&full._id&&full.type!='article'){location.replace('/content.html?tab='+full.type+'&id='+encodeURIComponent(id));return}
 rd.innerHTML=`<a class="back" href="/articles">${U('arr')}كل المقالات</a><div class="empty"><b>عذراً، لم نعثر على هذا المقال</b><span>ربما تم حذفه أو تغيّر رابطه.</span><a class="btn sm" href="/articles">تصفّح المقالات</a></div>`;return}
 const i=full,w=(i.body||'').trim().split(/\s+/).filter(Boolean).length,F=i.body?fmt(i.body):{h:i.desc?'<p>'+esc(i.desc)+'</p>':'',H:[]},u=BASE+encodeURIComponent(i.slug||i._id);
 try{const cu_=aurl(i);if(decodeURI(location.pathname)!=decodeURI(cu_))history.replaceState(null,'',cu_+location.hash)}catch(e){}
-document.title=i.title+' | دوبامين';const md=document.getElementById('md');md.content=(i.desc||strip(F.h)).slice(0,160);seo(i,u,md.content);
+const md=document.getElementById('md');if(!R.dataset.ssr){document.title=i.title+' | دوبامين';md.content=(i.desc||strip(F.h)).slice(0,160);seo(i,u,md.content)}
 const liked=jl('likedA',[]).includes(i._id),fs=+localStorage.afs||19;
 rd.innerHTML=`<a class="back" href="/articles">${U('arr')}كل المقالات</a><div><span class="chip">${esc(T('chip_article','مقال'))}</span></div><h1>${esc(i.title)}</h1>
-<div class="meta">${i.createdAt?`<span>${U('cal')}${esc(fmtD(i.createdAt))}</span>`:''}${w?`<span>${U('clk')}${esc(T('read_time','قراءة {n} د').replace('{n}',nf(rtOf(w))))}</span>`:''}<span>${U('eye')}<b id="vw">${nf(i.views)}</b> مشاهدة</span></div>
-${i.image?`<img class="cover" src="${esc(i.image)}" alt="">`:''}
+<div class="meta"><span>${U('user')}د. ممدوح حمدي</span>${i.createdAt?`<span>${U('cal')}${esc(fmtD(i.createdAt))}</span>`:''}${w?`<span>${U('clk')}${esc(T('read_time','قراءة {n} د').replace('{n}',nf(rtOf(w))))}</span>`:''}<span>${U('eye')}<b id="vw">${nf(i.views)}</b> مشاهدة</span></div>
+${i.image?`<img class="cover" src="${esc(i.image)}" alt="${esc(i.title)}">`:''}
 <div class="tools"><button id="lk" class="lk${liked?' on':''}">${U('heart')}<span id="lc">${nf(i.likes)}</span> أعجبني</button><button id="cm0">${U('msg')}<span id="cc0">التعليقات</span></button><span class="sp"></span><button id="fm" aria-label="تصغير الخط">أ-</button><button id="fp" aria-label="تكبير الخط">أ+</button><button id="pr">${U('print')}طباعة</button></div>
 ${i.desc&&i.body?`<p class="lead">${esc(i.desc)}</p>`:''}
 ${F.H.length>=3?`<nav class="toc"><b>${U('list')}محتويات المقال</b><ol>${F.H.map(x=>`<li><a href="#${x[0]}">${esc(x[1])}</a></li>`).join('')}</ol></nav>`:''}
