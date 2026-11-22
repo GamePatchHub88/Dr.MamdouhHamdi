@@ -133,6 +133,11 @@ function media(l){const t=un(l);let m;
 if(m=t.match(/^!\[([^\]]*)\]\(\s*((?:https?:\/\/|\/api\/img\/)[^\s)]+)\s*\)$/))return '<figure class="md"><img src="'+esc(m[2])+'" alt="'+esc(m[1])+'" loading="lazy">'+(m[1]?'<figcaption>'+esc(m[1])+'</figcaption>':'')+'</figure>';
 if(m=t.match(/^(?:\[(?:video|فيديو)\]\(\s*(\S+?)\s*\)|@(?:video|فيديو)\s+(\S+)|(https?:\/\/\S+))$/i)){const v=vid(m[1]||m[2]||m[3]);if(v)return v}
 return ''}
+const metaT=(k,v,a)=>{a=a||'property';let e=document.head.querySelector('meta['+a+'="'+k+'"]');if(!e){e=document.createElement('meta');e.setAttribute(a,k);document.head.appendChild(e)}e.content=v};
+function seo(i,u,d){try{const img=i.image?new URL(i.image,location.origin).href:location.origin+'/img/hero.jpg';let c=document.head.querySelector('link[rel=canonical]');if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c)}c.href=u;
+metaT('og:type','article');metaT('og:title',i.title);metaT('og:description',d);metaT('og:url',u);metaT('og:image',img);metaT('og:locale','ar_AR');metaT('twitter:card','summary_large_image','name');
+let j=document.getElementById('ld');if(!j){j=document.createElement('script');j.type='application/ld+json';j.id='ld';document.head.appendChild(j)}
+j.textContent=JSON.stringify({'@context':'https://schema.org','@type':'Article',headline:i.title,description:d,image:[img],datePublished:i.createdAt,dateModified:i.updatedAt||i.createdAt,author:{'@type':'Person',name:'د. ممدوح حمدي'},mainEntityOfPage:u})}catch(e){}}
 function fmt(b){const ln=esc(b).replace(/\r/g,'').split('\n'),inl=s=>s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'),H=[];let h='',ul=0,prev=true;
 const cu=()=>{if(ul){h+='</ul>';ul=0}},hd=t=>{const id='s'+(H.length+1);H.push([id,t.replace(/\*\*/g,'')]);h+='<h2 id="'+id+'">'+inl(t)+'</h2>'};
 ln.forEach((raw,k)=>{const l=raw.trim();if(!l){cu();prev=true;return}let m;const mm=media(l);if(mm){cu();h+=mm;prev=false;return}
@@ -150,7 +155,7 @@ if(!full||!full._id||full.type&&full.type!='article'&&full.type){if(full&&full._
 rd.innerHTML=`<a class="back" href="/articles">${U('arr')}كل المقالات</a><div class="empty"><b>عذراً، لم نعثر على هذا المقال</b><span>ربما تم حذفه أو تغيّر رابطه.</span><a class="btn sm" href="/articles">تصفّح المقالات</a></div>`;return}
 const i=full,w=(i.body||'').trim().split(/\s+/).filter(Boolean).length,F=i.body?fmt(i.body):{h:i.desc?'<p>'+esc(i.desc)+'</p>':'',H:[]},u=BASE+encodeURIComponent(i.slug||i._id);
 try{const cu_=aurl(i);if(decodeURI(location.pathname)!=decodeURI(cu_))history.replaceState(null,'',cu_+location.hash)}catch(e){}
-document.title=i.title+' | دوبامين';const md=document.getElementById('md');md.content=(i.desc||strip(F.h)).slice(0,160);
+document.title=i.title+' | دوبامين';const md=document.getElementById('md');md.content=(i.desc||strip(F.h)).slice(0,160);seo(i,u,md.content);
 const liked=jl('likedA',[]).includes(i._id),fs=+localStorage.afs||19;
 rd.innerHTML=`<a class="back" href="/articles">${U('arr')}كل المقالات</a><div><span class="chip">${esc(T('chip_article','مقال'))}</span></div><h1>${esc(i.title)}</h1>
 <div class="meta">${i.createdAt?`<span>${U('cal')}${esc(fmtD(i.createdAt))}</span>`:''}${w?`<span>${U('clk')}${esc(T('read_time','قراءة {n} د').replace('{n}',nf(rtOf(w))))}</span>`:''}<span>${U('eye')}<b id="vw">${nf(i.views)}</b> مشاهدة</span></div>

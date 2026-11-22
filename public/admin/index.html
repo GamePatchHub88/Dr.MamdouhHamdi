@@ -54,6 +54,30 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 .etb{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 8px}.etb .btn{padding:7px 13px;font-size:13px}
 .shint{color:var(--mu);font-size:12.5px;margin-top:6px;line-height:1.8}#slugPrev{color:var(--pt);font-weight:600}
 .pvbox{border:1px solid var(--bd);border-radius:12px;padding:18px 20px;margin-top:10px;max-height:520px;overflow:auto;background:var(--in);line-height:2}.pvbox h2{font-size:21px;margin:1em 0 .4em;border-inline-start:4px solid var(--p);padding-inline-start:10px}.pvbox img,.pvbox video{max-width:100%;border-radius:12px}.pvbox figure{margin:1em 0;text-align:center}.pvbox figcaption{color:var(--mu);font-size:13px}.pvbox .vid{position:relative;aspect-ratio:16/9;margin:1em 0;border-radius:12px;overflow:hidden;background:#000}.pvbox .vid iframe,.pvbox .vid video{position:absolute;inset:0;width:100%;height:100%;border:0}.pvbox blockquote{margin:1em 0;padding:10px 16px;border-inline-start:4px solid #d9b25a;color:var(--mu)}.pvbox ul{padding-inline-start:22px}
+
+/* ===== mobile bottom bar fix ===== */
+.mob{display:none}
+.sheet{position:fixed;inset:0;z-index:80;display:none}.sheet.on{display:block}.sh-bg{position:absolute;inset:0;background:#000a;animation:fi .2s}
+.sh-box{position:absolute;inset:auto 0 0;background:var(--card);border-top:1px solid var(--bd);border-radius:24px 24px 0 0;padding:10px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px #0006;animation:up .28s ease}@keyframes up{from{transform:translateY(100%)}}
+.sh-grip{width:42px;height:5px;border-radius:5px;background:var(--bd);margin:0 auto 14px}.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shi{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px 8px;border-radius:16px;border:1px solid var(--bd);background:var(--in);color:var(--tx);font-weight:600;font-size:14px;cursor:pointer;text-align:center;transition:.2s}.shi:active{transform:scale(.97)}.shi .i{width:26px;height:26px;color:var(--pt)}.shi.out{color:var(--dg)}.shi.out .i{color:var(--dg)}
+.stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.tag.dr{background:#8a99ad2e;color:var(--mu)}
+@media(max-width:900px){
+aside{display:grid!important;grid-template-columns:repeat(5,1fr);gap:2px!important;padding:6px 6px calc(6px + env(safe-area-inset-bottom))!important;background:var(--sb);box-shadow:0 -8px 28px #0003}
+.nv.dsk{display:none}.nv.mob{display:flex}
+.nv{min-width:0;width:auto;padding:8px 2px!important;font-size:11px!important;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:12px}
+.nv.on{box-shadow:none}.bdg{top:3px!important;inset-inline-start:calc(50% + 4px)!important}
+main{padding:16px 14px calc(96px + env(safe-area-inset-bottom))!important}
+#toast{bottom:calc(86px + env(safe-area-inset-bottom))}
+.top{margin-bottom:16px}.top h1{font-size:21px}
+.card{padding:16px!important;border-radius:18px}
+.tools input{max-width:none}
+.row .ac{display:flex;gap:8px}.row .ac .btn{flex:1}
+.upl{flex-wrap:wrap}.upl input{flex:1 1 100%}
+.etb .btn{flex:1 1 auto}
+body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
+}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
@@ -86,16 +110,17 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 <button class="nv" data-v="content"><svg class="i"><use href="#a-file"/></svg>المحتوى</button>
 <button class="nv" data-v="comments"><svg class="i"><use href="#a-msg"/></svg>التعليقات<span class="bdg z" id="nc"></span></button>
 <button class="nv" data-v="bookings"><svg class="i"><use href="#a-cal"/></svg>الحجوزات<span class="bdg z" id="nb"></span></button>
-<button class="nv" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button>
-<button class="nv" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button>
-<button class="nv" data-v="storage"><svg class="i"><use href="#a-db"/></svg>التخزين</button>
-<button class="nv" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
+<button class="nv dsk" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button>
+<button class="nv dsk" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button>
+<button class="nv dsk" data-v="storage"><svg class="i"><use href="#a-db"/></svg>التخزين</button>
+<button class="nv dsk" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
+<button class="nv mob" id="mb" type="button"><svg class="i"><use href="#a-set"/></svg>المزيد</button>
 <div class="sp"></div><a class="nv lo" href="/" target="_blank"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="nv lo" id="out"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></aside>
 <main>
 <div class="top"><div><h1 id="ttl">الرئيسية</h1><p id="sbt">نظرة عامة على نشاط الموقع</p></div><div style="display:flex;gap:8px"><a class="ib mt" href="/" target="_blank" aria-label="الموقع"><svg class="i"><use href="#a-ext"/></svg></a><button class="ib mt" id="out2" aria-label="خروج"><svg class="i"><use href="#a-out"/></svg></button><button class="ib" id="th" aria-label="theme"></button></div></div>
 
 <div class="view on" id="v-dash">
-<div class="stats"><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s1">0</b><span>إجمالي المحتوى</span></div><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s2">0</b><span>مقالات</span></div><div class="stat g"><svg class="i"><use href="#a-cal"/></svg><b id="s3">0</b><span>طلبات جديدة</span></div><div class="stat"><svg class="i"><use href="#a-cal"/></svg><b id="s4">0</b><span>إجمالي الحجوزات</span></div></div>
+<div class="stats"><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s1">0</b><span>إجمالي المحتوى</span></div><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s2">0</b><span>مقالات</span></div><div class="stat g"><svg class="i"><use href="#a-cal"/></svg><b id="s3">0</b><span>طلبات جديدة</span></div><div class="stat"><svg class="i"><use href="#a-cal"/></svg><b id="s4">0</b><span>إجمالي الحجوزات</span></div><div class="stat"><svg class="i"><use href="#a-ext"/></svg><b id="s5">0</b><span>مشاهدات المقالات</span></div><div class="stat g"><svg class="i"><use href="#a-ck"/></svg><b id="s6">0</b><span>إعجابات المقالات</span></div></div>
 <div class="two"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>أحدث الحجوزات</h3><div id="rb"></div></div>
 <div class="card"><h3><svg class="i"><use href="#a-plus"/></svg>إجراءات سريعة</h3><div class="qa" style="margin-top:10px"><button class="btn" data-go="content" data-new="article">إضافة مقال</button><button class="btn o" data-go="content" data-new="podcast">إضافة حلقة بودكاست</button><button class="btn o" data-go="content" data-new="book">إضافة كتاب</button><button class="btn o" data-go="content" data-new="course">إضافة دورة</button><button class="btn o" data-go="settings">إعدادات التواصل</button></div></div></div></div>
 
@@ -107,8 +132,9 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 <div id="f-body"><label id="lb-body">نص المقال</label>
 <div class="etb" id="etb"><button type="button" class="btn o sm" data-ins="h">عنوان فرعي</button><button type="button" class="btn o sm" data-ins="b"><b>B</b> عريض</button><button type="button" class="btn o sm" data-ins="l">• قائمة</button><button type="button" class="btn o sm" data-ins="q">❝ اقتباس</button><button type="button" class="btn sm" data-ins="img"><svg class="i"><use href="#a-up"/></svg>صورة داخل المقال</button><button type="button" class="btn sm" data-ins="vid">▶ فيديو من رابط</button><button type="button" class="btn o sm" id="bpv">معاينة</button></div>
 <textarea id="body" rows="14" placeholder="نص المقال الكامل"></textarea>
-<div class="shint" id="bhint">لإضافة صورة: ضع المؤشر في المكان المطلوب ثم اضغط «صورة داخل المقال». لإضافة فيديو: اضغط «فيديو من رابط» والصق رابط يوتيوب أو فيمو أو فيسبوك أو ملف mp4. يمكنك أيضاً لصق رابط الفيديو وحده في سطر مستقل.</div><div class="pvbox" id="bpvbox" style="display:none"></div></div>
+<div class="shint" id="wc"></div><div class="shint" id="bhint">لإضافة صورة: ضع المؤشر في المكان المطلوب ثم اضغط «صورة داخل المقال». لإضافة فيديو: اضغط «فيديو من رابط» والصق رابط يوتيوب أو فيمو أو فيسبوك أو ملف mp4. يمكنك أيضاً لصق رابط الفيديو وحده في سطر مستقل.</div><div class="pvbox" id="bpvbox" style="display:none"></div></div>
 <div class="g2"><div id="f-url"><label id="lb-url">الرابط</label><input id="url" dir="ltr" placeholder="https://"></div><div id="f-image"><label id="lb-img">الصورة (ارفعها من جهازك أو الصق رابطاً)</label><div class="upl"><input id="image" dir="ltr" placeholder="https://… أو اضغط رفع"><button type="button" class="btn o sm" data-up="image"><svg class="i"><use href="#a-up"/></svg>رفع</button><button type="button" class="btn d sm" data-clr="image">إزالة</button></div></div></div><img id="prev" class="prev" alt="">
+<label class="sw" style="margin-top:14px"><input type="checkbox" id="draft"> حفظ كمسودة (لا تظهر للزوار حتى تنشرها)</label>
 <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap"><button class="btn" id="sv"><svg class="i"><use href="#a-ck"/></svg><span id="svt">نشر</span></button><button class="btn o" id="cn" style="display:none">إلغاء التعديل</button></div></div>
 <div class="card"><h3><svg class="i"><use href="#a-file"/></svg>المحتوى المنشور <span class="tag" id="cnt" style="margin:0"></span></h3>
 <div class="tools"><input id="q" placeholder="ابحث بالعنوان..."><div class="chips" id="fl"><button class="ch on" data-t="">الكل</button><button class="ch" data-t="article">مقالات</button><button class="ch" data-t="podcast">بودكاست</button><button class="ch" data-t="book">كتب</button><button class="ch" data-t="course">دورات</button></div></div><div id="items"></div></div></div>
@@ -141,6 +167,9 @@ main{padding:26px 30px 60px;max-width:1100px;width:100%}
 <div style="padding:0 0 4px"><button class="btn" id="ss" style="margin-top:2px"><svg class="i"><use href="#a-ck"/></svg>حفظ الإعدادات</button></div></div>
 <input type="file" id="file" accept="image/*" hidden>
 </main></div></div>
+<div class="sheet" id="sheet" aria-hidden="true"><div class="sh-bg" data-close></div><div class="sh-box" role="dialog" aria-label="المزيد"><div class="sh-grip"></div><div class="sh-grid">
+<button class="shi" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button><button class="shi" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button><button class="shi" data-v="storage"><svg class="i"><use href="#a-db"/></svg>التخزين</button><button class="shi" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
+<a class="shi" href="/" target="_blank" rel="noopener"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="shi out" id="out3" type="button"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></div></div></div>
 <div id="toast"></div>
 <script>
 const $=s=>document.getElementById(s),Q=s=>document.querySelectorAll(s),R=document.documentElement;
@@ -168,17 +197,17 @@ const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','h
 async function load(){const[a,b]=await Promise.all([api('items'),api('bookings')]);ITEMS=Array.isArray(a)?a:[];BK=Array.isArray(b)?b:[];drawAll()}
 function drawAll(){stats();drawItems();drawBK();drawRecent()}
 const nw=b=>b.status!='done';
-function stats(){$('s1').textContent=ITEMS.length;$('s2').textContent=ITEMS.filter(i=>i.type=='article').length;const n=BK.filter(nw).length;$('s3').textContent=n;$('s4').textContent=BK.length;const nb=$('nb');nb.textContent=n||'';nb.classList.toggle('z',!n)}
+function stats(){$('s1').textContent=ITEMS.length;$('s2').textContent=ITEMS.filter(i=>i.type=='article').length;const n=BK.filter(nw).length;$('s3').textContent=n;$('s4').textContent=BK.length;const A=ITEMS.filter(i=>i.type=='article');$('s5').textContent=A.reduce((a,i)=>a+(i.views||0),0).toLocaleString('ar-EG');$('s6').textContent=A.reduce((a,i)=>a+(i.likes||0),0).toLocaleString('ar-EG');const nb=$('nb');nb.textContent=n||'';nb.classList.toggle('z',!n)}
 const dt=d=>d?new Date(d).toLocaleString('ar-EG',{dateStyle:'medium',timeStyle:'short'}):'';
 const waNum=p=>{let d=String(p||'').replace(/\D/g,'');if(d.startsWith('00'))d=d.slice(2);else if(d.startsWith('0'))d='20'+d.slice(1);return d};
 /* content */
 function drawItems(){const q=$('q').value.trim().toLowerCase();const L=ITEMS.filter(i=>(!ft||i.type==ft)&&(!q||(i.title||'').toLowerCase().includes(q)));$('cnt').textContent=L.length;
-$('items').innerHTML=L.map(i=>`<div class="row"><div class="th">${/^(https?:|\/api\/img\/)/i.test(i.image||'')?`<img src="${E(i.image)}" alt="" loading="lazy">`:U(IC[i.type]||'file')}</div><div class="m"><b>${E(i.title)}</b><small><span class="tag">${N[i.type]||''}</span>${dt(i.createdAt)}${i.type=='article'?` · ${i.views||0} مشاهدة · ${i.likes||0} إعجاب`:''}</small></div><div class="ac">${i.type=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${encodeURIComponent(i.slug||i._id)}">${U('ext')}عرض</a>`:''}<button class="btn o sm" data-ed="${E(i._id)}">${U('ed')}تعديل</button><button class="btn d sm" data-dl="${E(i._id)}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا يوجد محتوى</div>'}
+$('items').innerHTML=L.map(i=>`<div class="row"><div class="th">${/^(https?:|\/api\/img\/)/i.test(i.image||'')?`<img src="${E(i.image)}" alt="" loading="lazy">`:U(IC[i.type]||'file')}</div><div class="m"><b>${E(i.title)}</b><small><span class="tag">${N[i.type]||''}</span>${i.draft?'<span class="tag dr">مسودة</span>':''}${dt(i.createdAt)}${i.type=='article'?` · ${i.views||0} مشاهدة · ${i.likes||0} إعجاب`:''}</small></div><div class="ac">${i.type=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${encodeURIComponent(i.slug||i._id)}">${U('ext')}عرض</a>`:''}<button class="btn o sm" data-ed="${E(i._id)}">${U('ed')}تعديل</button><button class="btn d sm" data-dl="${E(i._id)}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا يوجد محتوى</div>'}
 $('q').oninput=drawItems;$('fl').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;ft=b.dataset.t;Q('#fl .ch').forEach(x=>x.classList.toggle('on',x==b));drawItems()};
 $('items').onclick=async e=>{const ed=e.target.closest('[data-ed]'),dl=e.target.closest('[data-dl]');
-if(ed){const i=ITEMS.find(x=>x._id==ed.dataset.ed);if(!i)return;editing=i._id;['type','title','slug','desc','body','url','image'].forEach(k=>$(k).value=i[k]||'');slugTouched=true;applyType();slugPrev();$('fmt').innerHTML=U('ed')+'تعديل المحتوى';$('svt').textContent='حفظ التعديلات';$('cn').style.display='';$('edn').style.display='block';$('edn').textContent='تعديل: '+i.title;prevImg();$('fm').scrollIntoView({behavior:'smooth'})}
+if(ed){const i=ITEMS.find(x=>x._id==ed.dataset.ed);if(!i)return;editing=i._id;['type','title','slug','desc','body','url','image'].forEach(k=>$(k).value=i[k]||'');$('draft').checked=!!i.draft;wordc();slugTouched=true;applyType();slugPrev();$('fmt').innerHTML=U('ed')+'تعديل المحتوى';$('svt').textContent='حفظ التعديلات';$('cn').style.display='';$('edn').style.display='block';$('edn').textContent='تعديل: '+i.title;prevImg();$('fm').scrollIntoView({behavior:'smooth'})}
 if(dl&&confirm('تأكيد حذف هذا العنصر؟')){const r=await api('items?id='+dl.dataset.dl,'DELETE');if(r){toast('تم الحذف','s');if(editing==dl.dataset.dl)resetForm();load()}else toast('تعذر الحذف','e')}};
-function resetForm(){editing=null;slugTouched=false;['title','slug','desc','body','url','image'].forEach(k=>$(k).value='');$('bpvbox').style.display='none';$('type').value='article';applyType();slugPrev();$('fmt').innerHTML=U('plus')+'إضافة محتوى جديد';$('svt').textContent='نشر';$('cn').style.display='none';$('edn').style.display='none';prevImg()}
+function resetForm(){editing=null;$('draft').checked=false;slugTouched=false;['title','slug','desc','body','url','image'].forEach(k=>$(k).value='');$('bpvbox').style.display='none';$('type').value='article';applyType();slugPrev();$('fmt').innerHTML=U('plus')+'إضافة محتوى جديد';$('svt').textContent='نشر';$('cn').style.display='none';$('edn').style.display='none';prevImg()}
 $('cn').onclick=resetForm;
 const PV={image:'prev',img_hero:'pv_img_hero',img_about:'pv_img_about',img_mark:'pv_img_mark'};
 function showPrev(id){const v=$(id).value.trim(),p=$(PV[id]);if(/^(https?:\/\/|\/api\/img\/)/i.test(v)){p.src=v;p.style.display='block'}else p.style.display='none'}
@@ -195,10 +224,10 @@ throw new Error('الصورة كبيرة جداً، اختر صورة أصغر')
 async function upImg(file,o){const blob=await shrink(file,o);const r=await fetch('/api/images?name='+encodeURIComponent(file.name||''),{method:'POST',headers:{'Content-Type':blob.type,Authorization:'Bearer '+tk},body:blob});if(r.status==401){localStorage.removeItem('tk');location.reload();return null}if(r.status==413)throw new Error('الصورة كبيرة جداً');if(!r.ok)throw new Error('تعذر رفع الصورة — تأكد من تحديث lib/app.js على الخادم');return await r.json()}
 function pickImg(id){const f=$('file');f.value='';f.onchange=async()=>{const file=f.files[0];if(!file)return;if(!/^image\//.test(file.type)){toast('اختر ملف صورة','e');return}const b=document.querySelector('[data-up="'+id+'"]'),t0=b.innerHTML;b.disabled=true;b.textContent='جارٍ الرفع…';try{const r=await upImg(file,UPO[id]||{max:1600});if(r){$(id).value=r.url;showPrev(id);toast('تم رفع الصورة ('+fmtB(r.size)+') — لا تنسَ الحفظ','s')}}catch(e){toast(e.message||'تعذر رفع الصورة','e')}finally{b.disabled=false;b.innerHTML=t0}};f.click()}
 Q('[data-up]').forEach(b=>b.onclick=()=>pickImg(b.dataset.up));
-$('sv').onclick=async()=>{if(!$('title').value.trim())return toast('العنوان مطلوب','e');const c=TF[$('type').value]||TF.article,d={type:$('type').value,title:$('title').value.trim(),desc:$('desc').value,image:$('image').value.trim()};
+$('sv').onclick=async()=>{if(!$('title').value.trim())return toast('العنوان مطلوب','e');const c=TF[$('type').value]||TF.article,d={type:$('type').value,title:$('title').value.trim(),desc:$('desc').value,image:$('image').value.trim(),draft:$('draft').checked};
 if(c.slug)d.slug=$('slug').value.trim();if(c.body)d.body=$('body').value;if(c.url)d.url=$('url').value.trim();
 const b=$('sv');b.disabled=true;const r=editing?await api('items?id='+editing,'PUT',d):await api('items','POST',d);b.disabled=false;
-if(r){toast(editing?'تم حفظ التعديلات':'تم النشر','s');resetForm();load()}
+if(r){toast(d.draft?'تم الحفظ كمسودة':editing?'تم حفظ التعديلات':'تم النشر','s');resetForm();load()}
 else{const e=api.err||{};if(editing&&e.status==404){toast('هذا العنصر لم يعد موجوداً على الخادم — تم تحديث القائمة','e');resetForm();load()}else toast('تعذر الحفظ'+(e.status?' ('+e.status+(e.msg?' — '+e.msg:'')+')':''),'e')}};
 /* ===== fields by content type ===== */
 const TF={article:{slug:1,body:1,bt:1,url:0,lbd:'ملخص المقال (يظهر في بطاقة المقال وأعلى صفحته)',lbb:'نص المقال',lbi:'صورة الغلاف (ارفعها من جهازك أو الصق رابطاً)'},
@@ -209,6 +238,8 @@ let slugTouched=false;
 function applyType(){const c=TF[$('type').value]||TF.article;$('f-slug').style.display=c.slug?'':'none';$('f-body').style.display=c.body?'':'none';$('etb').style.display=c.bt?'':'none';$('bhint').style.display=c.bt?'':'none';$('bpvbox').style.display='none';$('f-url').style.display=c.url?'':'none';$('f-image').classList.toggle('f1',!c.url);
 $('lb-desc').textContent=c.lbd;$('lb-body').textContent=c.lbb||'';$('lb-url').textContent=c.lbu||'';$('lb-img').textContent=c.lbi}
 $('type').onchange=applyType;
+function wordc(){const n=($('body').value.trim().match(/\S+/g)||[]).length;$('wc').textContent=n?n.toLocaleString('ar-EG')+' كلمة · وقت القراءة تقريباً '+Math.max(1,Math.round(n/180)).toLocaleString('ar-EG')+' د':''}
+$('body').addEventListener('input',wordc);
 const SLG=t=>String(t||'').normalize('NFKC').replace(/[\u064B-\u065F\u0670\u0640]/g,'').toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-+|-+$/g,'').slice(0,80).replace(/-+$/,'');
 function slugPrev(){const v=SLG($('slug').value)||SLG($('title').value);$('slugPrev').textContent=v?location.origin+'/articles/'+v:''}
 $('slug').oninput=()=>{slugTouched=true;slugPrev()};$('title').addEventListener('input',()=>{if(!editing&&!slugTouched){$('slug').value=SLG($('title').value)}slugPrev()});
@@ -329,5 +360,17 @@ $('cml').onclick=async e=>{const a=e.target.closest('[data-cs]'),d=e.target.clos
 if(a){const r=await api('comments?id='+a.dataset.cs,'PUT',{status:a.dataset.to});if(r){toast('تم التحديث','s');loadComments()}else toast('تعذر التحديث','e')}
 if(d&&confirm('حذف هذا التعليق نهائياً؟')){const r=await api('comments?id='+d.dataset.cd,'DELETE');if(r){toast('تم الحذف','s');loadComments()}else toast('تعذر الحذف','e')}};
 $('cmod').onchange=async()=>{const v=$('cmod').checked?'moderate':'auto',r=await api('settings','PUT',{comments_mode:v});if(r){SET.comments_mode=v;toast($('cmod').checked?'التعليقات الجديدة تنتظر اعتمادك':'التعليقات الجديدة تظهر مباشرة','s')}else{$('cmod').checked=!$('cmod').checked;toast('تعذر الحفظ','e')}};
+/* ===== mobile: more sheet + hide bar while typing ===== */
+const shEl=$('sheet'),openSheet=()=>{shEl.classList.add('on');shEl.setAttribute('aria-hidden','false')},closeSheet=()=>{shEl.classList.remove('on');shEl.setAttribute('aria-hidden','true')};
+$('mb').onclick=()=>shEl.classList.contains('on')?closeSheet():openSheet();
+shEl.onclick=e=>{if(e.target.closest('[data-close]'))closeSheet()};
+Q('.shi[data-v]').forEach(b=>b.onclick=()=>{go(b.dataset.v);closeSheet()});
+$('out3').onclick=logout;
+addEventListener('keydown',e=>{if(e.key=='Escape')closeSheet()});
+const MORE=['texts','fonts','storage','settings'],go0=go;go=function(v){go0(v);$('mb').classList.toggle('on',MORE.includes(v))};
+document.addEventListener('focusin',e=>{if(innerWidth<=900&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)&&e.target.type!='checkbox')document.body.classList.add('kb')});
+document.addEventListener('focusout',()=>setTimeout(()=>{if(!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||''))document.body.classList.remove('kb')},120));
+/* warn before leaving with an unsaved article */
+addEventListener('beforeunload',e=>{if(($('title').value.trim()||$('body').value.trim())&&!editing&&$('v-content').classList.contains('on')){e.preventDefault();e.returnValue=''}});
 init();
 </script></body></html>
