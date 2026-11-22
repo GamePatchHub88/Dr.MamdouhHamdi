@@ -86,6 +86,9 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 .bulk{display:none;gap:8px;flex-wrap:wrap;align-items:center;position:sticky;top:8px;z-index:20;background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:10px 14px;margin-bottom:10px;box-shadow:var(--sh)}.bulk.on{display:flex}.bulk b{margin-inline-end:auto}
 .cnt2{font-size:12px;color:var(--mu);margin-top:4px}.cnt2.bad{color:var(--dg)}.cnt2.good{color:var(--ok)}
 .topr{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--bd)}.topr:last-child{border:0}.topr b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+
+.cp{position:fixed;inset:0;z-index:95;display:none;background:#000a;padding:10vh 16px}.cp.on{display:block}.cp .bx{max-width:560px;margin:auto;background:var(--card);border:1px solid var(--bd);border-radius:18px;box-shadow:var(--sh);overflow:hidden}.cp .rs{max-height:50vh;overflow:auto}.cp .rs button{display:flex;gap:10px;width:100%;text-align:start;padding:11px 16px;background:none;border:0;border-top:1px solid var(--bd);color:var(--tx);cursor:pointer}.cp .rs button:hover{background:#4aa8ee22}.cp small{color:var(--mu);margin-inline-start:auto}
+.topr small{text-align:end}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
@@ -131,6 +134,8 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 <div class="stats"><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s1">0</b><span>إجمالي المحتوى</span></div><div class="stat"><svg class="i"><use href="#a-file"/></svg><b id="s2">0</b><span>مقالات</span></div><div class="stat g"><svg class="i"><use href="#a-cal"/></svg><b id="s3">0</b><span>طلبات جديدة</span></div><div class="stat"><svg class="i"><use href="#a-cal"/></svg><b id="s4">0</b><span>إجمالي الحجوزات</span></div><div class="stat"><svg class="i"><use href="#a-ext"/></svg><b id="s5">0</b><span>مشاهدات المقالات</span></div><div class="stat g"><svg class="i"><use href="#a-ck"/></svg><b id="s6">0</b><span>إعجابات المقالات</span></div></div>
 <div class="alr" id="alr"></div>
 <div class="two"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>الحجوزات آخر 30 يوماً <span class="tag" id="c30" style="margin:0"></span></h3><div class="chart" id="chart"></div><div class="chart-l"><span id="cl1"></span><span id="cl2"></span></div></div><div class="card"><h3><svg class="i"><use href="#a-file"/></svg>الأكثر مشاهدة</h3><div id="topa"></div></div></div>
+<div class="two"><div class="card"><h3><svg class="i"><use href="#a-ext"/></svg>زيارات المقالات آخر 30 يوماً <span class="tag" id="v30" style="margin:0"></span></h3><div class="chart" id="vchart"></div><div class="chart-l"><span id="vl1"></span><span id="vl2"></span></div><p class="sub" style="margin-top:8px">يبدأ العدّ اليومي من لحظة تحديث الخادم.</p></div><div class="card"><h3><svg class="i"><use href="#a-ck"/></svg>صحة المحتوى <span class="tag n" id="hc" style="margin:0"></span></h3><div id="health"></div></div></div>
+<div class="card"><h3><svg class="i"><use href="#a-ed"/></svg>آخر نشاط في اللوحة</h3><div id="logb"></div></div>
 <div class="two"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>أحدث الحجوزات</h3><div id="rb"></div></div>
 <div class="card"><h3><svg class="i"><use href="#a-plus"/></svg>إجراءات سريعة</h3><div class="qa" style="margin-top:10px"><button class="btn" data-go="content" data-new="article">إضافة مقال</button><button class="btn o" data-go="content" data-new="podcast">إضافة حلقة بودكاست</button><button class="btn o" data-go="content" data-new="book">إضافة كتاب</button><button class="btn o" data-go="content" data-new="course">إضافة دورة</button><button class="btn o" data-go="settings">إعدادات التواصل</button></div></div></div></div>
 
@@ -152,7 +157,7 @@ body.kb aside{display:none!important}body.kb main{padding-bottom:30px!important}
 
 <div class="view" id="v-comments"><div class="card"><h3><svg class="i"><use href="#a-msg"/></svg>تعليقات الزوار</h3><p class="sub">تظهر التعليقات المعتمدة فقط أسفل كل مقال.</p>
 <label class="sw"><input type="checkbox" id="cmod"> اعتماد التعليقات يدوياً قبل ظهورها (إن لم تفعّله تظهر مباشرة)</label>
-<div class="tools"><input id="cq" placeholder="ابحث بالاسم أو النص أو عنوان المقال..."><div class="chips" id="cfl"><button class="ch on" data-s="">الكل</button><button class="ch" data-s="pending">بانتظار الاعتماد</button><button class="ch" data-s="ok">معتمد</button></div></div><div id="cml"></div></div></div>
+<div class="tools"><input id="cq" placeholder="ابحث بالاسم أو النص أو عنوان المقال..."><div class="chips" id="cfl"><button class="ch on" data-s="">الكل</button><button class="ch" data-s="pending">بانتظار الاعتماد</button><button class="ch" data-s="ok">معتمد</button></div></div><div class="tbar"><button class="btn ok sm" id="cap">اعتماد كل المعلّقة</button><button class="btn d sm" id="cdp">حذف كل المعلّقة</button></div><div id="cml"></div></div></div>
 
 <div class="view" id="v-storage"><div id="stBox"><div class="empty">جارٍ التحميل…</div></div></div>
 
@@ -205,9 +210,9 @@ Q('.nv[data-v]').forEach(b=>b.onclick=()=>go(b.dataset.v));
 Q('[data-go]').forEach(b=>b.onclick=()=>{go(b.dataset.go);if(b.dataset.new){resetForm();$('type').value=b.dataset.new}});
 /* init */
 async function init(){if(!tk)return;$('lg').style.display='none';$('app').style.display='block';
-const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram','img_hero','img_about','img_mark'].forEach(k=>$(k).value=s[k]||'');$('cmod').checked=s.comments_mode=='moderate';['image','img_hero','img_about','img_mark'].forEach(showPrev);await load();loadComments(true);restoreDraft();drawTexts();drawFonts()}
-async function load(){const[a,b]=await Promise.all([api('items'),api('bookings')]);ITEMS=Array.isArray(a)?a:[];BK=Array.isArray(b)?b:[];drawAll()}
-function drawAll(){stats();drawItems();drawBK();drawRecent();drawDash()}
+const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram','img_hero','img_about','img_mark'].forEach(k=>$(k).value=s[k]||'');$('cmod').checked=s.comments_mode=='moderate';['image','img_hero','img_about','img_mark'].forEach(showPrev);await load();loadComments(true);restoreDraft();loadAn();drawTexts();drawFonts()}
+async function load(){const[a,b]=await Promise.all([api('items'),api('bookings')]);ITEMS=Array.isArray(a)?a:[];BK=Array.isArray(b)?b:[];drawAll();loadLog()}
+function drawAll(){stats();drawItems();drawBK();drawRecent();drawDash();health()}
 const nw=b=>b.status!='done';
 function stats(){$('s1').textContent=ITEMS.length;$('s2').textContent=ITEMS.filter(i=>i.type=='article').length;const n=BK.filter(nw).length;$('s3').textContent=n;$('s4').textContent=BK.length;const A=ITEMS.filter(i=>i.type=='article');$('s5').textContent=A.reduce((a,i)=>a+(i.views||0),0).toLocaleString('ar-EG');$('s6').textContent=A.reduce((a,i)=>a+(i.likes||0),0).toLocaleString('ar-EG');const nb=$('nb');nb.textContent=n||'';nb.classList.toggle('z',!n)}
 const dt=d=>d?new Date(d).toLocaleString('ar-EG',{dateStyle:'medium',timeStyle:'short'}):'';
@@ -218,7 +223,7 @@ const IS={new:(a,b)=>new Date(b.createdAt)-new Date(a.createdAt),views:(a,b)=>(b
 const shown=()=>{const q=$('q').value.trim().toLowerCase();return ITEMS.filter(i=>(!ft||i.type==ft)&&(!ps||(ps=='draft')==!!i.draft)&&(!q||((i.title||'')+' '+(i.desc||'')).toLowerCase().includes(q))).sort(IS[SRT])};
 function bulkUI(){$('bulk').classList.toggle('on',SELI.size>0);$('bn').textContent=SELI.size+' عنصر محدد'}
 function drawItems(){const L=shown();SELI=new Set([...SELI].filter(id=>ITEMS.some(i=>i._id==id)));$('cnt').textContent=L.length;
-$('items').innerHTML=L.map(i=>`<div class="row"><input type="checkbox" class="ck2" data-ck="${E(i._id)}" ${SELI.has(i._id)?'checked':''}><div class="th">${/^(https?:|\/api\/img\/)/i.test(i.image||'')?`<img src="${E(i.image)}" alt="" loading="lazy">`:U(IC[i.type]||'file')}</div><div class="m"><b>${E(i.title)}</b><small><span class="tag">${N[i.type]||''}</span>${i.draft?'<span class="tag dr">مسودة</span>':''}${dt(i.createdAt)}${i.type=='article'?` · ${i.views||0} مشاهدة · ${i.likes||0} إعجاب`:''}</small></div><div class="ac">${i.type=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${encodeURIComponent(i.slug||i._id)}">${U('ext')}عرض</a>`:''}<button class="btn o sm" data-ed="${E(i._id)}">${U('ed')}تعديل</button><button class="btn o sm" data-dp="${E(i._id)}">نسخ</button><button class="btn d sm" data-dl="${E(i._id)}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا يوجد محتوى</div>';bulkUI()}
+$('items').innerHTML=L.map(i=>`<div class="row"><input type="checkbox" class="ck2" data-ck="${E(i._id)}" ${SELI.has(i._id)?'checked':''}><div class="th">${/^(https?:|\/api\/img\/)/i.test(i.image||'')?`<img src="${E(i.image)}" alt="" loading="lazy">`:U(IC[i.type]||'file')}</div><div class="m"><b>${E(i.title)}</b><small><span class="tag">${N[i.type]||''}</span>${i.draft?'<span class="tag dr">مسودة</span>':''}${dt(i.createdAt)}${i.type=='article'?` · ${i.views||0} مشاهدة · ${i.likes||0} إعجاب`:''}</small></div><div class="ac">${i.type=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${encodeURIComponent(i.slug||i._id)}">${U('ext')}عرض</a>`:''}<button class="btn o sm" data-ed="${E(i._id)}">${U('ed')}تعديل</button><button class="btn o sm" data-tg="${E(i._id)}">${i.draft?'نشر':'إخفاء'}</button><button class="btn o sm" data-dp="${E(i._id)}">نسخ</button><button class="btn d sm" data-dl="${E(i._id)}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا يوجد محتوى</div>';bulkUI()}
 $('q').oninput=drawItems;$('fl').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;ft=b.dataset.t;Q('#fl .ch').forEach(x=>x.classList.toggle('on',x==b));drawItems()};
 $('items').onclick=async e=>{const ed=e.target.closest('[data-ed]'),dl=e.target.closest('[data-dl]');
 if(ed){const i=ITEMS.find(x=>x._id==ed.dataset.ed);if(!i)return;editing=i._id;['type','title','slug','desc','body','url','image'].forEach(k=>$(k).value=i[k]||'');$('draft').checked=!!i.draft;wordc();slugTouched=true;applyType();slugPrev();$('fmt').innerHTML=U('ed')+'تعديل المحتوى';$('svt').textContent='حفظ التعديلات';$('cn').style.display='';$('edn').style.display='block';$('edn').textContent='تعديل: '+i.title;prevImg();$('fm').scrollIntoView({behavior:'smooth'})}
@@ -286,7 +291,7 @@ $('bpv').onclick=()=>{const bx=$('bpvbox');if(bx.style.display=='none'){bx.inner
 applyType();
 /* bookings */
 function bkHTML(b){const d=b.status=='done';return `<div class="bk ${d?'':'new'}"><div class="h"><div><b>${E(b.name)}</b> <span class="tag ${d?'k':'n'}">${d?'تمت المعالجة':'جديد'}</span><br><a dir="ltr" style="color:var(--pt);font-weight:600" href="tel:${E(b.phone)}">${E(b.phone)}</a></div><small style="color:var(--mu)">${dt(b.createdAt)}</small></div>${b.message?`<div class="msg">${E(b.message)}</div>`:'<div style="height:10px"></div>'}${b.note?`<div class="msg" style="color:var(--gold)">📝 ${E(b.note)}</div>`:''}<div class="ac"><a class="btn sm" href="tel:${E(b.phone)}">${U('ph')}اتصال</a><a class="btn ok sm" target="_blank" rel="noopener" href="https://wa.me/${waNum(b.phone)}">${U('wa')}واتساب</a><button class="btn o sm" data-st="${E(b._id)}" data-to="${d?'new':'done'}">${U('ck')}${d?'إعادة كجديد':'تمت المعالجة'}</button><button class="btn o sm" data-nt="${E(b._id)}">📝 ملاحظة</button><button class="btn d sm" data-bd="${E(b._id)}">${U('tr')}حذف</button></div></div>`}
-function drawBK(){const q=$('bq').value.trim().toLowerCase();const L=BK.filter(b=>(!bs||(bs=='done'?b.status=='done':nw(b)))&&(!q||(b.name||'').toLowerCase().includes(q)||(b.phone||'').includes(q)));$('bk').innerHTML=L.map(bkHTML).join('')||'<div class="empty">لا توجد طلبات</div>'}
+function drawBK(){const q=$('bq').value.trim().toLowerCase();const L=BK.filter(b=>inR(b)&&(!bs||(bs=='done'?b.status=='done':nw(b)))&&(!q||(b.name||'').toLowerCase().includes(q)||(b.phone||'').includes(q)));$('bk').innerHTML=L.map(bkHTML).join('')||'<div class="empty">لا توجد طلبات</div>'}
 function drawRecent(){$('rb').innerHTML=BK.slice(0,4).map(bkHTML).join('')||'<div class="empty">لا توجد طلبات بعد</div>'}
 $('bq').oninput=drawBK;$('bf').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;bs=b.dataset.s;Q('#bf .ch').forEach(x=>x.classList.toggle('on',x==b));drawBK()};
 async function bAct(e){const nt=e.target.closest('[data-nt]');if(nt){const b=BK.find(x=>x._id==nt.dataset.nt),v=prompt('ملاحظة داخلية على هذا الطلب:',b.note||'');if(v===null)return;const r=await api('bookings/'+b._id,'PUT',{note:v.trim()});if(r){toast('تم حفظ الملاحظة','s');load()}else toast('تعذر الحفظ','e');return}const st=e.target.closest('[data-st]'),bd=e.target.closest('[data-bd]');
@@ -398,7 +403,7 @@ const T=ITEMS.filter(i=>i.type=='article'&&!i.draft).sort(IS.views).slice(0,5);
 $('topa').innerHTML=T.map((i,n)=>`<div class="topr"><span class="tag n" style="margin:0">${n+1}</span><b>${E(i.title)}</b><small style="color:var(--mu)">${(i.views||0).toLocaleString('ar-EG')} مشاهدة · ${i.likes||0} ♥</small></div>`).join('')||'<div class="empty">لا توجد مقالات منشورة بعد</div>';
 const nb=BK.filter(nw).length,pc=CMS.filter(c=>c.status=='pending').length,dr=ITEMS.filter(i=>i.draft).length;
 $('alr').innerHTML=[[nb,'طلب حجز جديد بانتظار الرد','bookings'],[pc,'تعليق بانتظار الاعتماد','comments'],[dr,'مسودة غير منشورة','content']].filter(a=>a[0]).map(a=>`<button data-al="${a[2]}"><b>${a[0]}</b>${a[1]}</button>`).join('');
-$('bsum').textContent=BK.length+' طلب · '+nb+' جديد'}
+$('bsum').textContent=BK.length+' طلب · '+nb+' جديد';document.title=(nb+pc?'('+(nb+pc)+') ':'')+'لوحة الإدارة | دوبامين'}
 $('alr').onclick=e=>{const b=e.target.closest('[data-al]');if(b)go(b.dataset.al)};
 /* ===== v2: content bulk / sort / duplicate ===== */
 $('items').addEventListener('change',e=>{const c=e.target.closest('[data-ck]');if(!c)return;c.checked?SELI.add(c.dataset.ck):SELI.delete(c.dataset.ck);bulkUI()});
@@ -420,5 +425,44 @@ const getF=async(p,n,ok)=>{const r=await fetch('/api/'+p,{headers:{Authorization
 $('bx').onclick=()=>getF('bookings/export','bookings-'+today()+'.csv','تم تصدير الحجوزات');
 $('bkp').onclick=()=>getF('admin/backup','backup-'+today()+'.json','تم تنزيل النسخة الاحتياطية');
 $('bdn').onclick=async()=>{const ids=BK.filter(nw).map(b=>b._id);if(!ids.length)return toast('لا توجد طلبات جديدة');if(!confirm('تعليم '+ids.length+' طلب كمعالَج؟'))return;const r=await api('bookings/bulk','POST',{action:'done',ids});if(r){toast('تم التحديث','s');load()}else toast('تعذر التحديث','e')};
+
+/* ===== v3 ===== */
+async function loadAn(){const r=await api('admin/analytics');if(!Array.isArray(r))return;const m=Object.fromEntries(r.map(x=>[x.d,x.views])),D=[],fm=d=>d.toLocaleDateString('ar-EG',{day:'numeric',month:'short'});
+for(let j=29;j>=0;j--){const d=new Date(Date.now()-j*864e5);D.push({d,v:m[d.toISOString().slice(0,10)]||0})}
+const mx=Math.max(1,...D.map(x=>x.v));$('v30').textContent=D.reduce((a,x)=>a+x.v,0).toLocaleString('ar-EG');$('vchart').innerHTML=D.map(x=>`<i class="${x.v?'':'z'}" style="height:${x.v?Math.max(10,x.v/mx*100):3}%" title="${fm(x.d)}: ${x.v}"></i>`).join('');$('vl1').textContent=fm(D[0].d);$('vl2').textContent='اليوم'}
+function health(){const P=[];ITEMS.filter(i=>!i.draft).forEach(i=>{const w=(i.body||'').trim().split(/\s+/).filter(Boolean).length,t=(i.title||'').length,p=[];
+if(i.type=='article'){if(!i.image)p.push('بدون صورة غلاف');if((i.desc||'').length<80)p.push('ملخص قصير');if(t<20||t>65)p.push('طول العنوان');if(w<300)p.push('قصير ('+w+' كلمة)')}else{if(!i.url)p.push('بدون رابط');if(!i.image)p.push('بدون صورة')}
+if(p.length)P.push([i,p])});$('hc').textContent=P.length||'✓';
+$('health').innerHTML=P.slice(0,6).map(([i,p])=>`<div class="topr"><b>${E(i.title)}</b><small style="color:var(--gold)">${p.join(' · ')}</small><button class="btn o sm" data-ed2="${E(i._id)}">إصلاح</button></div>`).join('')||'<div class="empty">كل المحتوى المنشور سليم 👌</div>'}
+$('health').onclick=e=>{const b=e.target.closest('[data-ed2]');if(!b)return;go('content');const x=document.querySelector('#items [data-ed="'+b.dataset.ed2+'"]');x?x.click():toast('غيّر الفلاتر لإظهار العنصر')};
+const LB=[[/^\/api\/items\/bulk/,'إجراء جماعي على المحتوى'],[/^\/api\/items/,'محتوى'],[/^\/api\/images/,'صور'],[/^\/api\/settings/,'إعدادات الموقع'],[/^\/api\/bookings/,'حجوزات'],[/^\/api\/comments/,'تعليقات']],MV={POST:'إضافة/تنفيذ',PUT:'تعديل',DELETE:'حذف'};
+async function loadLog(){const r=await api('admin/log');if(!Array.isArray(r))return;$('logb').innerHTML=r.slice(0,10).map(x=>{const l=LB.find(y=>y[0].test(x.p));return `<div class="topr"><span class="tag ${x.m=='DELETE'?'n':''}" style="margin:0">${MV[x.m]||x.m}</span><b>${l?l[1]:E(x.p)}</b><small style="color:var(--mu)">${dt(x.createdAt)}</small></div>`}).join('')||'<div class="empty">لا نشاط مسجّل بعد</div>'}
+/* quick publish / hide */
+$('items').addEventListener('click',async e=>{const t=e.target.closest('[data-tg]');if(!t)return;const i=ITEMS.find(x=>x._id==t.dataset.tg),r=await api('items?id='+i._id,'PUT',{draft:!i.draft});if(r){toast(i.draft?'تم النشر':'أُخفي كمسودة','s');load()}else toast('تعذر التحديث','e')});
+/* comments bulk */
+const cB=async(a,msg)=>{const ids=CMS.filter(c=>c.status=='pending').map(c=>c._id);if(!ids.length)return toast('لا توجد تعليقات معلّقة');if(!confirm(msg+' ('+ids.length+')؟'))return;const r=await api('comments/bulk','POST',{action:a,ids});if(r){toast('تم التنفيذ','s');loadComments()}else toast('تعذر التنفيذ — حدّث lib/app.js','e')};
+$('cap').onclick=()=>cB('ok','اعتماد كل التعليقات المعلّقة');$('cdp').onclick=()=>cB('delete','حذف كل التعليقات المعلّقة نهائياً');
+/* bookings: date range + delete processed */
+$('bx').insertAdjacentHTML('beforebegin','<select id="brng" style="width:auto"><option value="0">كل الأوقات</option><option value="1">آخر 24 ساعة</option><option value="7">آخر 7 أيام</option><option value="30">آخر 30 يوماً</option></select><button class="btn d sm" id="bdd">حذف المعالَجة</button>');
+const inR=b=>{const n=+(($('brng')||{}).value)||0;return !n||Date.now()-new Date(b.createdAt)<=n*864e5};$('brng').onchange=drawBK;
+$('bdd').onclick=async()=>{const ids=BK.filter(b=>b.status=='done').map(b=>b._id);if(!ids.length)return toast('لا توجد طلبات معالَجة');if(!confirm('حذف '+ids.length+' طلب معالَج نهائياً؟ (يُنصح بتصدير CSV أولاً)'))return;const r=await api('bookings/bulk','POST',{action:'delete',ids});if(r){toast('تم الحذف','s');load()}else toast('تعذر الحذف','e')};
+/* paste / drop images into article body */
+const bodyUp=async f=>{toast('جارٍ رفع الصورة…');try{const r=await upImg(f,{max:1600});if(r){insAt('\n\n![]('+r.url+')\n\n');toast('تمت إضافة الصورة — لا تنسَ الحفظ','s')}}catch(err){toast(err.message||'تعذر الرفع','e')}};
+$('body').addEventListener('paste',e=>{const f=[...((e.clipboardData&&e.clipboardData.files)||[])].find(x=>/^image\//.test(x.type));if(f){e.preventDefault();bodyUp(f)}});
+$('body').addEventListener('drop',e=>{const f=e.dataTransfer&&[...e.dataTransfer.files].find(x=>/^image\//.test(x.type));if(f){e.preventDefault();bodyUp(f)}});
+/* live notification: new booking */
+setInterval(async()=>{if(document.hidden||!tk)return;const b=await api('bookings');if(Array.isArray(b)&&b.length>BK.length){toast('🔔 وصل طلب حجز جديد','s');BK=b;drawAll()}},60000);
+/* command palette (Ctrl+K or /) */
+const cp=document.createElement('div');cp.className='cp';cp.innerHTML='<div class="bx"><input id="cpi" placeholder="ابحث في المحتوى والحجوزات والتعليقات، أو اكتب اسم قسم…" autocomplete="off"><div class="rs" id="cpr"></div></div>';document.body.appendChild(cp);let CPL=[];
+function cpDraw(){const q=$('cpi').value.trim().toLowerCase(),A=[];Object.keys(VT).forEach(k=>{if(VT[k][0].includes(q))A.push({t:'قسم: '+VT[k][0],s:'',f:()=>go(k)})});
+if(q){ITEMS.filter(i=>(i.title||'').toLowerCase().includes(q)).slice(0,6).forEach(i=>A.push({t:i.title,s:N[i.type],f:()=>{go('content');const x=document.querySelector('#items [data-ed="'+i._id+'"]');if(x)x.click();else{$('q').value=i.title;drawItems()}}}));
+BK.filter(b=>((b.name||'')+(b.phone||'')).toLowerCase().includes(q)).slice(0,4).forEach(b=>A.push({t:b.name+' — '+b.phone,s:'حجز',f:()=>{go('bookings');$('bq').value=b.name;drawBK()}}));
+CMS.filter(c=>((c.name||'')+(c.text||'')).toLowerCase().includes(q)).slice(0,4).forEach(c=>A.push({t:c.name+': '+(c.text||'').slice(0,40),s:'تعليق',f:()=>{go('comments');$('cq').value=c.name;drawComments()}}))}
+CPL=A;$('cpr').innerHTML=A.map((a,n)=>`<button data-n="${n}">${E(a.t)}<small>${E(a.s)}</small></button>`).join('')||'<div class="empty" style="border:0">لا نتائج</div>'}
+const cpOpen=()=>{cp.classList.add('on');$('cpi').value='';cpDraw();$('cpi').focus()},cpClose=()=>cp.classList.remove('on');
+$('cpi').oninput=cpDraw;cp.onclick=e=>{if(e.target==cp)return cpClose();const b=e.target.closest('[data-n]');if(b){cpClose();CPL[b.dataset.n].f()}};
+$('cpi').onkeydown=e=>{if(e.key=='Enter'&&CPL[0]){cpClose();CPL[0].f()}if(e.key=='Escape')cpClose()};
+addEventListener('keydown',e=>{const tg=(document.activeElement||{}).tagName||'';if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='k'||(e.key=='/'&&!/INPUT|TEXTAREA|SELECT/.test(tg))){e.preventDefault();cpOpen()}});
+$('th').insertAdjacentHTML('beforebegin','<button class="ib" id="cpb" aria-label="بحث" title="بحث سريع (Ctrl+K)">🔍</button>');$('cpb').onclick=cpOpen;
 init();
 </script></body></html>
