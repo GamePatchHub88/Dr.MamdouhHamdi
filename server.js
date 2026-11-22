@@ -7,6 +7,6 @@ const home = read('index.html'), admin = read('admin', 'index.html'), content = 
 if (home) app.get(['/', '/index.html'], (q, s) => s.type('html').send(home));
 if (admin) app.get(['/admin', '/admin/'], (q, s) => s.type('html').send(admin));
 if (content) app.get(['/content', '/content/', '/content.html'], (q, s) => s.type('html').send(content));
-if (articles) app.get(['/articles', '/articles/', '/articles.html'], (q, s) => s.type('html').send(articles));
+if (articles) app.get(['/articles', '/articles/', '/articles.html', '/articles/:slug'], (q, s) => s.type('html').send(articles));
 app.use(require('./lib/app'));
 module.exports = app;
