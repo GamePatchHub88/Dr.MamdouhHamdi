@@ -144,7 +144,7 @@ main{padding-left:10px!important;padding-right:10px!important}
 .tbw{overflow-x:auto;max-width:100%}.tbw .top20{display:table;width:100%}
 .top20 .t20{width:44px;height:44px;border-radius:10px;object-fit:cover;background:var(--in);border:1px solid var(--bd);display:grid;place-items:center;font-size:11px;color:var(--mu)}.top20 .nm{max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.top20 .ac2{white-space:nowrap}.top20 .ac2 .btn{margin-inline-start:4px}
 @media(max-width:700px){.stq{grid-template-columns:1fr 1fr}.spl{grid-template-columns:1fr}.tbw .top20{min-width:640px}.stt b{font-size:19px}}
-</style><link rel="stylesheet" href="/css/rich-editor.css?v=1"></head><body>
+</style><link rel="stylesheet" href="/css/rich-editor.css?v=1"><link rel="stylesheet" href="/css/speed-check.css?v=1"></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
 <symbol id="a-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
@@ -217,10 +217,10 @@ main{padding-left:10px!important;padding-right:10px!important}
 <div class="view" id="v-site">
 <div class="tabs" role="tablist" aria-label="أقسام إدارة الموقع" id="siteTabs">
 <button type="button" role="tab" id="tb-storage" aria-controls="tp-storage" aria-selected="true" data-tab="storage">التخزين</button>
-<button type="button" role="tab" id="tb-speed" aria-controls="tp-speed" aria-selected="false" tabindex="-1" data-tab="speed">فحص السرعة <span class="tag n" style="margin:0">قريباً</span></button></div>
+<button type="button" role="tab" id="tb-speed" aria-controls="tp-speed" aria-selected="false" tabindex="-1" data-tab="speed">فحص السرعة</button></div>
 <div role="tabpanel" id="tp-storage" aria-labelledby="tb-storage" tabindex="0"><div id="stBox"><div class="empty">جارٍ التحميل…</div></div></div>
-<!-- مكان تبويب «فحص السرعة»: سيُبنى في مهمة منفصلة؛ املأ #speedBox لاحقاً (الدالة siteTab تستدعي window.onSpeedTab إن وُجدت) -->
-<div role="tabpanel" id="tp-speed" aria-labelledby="tb-speed" tabindex="0" hidden><div id="speedBox" class="empty soon"><b>فحص السرعة</b><span>قريباً</span></div></div>
+<!-- تبويب «فحص السرعة»: يُبنى داخل #speedBox بواسطة /js/speed-check.js (window.onSpeedTab تستدعيها siteTab) -->
+<div role="tabpanel" id="tp-speed" aria-labelledby="tb-speed" tabindex="0" hidden><div id="speedBox"><div class="empty">جارٍ التحميل…</div></div></div>
 </div>
 
 <div class="view" id="v-bookings"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>طلبات الحجز</h3>
@@ -253,6 +253,7 @@ main{padding-left:10px!important;padding-right:10px!important}
 <a class="shi" href="/" target="_blank" rel="noopener"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="shi out" id="out3" type="button"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></div></div></div>
 <div id="toast"></div>
 <script src="/js/rich.js?v=1"></script><script src="/js/pdf-import.js?v=1"></script><script src="/js/rich-editor.js?v=1"></script>
+<script src="/js/speed-check.js?v=1"></script>
 <script>
 const $=s=>document.getElementById(s),Q=s=>document.querySelectorAll(s),R=document.documentElement;
 let tk=localStorage.tk||'',ITEMS=[],BK=[],ft='',bs='',editing=null;

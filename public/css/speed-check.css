@@ -1,0 +1,62 @@
+/* تبويب «فحص السرعة» — إدارة الموقع. يعتمد على متغيرات لوحة المدير (--card --bd --in --mu --p2 --ok --dg) */
+.sp .sth h3{margin-bottom:2px}
+.sp .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.sp-prog{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;color:var(--mu);font-size:13.5px}
+.sp-bar{flex:1 1 220px;height:8px;border-radius:8px;background:var(--in);border:1px solid var(--bd);overflow:hidden;position:relative}
+.sp-bar i{position:absolute;inset:0 auto 0 0;width:38%;border-radius:8px;background:var(--gr);animation:spmv 1.2s ease-in-out infinite alternate}
+@keyframes spmv{from{inset-inline-start:0}to{inset-inline-start:62%}}
+@media(prefers-reduced-motion:reduce){.sp-bar i{animation:none;width:100%}}
+.sp-alert{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;margin:12px 0;font-size:14px;border:1px solid #e8c13a88;background:#e8c13a1f}
+.sp-alert[hidden]{display:none}
+.sp-alert.x{border-color:#e5646b99;background:#e5646b1f}.sp-alert.s{border-color:#2fb98088;background:#2fb9801f}
+.sp-alert>div{display:grid;gap:2px}.sp-alert span{color:var(--mu);font-size:13px}.sp-alert .i{margin-top:3px}
+/* ملخص + مقياس */
+.sp-sum{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center}
+.sp-g{width:132px;height:132px;display:block}.sp-gn{font-size:32px;font-weight:700;fill:var(--tx)}.sp-gs{font-size:11px;fill:var(--mu)}
+.sp-si h3{font-size:22px;margin-bottom:2px}.sp-cnt{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.sp-ex{display:flex;gap:8px;flex-wrap:wrap}
+/* تقييمات */
+.sp-b{display:inline-block;font-size:12px;font-weight:700;padding:2px 11px;border-radius:20px;white-space:nowrap;border:1px solid transparent}
+.sp-b.r-excellent{background:#2fb98026;color:var(--ok)}.sp-b.r-good{background:#4aa8ee26;color:var(--pt)}.sp-b.r-slow{background:#e8a23a2b;color:#d9961f}
+.sp-b.r-failed{background:#e5646b26;color:var(--dg)}.sp-b.r-na{background:var(--in);color:var(--mu);border-color:var(--bd)}
+/* صفوف النتائج */
+.sp-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto 78px;gap:6px 14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd)}
+.sp-row .sp-l b{font-size:14.5px;font-weight:600}.sp-l small{display:block;font-size:12.5px;margin-top:2px}
+.sp-v{font-weight:700;font-size:14px;text-align:end;font-variant-numeric:tabular-nums;unicode-bidi:plaintext}
+.sp-t{background:none;border:0;color:var(--pt);font-size:13px;font-weight:600;cursor:pointer;padding:6px 4px;min-height:36px;text-align:end}.sp-t:hover{text-decoration:underline}.sp-t:focus-visible{outline:2px solid var(--p2);border-radius:6px}
+.sp-det{padding:4px 0 14px;border-bottom:1px solid var(--bd);margin-top:-1px}.sp-det[hidden]{display:none}
+.sp-kv{display:flex;justify-content:space-between;gap:14px;padding:7px 12px;font-size:13.5px;background:var(--in);border:1px solid var(--bd);border-radius:10px;margin-top:6px}
+.sp-kv span{color:var(--mu)}.sp-kv b{font-weight:600;text-align:end;word-break:break-word;unicode-bidi:plaintext}
+.sp-nt{color:var(--mu);font-size:13px;margin-top:8px;line-height:1.8}.sp-er{color:var(--dg);font-size:13px;margin-top:6px}
+.sp-tw{overflow-x:auto;max-width:100%;margin-top:8px}.sp-tw table{min-width:420px}
+/* التشخيص */
+.sp-hl{font-size:18px;font-weight:700;margin:6px 0 14px}.sp-hl.ok{color:var(--ok)}
+.sp-cs{border:1px solid var(--bd);border-radius:14px;background:var(--in);margin-bottom:10px;overflow:hidden}
+.sp-cs summary{display:grid;grid-template-columns:minmax(120px,210px) minmax(0,1fr) 52px;gap:12px;align-items:center;padding:12px 14px;cursor:pointer;list-style:none;min-height:48px}
+.sp-cs summary::-webkit-details-marker{display:none}.sp-cs summary:focus-visible{outline:2px solid var(--p2);outline-offset:-2px}
+.sp-cn{font-weight:600;font-size:14.5px}.sp-cs b{text-align:end;font-size:15px}
+.sp-pb{height:10px;border-radius:10px;background:var(--card);border:1px solid var(--bd);overflow:hidden}.sp-pb i{display:block;height:100%;border-radius:10px;background:var(--gr)}
+.sp-cs.lv-mid .sp-pb i{background:linear-gradient(135deg,#d9b25a,#f3dc96)}.sp-cs.lv-high .sp-pb i{background:linear-gradient(135deg,#e5646b,#ff9a8f)}
+.sp-cb{padding:2px 16px 14px;border-top:1px dashed var(--bd)}.sp-cb p{color:var(--mu);font-size:13.5px;margin:10px 0 6px}
+.sp-cb ul{margin:6px 0 0;padding-inline-start:20px;display:grid;gap:7px;font-size:14px;line-height:1.8}
+.sp-off{color:var(--mu);font-size:13px;margin-top:8px}.sp-fn{color:var(--mu);font-size:12.5px;margin-top:12px;line-height:1.8}
+/* السجل */
+.sp-mt{margin:12px 0 4px}
+.sp-chart{margin-top:8px}.sp-chart svg{width:100%;height:auto;display:block;direction:ltr}
+.sp-gl{stroke:var(--bd);stroke-width:1}.sp-ax{font-size:11px;fill:var(--mu)}.sp-ln{stroke:var(--p2);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.sp-pt{fill:var(--card);stroke:var(--p2);stroke-width:2.5}.sp-dt{cursor:pointer;outline:0}.sp-dt:hover .sp-pt,.sp-dt:focus-visible .sp-pt,.sp-dt.on .sp-pt{fill:var(--p2);stroke:var(--gold)}
+.sp-cap{text-align:center;color:var(--mu);font-size:12px}
+.sp-hl2{display:grid;gap:6px;margin-top:14px;max-height:340px;overflow:auto}
+.sp-hr{display:grid;grid-template-columns:44px 150px minmax(0,1fr);gap:12px;align-items:center;width:100%;text-align:start;padding:9px 12px;border-radius:12px;border:1px solid var(--bd);background:var(--in);color:var(--tx);cursor:pointer;font-family:inherit;min-height:44px}
+.sp-hr:hover,.sp-hr.on{border-color:var(--p2)}.sp-hr:focus-visible{outline:2px solid var(--p2)}
+.sp-hs{display:grid;place-items:center;height:32px;border-radius:10px;font-weight:700;font-size:14px;color:#fff}
+.sp-hs.ok{background:var(--ok)}.sp-hs.gd{background:var(--p)}.sp-hs.sl{background:#d9961f}.sp-hs.bd{background:var(--dg)}
+.sp-hd{font-size:12.5px;color:var(--mu)}.sp-hh{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* جوال */
+@media(max-width:700px){
+.sp-sum{grid-template-columns:1fr;text-align:center;justify-items:center}.sp-cnt{justify-content:center}
+.sp-row{grid-template-columns:minmax(0,1fr) auto}.sp-row .sp-l{grid-column:1/-1}.sp-v{text-align:start;grid-column:1/2}.sp-row .sp-b{justify-self:end}.sp-row .sp-t{grid-column:1/-1;text-align:start}
+.sp-cs summary{grid-template-columns:minmax(0,1fr) 46px;row-gap:8px}.sp-cs .sp-pb{grid-column:1/-1;order:3}
+.sp-hr{grid-template-columns:40px minmax(0,1fr)}.sp-hh{grid-column:1/-1}
+.sp-kv{flex-direction:column;gap:2px}.sp-kv b{text-align:start}
+#spGo{width:100%}
+}

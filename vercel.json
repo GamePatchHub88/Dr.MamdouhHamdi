@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/**/*.js": { "includeFiles": "public/*.html" }
+    "api/**/*.js": { "includeFiles": "public/*.html", "maxDuration": 30 }
   },
   "redirects": [
     { "source": "/admin/storage", "destination": "/admin/?view=site&tab=storage", "permanent": true },
