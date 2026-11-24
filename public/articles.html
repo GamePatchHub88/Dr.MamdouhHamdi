@@ -2,6 +2,7 @@
 <title>المقالات | دوبامين — د. ممدوح حمدي</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/css/rich.css?v=1">
 <style>
 :root{--p:#2b7bd0;--p2:#4aa8ee;--r:24px;--gr:linear-gradient(135deg,var(--p),var(--p2));--gold:linear-gradient(135deg,#d9b25a,#f3dc96);
 --g:16px;--gut:max(var(--g),env(safe-area-inset-left),env(safe-area-inset-right));--max:1240px;--navh:66px;--hh:calc(var(--navh) + env(safe-area-inset-top));--tap:44px;--read:44rem;--serif:'El Messiri','IBM Plex Sans Arabic',serif}
@@ -91,25 +92,6 @@ header{position:sticky;top:0;z-index:60;background:var(--hd);backdrop-filter:blu
 .cover{width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;border-radius:var(--r);margin-block-end:28px;box-shadow:var(--sh);display:block;background:var(--sk1)}
 .rd audio{width:100%;margin-block-end:24px}
 .lead{font-size:clamp(1.0625rem,1rem + .4vw,1.25rem);color:var(--mu);line-height:2;border-inline-start:4px solid #d9b25a;padding-inline-start:18px;margin-block-end:28px;overflow-wrap:anywhere}
-.body{font-size:clamp(1.0625rem,1rem + .3vw,1.1875rem);line-height:2.05;overflow-wrap:anywhere;word-break:normal}.body p{margin-block-end:1.15em}
-.body h2{font-family:var(--serif);font-size:clamp(1.4rem,1.15rem + 1.2vw,1.75rem);line-height:1.5;margin-block:1.7em .6em;padding-inline-start:14px;border-inline-start:4px solid var(--p)}
-.body ul{margin:0 0 1.2em;padding-inline-start:0;list-style:none;display:grid;gap:8px}.body li{position:relative;padding-inline-start:28px}.body li:before{content:"";position:absolute;inset-inline-start:4px;inset-block-start:.95em;width:9px;height:9px;border-radius:50%;background:var(--gold)}
-.body blockquote{margin-block:1.4em;padding:18px 24px;background:var(--card);border:1px solid var(--bd);border-inline-start:4px solid #d9b25a;border-radius:18px;font-size:1.05em;color:var(--mu)}
-.body strong{color:var(--pt)}
-.body a{color:var(--pt);text-decoration:underline;text-underline-offset:3px}
-.body img{max-width:100%;height:auto}
-.body figure.md{margin-block:1.6em;text-align:center}
-.body figure.md img{max-width:100%;height:auto;border-radius:18px;box-shadow:var(--sh);display:inline-block;background:var(--sk1)}
-.body figure.md img.ld{width:auto;background:none}
-.body figcaption{color:var(--mu);font-size:14px;margin-block-start:8px;line-height:1.7}
-.body .vid{position:relative;aspect-ratio:16/9;margin-block:1.6em;border-radius:18px;overflow:hidden;background:#000;box-shadow:var(--sh)}
-.body .vid iframe,.body .vid video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
-.body iframe{width:100%;aspect-ratio:16/9;height:auto;border:0;border-radius:14px}
-.body table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-collapse:collapse;margin-block:1.4em;font-size:.92em}
-.body th,.body td{padding:8px 12px;border:1px solid var(--bd);text-align:start;vertical-align:top}.body th{background:var(--card)}
-.body pre,.body code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;direction:ltr}
-.body pre{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px;margin-block:1.4em;background:var(--card);border:1px solid var(--bd);border-radius:14px;text-align:start;font-size:.85em;line-height:1.7;tab-size:2}
-.body :not(pre)>code{padding:.1em .4em;border-radius:6px;background:var(--card);border:1px solid var(--bd);font-size:.88em;overflow-wrap:anywhere}
 .acts{display:flex;gap:10px;flex-wrap:wrap;margin-block:34px 0;padding-block-start:24px;border-top:1px solid var(--bd)}
 .cta{margin-block-start:36px;background:var(--gr);color:#fff;border-radius:28px;padding:clamp(22px,4vw,30px) clamp(22px,4vw,32px);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.cta h3{font-size:clamp(1.1875rem,1rem + .8vw,1.375rem);line-height:1.5}.cta p{opacity:.9;font-size:15px}.cta .btn{background:#fff;color:var(--p);box-shadow:none}
 .rel{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut);padding-block-end:70px}.rel h2{font-size:clamp(1.3rem,1.1rem + .8vw,1.625rem);margin-block-end:22px}
@@ -137,6 +119,7 @@ header{position:sticky;top:0;z-index:60;background:var(--hd);backdrop-filter:blu
 .toc-m summary .cv{margin-inline-start:auto;transition:transform .2s}.toc-m[open] summary .cv{transform:rotate(180deg)}
 .toc-m ol{padding:0 10px 12px}
 .tocs{display:none}
+.toc li.lv3 a{padding-inline-start:26px;font-size:14px}.toc li.lv4 a{padding-inline-start:40px;font-size:13.5px}
 @media(min-width:1280px){
 .toc-m{display:none}
 .tocs{display:block;position:absolute;inset-block:0;inset-inline-start:calc(100% + 1.5rem);width:14rem}
@@ -179,7 +162,7 @@ footer a{color:#f3dc96;font-weight:600;display:inline-flex;align-items:center;mi
 .sr{order:-1;flex:1 1 100%;max-width:none}.sort{flex:1 1 100%}
 .shr .r .sb{flex:1 1 calc(50% - 10px)}
 .tools{padding:8px 10px}
-.body blockquote{padding:14px 16px}
+
 }
 @media(max-width:360px){.nav{gap:8px}.brand img{width:40px;height:40px}.brand{gap:8px}.card .btn{align-self:stretch}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
@@ -196,6 +179,7 @@ footer a{color:#f3dc96;font-weight:600;display:inline-flex;align-items:center;mi
 </main>
 <button id="top" aria-label="للأعلى"><svg class="i"><use href="#i-up"/></svg></button>
 <footer>© <span id="yr"></span> <span data-t="copy">دوبامين — د. ممدوح حمدي. جميع الحقوق محفوظة</span> · <a href="/">الصفحة الرئيسية</a></footer>
+<script src="/js/rich.js?v=1"></script>
 <script>
 const $=s=>document.querySelector(s),U=n=>'<svg class="i"><use href="#i-'+n+'"/></svg>',R=document.documentElement;
 R.dataset.theme=localStorage.theme||R.dataset.theme||'light';const sy=()=>th.innerHTML=U(R.dataset.theme=='dark'?'sun':'moon');sy();
@@ -234,31 +218,13 @@ const chkS=()=>{const w=sort.parentElement,c=getComputedStyle(w),av=w.clientWidt
 addEventListener('resize',chkS);if(document.fonts)document.fonts.ready.then(chkS);chkS();
 sort.onclick=e=>{const b=e.target.closest('button');if(!b)return;sortBy=b.dataset.s;shown=PAGE;document.querySelectorAll('#sort button').forEach(x=>{x.classList.toggle('on',x==b);x.setAttribute('aria-pressed',x==b)});b.scrollIntoView({inline:'nearest',block:'nearest',behavior:'smooth'});if(A)draw()};
 q.oninput=()=>{shown=PAGE;if(A)draw()};lm.onclick=()=>{shown+=PAGE;draw()};
-/* ---- body formatter (with headings list) ---- */
-const un=t=>t.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&amp;/g,'&');
-const ifr=(src,t)=>'<div class="vid"><iframe src="'+src+'" title="'+t+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
-function vid(u){let m;u=String(u||'').trim();
-if(m=u.match(/^https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?(?:[^#\s]*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/i))return ifr('https://www.youtube-nocookie.com/embed/'+m[1],'فيديو');
-if(m=u.match(/^https?:\/\/(?:www\.)?vimeo\.com\/(?:[^?#]*\/)?(\d+)/i))return ifr('https://player.vimeo.com/video/'+m[1],'فيديو');
-if(/^https?:\/\/(?:www\.|m\.|web\.)?(?:facebook\.com\/[^\s]*(?:videos?|watch|reel)|fb\.watch\/)/i.test(u))return ifr('https://www.facebook.com/plugins/video.php?show_text=false&href='+encodeURIComponent(u),'فيديو');
-if(/^(?:https?:\/\/|\/api\/img\/)[^\s]+\.(?:mp4|webm|ogg|mov)(?:\?[^\s]*)?$/i.test(u))return '<div class="vid"><video controls preload="metadata" playsinline src="'+esc(u)+'"></video></div>';
-return ''}
-function media(l){const t=un(l);let m;
-if(m=t.match(/^!\[([^\]]*)\]\(\s*((?:https?:\/\/|\/api\/img\/)[^\s)]+)\s*\)$/))return '<figure class="md"><img src="'+esc(m[2])+'" alt="'+esc(m[1])+'" width="1200" height="675" loading="lazy" decoding="async">'+(m[1]?'<figcaption>'+esc(m[1])+'</figcaption>':'')+'</figure>';
-if(m=t.match(/^(?:\[(?:video|فيديو)\]\(\s*(\S+?)\s*\)|@(?:video|فيديو)\s+(\S+)|(https?:\/\/\S+))$/i)){const v=vid(m[1]||m[2]||m[3]);if(v)return v}
-return ''}
 const metaT=(k,v,a)=>{a=a||'property';let e=document.head.querySelector('meta['+a+'="'+k+'"]');if(!e){e=document.createElement('meta');e.setAttribute(a,k);document.head.appendChild(e)}e.content=v};
 function seo(i,u,d){try{if(R.dataset.ssr)return;const img=i.image?new URL(i.image,location.origin).href:location.origin+'/img/hero.jpg';let c=document.head.querySelector('link[rel=canonical]');if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c)}c.href=u;
 metaT('og:type','article');metaT('og:title',i.title);metaT('og:description',d);metaT('og:url',u);metaT('og:image',img);metaT('og:locale','ar_AR');metaT('twitter:card','summary_large_image','name');
 let j=document.getElementById('ld');if(!j){j=document.createElement('script');j.type='application/ld+json';j.id='ld';document.head.appendChild(j)}
 j.textContent=JSON.stringify({'@context':'https://schema.org','@type':'Article',headline:i.title,description:d,image:[img],datePublished:i.createdAt,dateModified:i.updatedAt||i.createdAt,author:{'@type':'Person',name:'د. ممدوح حمدي'},mainEntityOfPage:u})}catch(e){}}
-function fmt(b){const ln=esc(b).replace(/\r/g,'').split('\n'),inl=s=>s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'),H=[];let h='',ul=0,prev=true;
-const cu=()=>{if(ul){h+='</ul>';ul=0}},hd=t=>{const id='s'+(H.length+1);H.push([id,t.replace(/\*\*/g,'')]);h+='<h2 id="'+id+'">'+inl(t)+'</h2>'};
-ln.forEach((raw,k)=>{const l=raw.trim();if(!l){cu();prev=true;return}let m;const mm=media(l);if(mm){cu();h+=mm;prev=false;return}
-if(m=l.match(/^#{1,4}\s+(.+)/)){cu();hd(m[1])}
-else if(m=l.match(/^[-•*]\s+(.+)/)){if(!ul){h+='<ul>';ul=1}h+='<li>'+inl(m[1])+'</li>'}
-else if(m=l.match(/^&gt;\s*(.+)/)){cu();h+='<blockquote>'+inl(m[1])+'</blockquote>'}
-else{cu();const nx=(ln[k+1]||'').trim();if(prev&&nx&&l.length<=70&&!/[.،,؛:!؟?…"”»)]$/.test(l))hd(l);else h+='<p>'+inl(l)+'</p>'}prev=false});cu();return{h,H}}
+/* ---- body formatter: shared engine (public/js/rich.js) — same code renders on the server for crawlers ---- */
+const fmt=b=>{const r=Rich.render(b);return{h:r.html,H:r.headings}};
 const strip=h=>h.replace(/<[^>]+>/g,'');
 /* ---- reader ---- */
 let cid='';
@@ -267,10 +233,10 @@ if(!(R.dataset.ssr&&rd.firstElementChild))rd.innerHTML=RDSK;aft.innerHTML='';
 const [full,list]=await Promise.all([jgetA('/api/items?id='+encodeURIComponent(id)).then(r=>r&&r._id?r:jgetA('/api/items/'+encodeURIComponent(id))),getA()]);
 if(!full||!full._id||full.type&&full.type!='article'&&full.type){if(full&&full._id&&full.type!='article'){location.replace('/content.html?tab='+full.type+'&id='+encodeURIComponent(id));return}
 rd.innerHTML=`<a class="back" href="/articles">${U('arr')}كل المقالات</a>${stateH('alert','تعذّر عرض هذا المقال','ربما تم حذفه أو تغيّر رابطه، أو هناك مشكلة مؤقتة في الاتصال.','<button type="button" class="btn sm" id="rt2">إعادة المحاولة</button><a class="btn sm o" href="/articles">تصفّح المقالات</a>','err')}`;rd.removeAttribute('aria-busy');const rb=document.getElementById('rt2');if(rb)rb.onclick=()=>openReader(id);return}
-const i=full,w=(i.body||'').trim().split(/\s+/).filter(Boolean).length,F=i.body?fmt(i.body):{h:i.desc?'<p>'+esc(i.desc)+'</p>':'',H:[]},u=BASE+encodeURIComponent(i.slug||i._id);
+const i=full,w=Rich.words(i.body||''),F=i.body?fmt(i.body):{h:i.desc?'<p>'+esc(i.desc)+'</p>':'',H:[]},u=BASE+encodeURIComponent(i.slug||i._id);
 try{const cu_=aurl(i);if(decodeURI(location.pathname)!=decodeURI(cu_))history.replaceState(null,'',cu_+location.hash)}catch(e){}
 const md=document.getElementById('md');if(i.draft)document.title='(مسودة) '+i.title;if(!R.dataset.ssr){document.title=i.title+' | دوبامين';md.content=(i.desc||strip(F.h)).slice(0,160);seo(i,u,md.content)}
-const liked=jl('likedA',[]).includes(i._id),fs=+localStorage.afs||0,H=F.H,tcl='<ol>'+H.map((x,k)=>'<li><a href="#'+x[0]+'" data-toc="'+k+'">'+x[1]+'</a></li>').join('')+'</ol>',
+const liked=jl('likedA',[]).includes(i._id),fs=+localStorage.afs||0,H=F.H,tcl='<ol>'+H.map((x,k)=>'<li class="lv'+x.level+'"><a href="#'+esc(x.id)+'" data-toc="'+k+'">'+esc(x.text)+'</a></li>').join('')+'</ol>',
 tocM=H.length>=3?`<details class="toc toc-m"><summary>${U('list')}<span>محتويات المقال</span><span class="cur" id="tcur"></span><svg class="i cv" aria-hidden="true"><use href="#i-down"/></svg></summary>${tcl}</details>`:'',
 tocS=H.length>=3?`<aside class="tocs"><nav class="toc" aria-label="محتويات المقال"><b>${U('list')}محتويات المقال</b>${tcl}</nav></aside>`:'';
 rd.innerHTML=`<a class="back" href="/articles">${U('arr')}كل المقالات</a>${i.draft?'<div class="dbn">مسودة — هذه المعاينة تظهر لك أنت فقط ولا يراها الزوار</div>':''}<div><span class="chip">${esc(T('chip_article','مقال'))}</span></div><h1>${esc(i.title)}</h1>
@@ -279,7 +245,7 @@ ${i.image?`<img class="cover" src="${esc(i.image)}" alt="${esc(i.title)}" width=
 <div class="tools"><button id="lk" class="lk${liked?' on':''}">${U('heart')}<span id="lc">${nf(i.likes)}</span> أعجبني</button><button id="cm0">${U('msg')}<span id="cc0">التعليقات</span></button><span class="sp"></span><button id="fm" aria-label="تصغير الخط">أ-</button><button id="fp" aria-label="تكبير الخط">أ+</button><button id="pr">${U('print')}طباعة</button></div>
 ${i.desc&&i.body?`<p class="lead">${esc(i.desc)}</p>`:''}
 ${tocM}
-<div class="body" id="bd"${fs?` style="font-size:${fs}px"`:''}>${F.h}</div>
+<div class="body rich" id="bd"${fs?` style="font-size:${fs}px"`:''}>${F.h}</div>
 ${isU(i.url)?`<div class="acts"><a class="btn sm" target=_blank rel=noopener href="${esc(i.url)}">${esc(T('open','فتح'))}</a></div>`:''}
 <div class="shr"><h4>شارك المقال</h4><div class="r"><a class="sb wa" target=_blank rel=noopener href="https://wa.me/?text=${encodeURIComponent(i.title+'\n'+u)}">${U('wa')}واتساب</a><a class="sb fb" target=_blank rel=noopener href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(u)}">${U('fb')}فيسبوك</a><a class="sb tw" target=_blank rel=noopener href="https://twitter.com/intent/tweet?text=${encodeURIComponent(i.title)}&url=${encodeURIComponent(u)}">${U('tw')}إكس</a><a class="sb tg" target=_blank rel=noopener href="https://t.me/share/url?url=${encodeURIComponent(u)}&text=${encodeURIComponent(i.title)}">${U('tg')}تيليجرام</a><button class="sb cp" id="cp">${U('copy')}<span>نسخ الرابط</span></button>${navigator.share?`<button class="sb" style="background:#6b7a8f" id="ns">${U('share')}مشاركة…</button>`:''}</div></div>${tocS}`;
 /* comments + nav + cta (after article) */
@@ -290,10 +256,10 @@ ${pv||nx?`<div class="pn">${nx?`<a href="${aurl(nx)}"><small>← المقال ا
 <div class="cta"><div><h3>${esc(T('fcta_h','خطوتك الأولى نحو حياة أكثر توازناً'))}</h3><p>${esc(T('fcta_p','جلسات سرية بالكامل، ونتواصل معك في أقرب وقت.'))}</p></div><a class="btn" href="/#book">${U('cal')}${esc(T('btn_book','احجز استشارتك'))}</a></div>`;
 /* related */
 const rl=(list||[]).filter(x=>x._id!=i._id).slice(0,3);if(rl.length)rel.innerHTML='<h2>مقالات أخرى قد تهمك</h2><div class="grid">'+rl.map(x=>card(x)).join('')+'</div>';
-wire(i,u);wireC();loadComments(i._id);rd.removeAttribute('aria-busy');bd.addEventListener('load',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);bd.addEventListener('error',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);initSpy(H);
+wire(i,u);wireC();loadComments(i._id);rd.removeAttribute('aria-busy');Rich.enhance(bd);initSpy(H);
 /* view count (once per session) */
 if(!i.draft&&!sessionStorage['v'+i._id]){sessionStorage['v'+i._id]=1;jpost('/api/view?id='+i._id).then(r=>{if(r.ok&&r.d)vw.textContent=nf(r.d.views)})}
-if(/^#comments$/.test(location.hash))setTimeout(()=>cmt.scrollIntoView(),300);else if(/^#s\d+$/.test(location.hash)){const t=document.getElementById(location.hash.slice(1));if(t)setTimeout(()=>t.scrollIntoView(),150)}}
+if(/^#comments$/.test(location.hash))setTimeout(()=>cmt.scrollIntoView(),300);else if(location.hash.length>1){let id=location.hash.slice(1);try{id=decodeURIComponent(id)}catch(e){}let t=document.getElementById(id);const lg=id.match(/^s(\d+)$/);if(!t&&lg&&H[+lg[1]-1])t=document.getElementById(H[+lg[1]-1].id);if(t)setTimeout(()=>t.scrollIntoView(),150)}}
 function wire(i,u){
 lk.onclick=async()=>{const L=jl('likedA',[]),on=!L.includes(i._id);localStorage.likedA=JSON.stringify(on?[...L,i._id]:L.filter(x=>x!=i._id));lk.classList.toggle('on',on);const n=Math.max(0,(+lc.dataset.n||0)+(on?1:-1));lc.dataset.n=n;lc.textContent=nf(n);
 const r=await jpost('/api/like?id='+i._id,{on});if(r.ok&&r.d){lc.dataset.n=r.d.likes;lc.textContent=nf(r.d.likes)}};
@@ -323,11 +289,11 @@ const top_=document.getElementById('top');top_.onclick=()=>scrollTo({top:0,behav
 /* reading progress (article only) + TOC scroll-spy */
 let HS=[],HT=[],ACT=-2,tk=0;
 const hh=()=>document.querySelector('header').offsetHeight,req=()=>{if(!tk){tk=1;requestAnimationFrame(onScr)}};
-function initSpy(H){HT=H;HS=H.length>=3?[...bd.querySelectorAll('h2[id]')]:[];ACT=-2;req()}
+function initSpy(H){HT=H;HS=H.length>=3?H.map(x=>document.getElementById(x.id)).filter(Boolean):[];ACT=-2;req()}
 function spy(){if(!HS.length)return;const ln=hh()+28;let c=-1;for(let k=0;k<HS.length;k++){if(HS[k].getBoundingClientRect().top<=ln)c=k;else break}
 if(c===ACT)return;ACT=c;
 document.querySelectorAll('[data-toc]').forEach(a=>{const on=+a.dataset.toc===c;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')});
-const tc=document.getElementById('tcur');if(tc)tc.innerHTML=c>=0?HT[c][1]:'';
+const tc=document.getElementById('tcur');if(tc)tc.textContent=c>=0&&HT[c]?HT[c].text:'';
 const a=document.querySelector('.tocs [data-toc="'+c+'"]'),bx=a&&a.closest('.toc');if(bx&&bx.scrollHeight>bx.clientHeight)bx.scrollTop=a.offsetTop-bx.clientHeight/2+a.offsetHeight/2}
 function onScr(){tk=0;top_.classList.toggle('on',scrollY>600);const rv=readv.style.display!='none';document.body.classList.toggle('reading',rv);if(!rv)return;
 const r=rd.getBoundingClientRect(),t=r.height-innerHeight,p=t>0?-r.top/t:(r.bottom<=innerHeight?1:0);pg.style.transform='scaleX('+Math.min(1,Math.max(0,p)).toFixed(4)+')';spy()}

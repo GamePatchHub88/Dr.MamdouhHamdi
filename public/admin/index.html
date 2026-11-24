@@ -130,7 +130,7 @@ body{overflow-x:clip}
 .top h1{font-size:18px}
 main{padding-left:10px!important;padding-right:10px!important}
 }
-</style></head><body>
+</style><link rel="stylesheet" href="/css/rich-editor.css?v=1"></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
 <symbol id="a-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
@@ -186,9 +186,9 @@ main{padding-left:10px!important;padding-right:10px!important}
 <div id="f-slug"><label>الرابط المختصر للمقال (slug)</label><div class="upl"><input id="slug" dir="ltr" placeholder="يُولَّد تلقائياً من العنوان" autocomplete="off"><button type="button" class="btn o sm" id="slugGen">من العنوان</button></div><div class="shint" id="slugPrev" dir="ltr"></div></div>
 <div id="f-desc"><label id="lb-desc">وصف مختصر</label><textarea id="desc" rows="2" placeholder="يظهر في بطاقة المحتوى"></textarea></div>
 <div id="f-body"><label id="lb-body">نص المقال</label>
-<div class="etb" id="etb"><button type="button" class="btn o sm" data-ins="h">عنوان فرعي</button><button type="button" class="btn o sm" data-ins="b"><b>B</b> عريض</button><button type="button" class="btn o sm" data-ins="l">• قائمة</button><button type="button" class="btn o sm" data-ins="q">❝ اقتباس</button><button type="button" class="btn sm" data-ins="img"><svg class="i"><use href="#a-up"/></svg>صورة داخل المقال</button><button type="button" class="btn sm" data-ins="vid">▶ فيديو من رابط</button><button type="button" class="btn o sm" id="bpv">معاينة</button></div>
-<textarea id="body" rows="14" placeholder="نص المقال الكامل"></textarea>
-<div class="shint" id="wc"></div><div class="shint" id="bhint">لإضافة صورة: ضع المؤشر في المكان المطلوب ثم اضغط «صورة داخل المقال». لإضافة فيديو: اضغط «فيديو من رابط» والصق رابط يوتيوب أو فيمو أو فيسبوك أو ملف mp4. يمكنك أيضاً لصق رابط الفيديو وحده في سطر مستقل.</div><div class="pvbox" id="bpvbox" style="display:none"></div></div>
+<div class="re re-v-write" id="re"><div class="re-tb" id="etb"></div><div class="re-main" id="remain"><textarea id="body" rows="14" placeholder="نص المقال الكامل — اكتب / لفتح قائمة الأوامر، أو استورد ملف Word / PDF من شريط الأدوات"></textarea></div>
+<div class="re-sb"><span id="wc"></span><span class="re-asv" id="asv" role="status" aria-live="polite"></span></div></div>
+<div class="shint" id="bhint">اكتب <b>/</b> لقائمة الأوامر (عنوان، قائمة، تنبيه، جدول، كود…) · <b>Ctrl+/</b> لكل الاختصارات · لصق صورة أو سحبها داخل النص يرفعها تلقائياً · لصق رابط فيديو في سطر مستقل يعرضه كفيديو · زر <b>⤒</b> لاستيراد مقال كامل من ملف Word أو PDF.</div></div>
 <div class="g2"><div id="f-url"><label id="lb-url">الرابط</label><input id="url" dir="ltr" placeholder="https://"></div><div id="f-image"><label id="lb-img">الصورة (ارفعها من جهازك أو الصق رابطاً)</label><div class="upl"><input id="image" dir="ltr" placeholder="https://… أو اضغط رفع"><button type="button" class="btn o sm" data-up="image"><svg class="i"><use href="#a-up"/></svg>رفع</button><button type="button" class="btn d sm" data-clr="image">إزالة</button></div></div></div><img id="prev" class="prev" alt="">
 <label class="sw" style="margin-top:14px"><input type="checkbox" id="draft"> حفظ كمسودة (لا تظهر للزوار حتى تنشرها)</label>
 <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap"><button class="btn" id="sv"><svg class="i"><use href="#a-ck"/></svg><span id="svt">نشر</span></button><button class="btn o" id="cn" style="display:none">إلغاء التعديل</button></div></div>
@@ -231,6 +231,7 @@ main{padding-left:10px!important;padding-right:10px!important}
 <button class="shi" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button><button class="shi" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button><button class="shi" data-v="storage"><svg class="i"><use href="#a-db"/></svg>التخزين</button><button class="shi" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
 <a class="shi" href="/" target="_blank" rel="noopener"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="shi out" id="out3" type="button"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></div></div></div>
 <div id="toast"></div>
+<script src="/js/rich.js?v=1"></script><script src="/js/pdf-import.js?v=1"></script><script src="/js/rich-editor.js?v=1"></script>
 <script>
 const $=s=>document.getElementById(s),Q=s=>document.querySelectorAll(s),R=document.documentElement;
 let tk=localStorage.tk||'',ITEMS=[],BK=[],ft='',bs='',editing=null;
@@ -269,9 +270,9 @@ function drawItems(){const L=shown();SELI=new Set([...SELI].filter(id=>ITEMS.som
 $('items').innerHTML=L.map(i=>`<div class="row"><input type="checkbox" class="ck2" data-ck="${E(i._id)}" ${SELI.has(i._id)?'checked':''}><div class="th">${/^(https?:|\/api\/img\/)/i.test(i.image||'')?`<img src="${E(i.image)}" alt="" loading="lazy">`:U(IC[i.type]||'file')}</div><div class="m"><b>${E(i.title)}</b><small><span class="tag">${N[i.type]||''}</span>${i.draft?'<span class="tag dr">مسودة</span>':''}${dt(i.createdAt)}${i.type=='article'?` · ${i.views||0} مشاهدة · ${i.likes||0} إعجاب`:''}</small></div><div class="ac">${i.type=='article'?`<a class="btn o sm" target="_blank" rel="noopener" href="/articles/${encodeURIComponent(i.slug||i._id)}">${U('ext')}${i.draft?'معاينة':'عرض'}</a>`:''}${i.type=='article'&&!i.draft?`<button class="btn o sm" data-cl="/articles/${encodeURIComponent(i.slug||i._id)}">نسخ الرابط</button>`:''}<button class="btn o sm" data-ed="${E(i._id)}">${U('ed')}تعديل</button><button class="btn o sm" data-tg="${E(i._id)}">${i.draft?'نشر':'إخفاء'}</button><button class="btn o sm" data-dp="${E(i._id)}">نسخ</button><button class="btn d sm" data-dl="${E(i._id)}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty">لا يوجد محتوى</div>';bulkUI()}
 $('q').oninput=drawItems;$('fl').onclick=e=>{const b=e.target.closest('.ch');if(!b)return;ft=b.dataset.t;Q('#fl .ch').forEach(x=>x.classList.toggle('on',x==b));drawItems()};
 $('items').onclick=async e=>{const ed=e.target.closest('[data-ed]'),dl=e.target.closest('[data-dl]');
-if(ed){const i=ITEMS.find(x=>x._id==ed.dataset.ed);if(!i)return;editing=i._id;['type','title','slug','desc','body','url','image'].forEach(k=>$(k).value=i[k]||'');$('draft').checked=!!i.draft;wordc();slugTouched=true;applyType();slugPrev();$('fmt').innerHTML=U('ed')+'تعديل المحتوى';$('svt').textContent='حفظ التعديلات';$('cn').style.display='';$('edn').style.display='block';$('edn').textContent='تعديل: '+i.title;prevImg();$('fm').scrollIntoView({behavior:'smooth'})}
+if(ed){const i=ITEMS.find(x=>x._id==ed.dataset.ed);if(!i)return;editing=i._id;['type','title','slug','desc','body','url','image'].forEach(k=>$(k).value=i[k]||'');$('draft').checked=!!i.draft;wordc();slugTouched=true;applyType();slugPrev();$('fmt').innerHTML=U('ed')+'تعديل المحتوى';$('svt').textContent='حفظ التعديلات';$('cn').style.display='';$('edn').style.display='block';$('edn').textContent='تعديل: '+i.title;prevImg();RichEd.loaded(i);$('fm').scrollIntoView({behavior:'smooth'})}
 if(dl&&confirm('تأكيد حذف هذا العنصر؟')){const r=await api('items?id='+dl.dataset.dl,'DELETE');if(r){toast('تم الحذف','s');if(editing==dl.dataset.dl)resetForm();load()}else toast('تعذر الحذف','e')}};
-function resetForm(){setTimeout(seo,0);editing=null;$('draft').checked=false;slugTouched=false;['title','slug','desc','body','url','image'].forEach(k=>$(k).value='');$('bpvbox').style.display='none';$('type').value='article';applyType();slugPrev();$('fmt').innerHTML=U('plus')+'إضافة محتوى جديد';$('svt').textContent='نشر';$('cn').style.display='none';$('edn').style.display='none';prevImg()}
+function resetForm(){setTimeout(seo,0);editing=null;$('draft').checked=false;slugTouched=false;['title','slug','desc','body','url','image'].forEach(k=>$(k).value='');$('type').value='article';applyType();slugPrev();$('fmt').innerHTML=U('plus')+'إضافة محتوى جديد';$('svt').textContent='نشر';$('cn').style.display='none';$('edn').style.display='none';prevImg();RichEd.reset()}
 $('cn').onclick=resetForm;
 const PV={image:'prev',img_hero:'pv_img_hero',img_about:'pv_img_about',img_mark:'pv_img_mark'};
 function showPrev(id){const v=$(id).value.trim(),p=$(PV[id]);if(/^(https?:\/\/|\/api\/img\/)/i.test(v)){p.src=v;p.style.display='block'}else p.style.display='none'}
@@ -291,7 +292,7 @@ Q('[data-up]').forEach(b=>b.onclick=()=>pickImg(b.dataset.up));
 $('sv').onclick=async()=>{if(!$('title').value.trim())return toast('العنوان مطلوب','e');const c=TF[$('type').value]||TF.article,d={type:$('type').value,title:$('title').value.trim(),desc:$('desc').value,image:$('image').value.trim(),draft:$('draft').checked};
 if(c.slug)d.slug=$('slug').value.trim();if(c.body)d.body=$('body').value;if(c.url)d.url=$('url').value.trim();
 const b=$('sv');b.disabled=true;const r=editing?await api('items?id='+editing,'PUT',d):await api('items','POST',d);b.disabled=false;
-if(r){localStorage.removeItem('dr');toast(d.draft?'تم الحفظ كمسودة':editing?'تم حفظ التعديلات':'تم النشر','s');resetForm();load()}
+if(r){RichEd.saved(editing);toast(d.draft?'تم الحفظ كمسودة':editing?'تم حفظ التعديلات':'تم النشر','s');resetForm();load()}
 else{const e=api.err||{};if(editing&&e.status==404){toast('هذا العنصر لم يعد موجوداً على الخادم — تم تحديث القائمة','e');resetForm();load()}else toast('تعذر الحفظ'+(e.status?' ('+e.status+(e.msg?' — '+e.msg:'')+')':''),'e')}};
 /* ===== fields by content type ===== */
 const TF={article:{slug:1,body:1,bt:1,url:0,lbd:'ملخص المقال (يظهر في بطاقة المقال وأعلى صفحته)',lbb:'نص المقال',lbi:'صورة الغلاف (ارفعها من جهازك أو الصق رابطاً)'},
@@ -299,38 +300,22 @@ podcast:{url:1,lbd:'وصف الحلقة',lbu:'رابط ملف الصوت (mp3 أ
 book:{url:1,lbd:'وصف الكتاب',lbu:'رابط الكتاب (للتحميل أو الشراء)',lbi:'غلاف الكتاب'},
 course:{url:1,body:1,lbd:'وصف الدورة',lbb:'تفاصيل الدورة (اختياري)',lbu:'رابط الدورة / التسجيل',lbi:'صورة الدورة'}};
 let slugTouched=false;
-function applyType(){const c=TF[$('type').value]||TF.article;$('f-slug').style.display=c.slug?'':'none';$('f-body').style.display=c.body?'':'none';$('etb').style.display=c.bt?'':'none';$('bhint').style.display=c.bt?'':'none';$('bpvbox').style.display='none';$('f-url').style.display=c.url?'':'none';$('f-image').classList.toggle('f1',!c.url);
+function applyType(){const c=TF[$('type').value]||TF.article;$('f-slug').style.display=c.slug?'':'none';$('f-body').style.display=c.body?'':'none';RichEd.setEnabled(!!c.bt);$('bhint').style.display=c.bt?'':'none';$('f-url').style.display=c.url?'':'none';$('f-image').classList.toggle('f1',!c.url);
 $('lb-desc').textContent=c.lbd;$('lb-body').textContent=c.lbb||'';$('lb-url').textContent=c.lbu||'';$('lb-img').textContent=c.lbi}
 $('type').onchange=applyType;
-function wordc(){seo();const n=($('body').value.trim().match(/\S+/g)||[]).length;$('wc').textContent=n?n.toLocaleString('ar-EG')+' كلمة · وقت القراءة تقريباً '+Math.max(1,Math.round(n/180)).toLocaleString('ar-EG')+' د':''}
-$('body').addEventListener('input',wordc);
+function wordc(){seo();RichEd.refresh()}
 const SLG=t=>String(t||'').normalize('NFKC').replace(/[\u064B-\u065F\u0670\u0640]/g,'').toLowerCase().trim().replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-+|-+$/g,'').slice(0,80).replace(/-+$/,'');
 function slugPrev(){const v=SLG($('slug').value)||SLG($('title').value);$('slugPrev').textContent=v?location.origin+'/articles/'+v:''}
 $('slug').oninput=()=>{slugTouched=true;slugPrev()};$('title').addEventListener('input',()=>{if(!editing&&!slugTouched){$('slug').value=SLG($('title').value)}slugPrev()});
 $('slugGen').onclick=()=>{$('slug').value=SLG($('title').value);slugTouched=true;slugPrev()};
-/* ===== article editor: images & videos inside the body ===== */
-function insAt(t){const el=$('body'),a=el.selectionStart??el.value.length,b=el.selectionEnd??a;el.value=el.value.slice(0,a)+t+el.value.slice(b);const p=a+t.length;el.focus();el.setSelectionRange(p,p)}
-function wrapSel(pre,post,ph){const el=$('body'),a=el.selectionStart,b=el.selectionEnd,sel=el.value.slice(a,b)||ph;el.value=el.value.slice(0,a)+pre+sel+post+el.value.slice(b);el.focus();el.setSelectionRange(a+pre.length,a+pre.length+sel.length)}
-function linePre(pre,ph){const el=$('body'),a=el.selectionStart,b=el.selectionEnd,v=el.value,st=v.lastIndexOf('\n',a-1)+1,seg=v.slice(st,b)||ph,out=seg.split('\n').map(l=>pre+l.replace(/^(#{1,4}\s+|[-•*]\s+|>\s*)/,'')).join('\n');el.value=v.slice(0,st)+out+v.slice(b);el.focus();el.setSelectionRange(st,st+out.length)}
-const isVid=u=>/^https?:\/\/(?:www\.|m\.|web\.)?(?:youtube\.com\/(?:watch\?(?:[^#\s]*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/[\w-]{11}|vimeo\.com\/(?:[^?#]*\/)?\d+|facebook\.com\/[^\s]*(?:videos?|watch|reel)|fb\.watch\/)/i.test(u)||/^https?:\/\/[^\s]+\.(?:mp4|webm|ogg|mov)(?:\?[^\s]*)?$/i.test(u);
-$('etb').onclick=e=>{const b=e.target.closest('[data-ins]');if(!b)return;const k=b.dataset.ins;
-if(k=='h')linePre('## ','عنوان فرعي');else if(k=='l')linePre('- ','عنصر');else if(k=='q')linePre('> ','اقتباس');else if(k=='b')wrapSel('**','**','نص عريض');
-else if(k=='vid'){const u=(prompt('الصق رابط الفيديو (يوتيوب / فيمو / فيسبوك / ملف mp4):')||'').trim();if(!u)return;if(!/^https?:\/\//i.test(u))return toast('الرابط يجب أن يبدأ بـ https://','e');if(!isVid(u)&&!confirm('هذا الرابط ليس من المنصات المدعومة (يوتيوب، فيمو، فيسبوك، mp4) وقد لا يظهر كفيديو. هل تريد إدراجه؟'))return;insAt('\n\n[video]('+u+')\n\n');toast('تمت إضافة الفيديو — لا تنسَ الحفظ','s')}
-else if(k=='img'){const f=$('file');f.value='';f.onchange=async()=>{const file=f.files[0];if(!file)return;if(!/^image\//.test(file.type)){toast('اختر ملف صورة','e');return}const t0=b.innerHTML;b.disabled=true;b.textContent='جارٍ الرفع…';try{const r=await upImg(file,{max:1600});if(r){const cap=(prompt('وصف الصورة (اختياري — يظهر تحتها):')||'').replace(/[\[\]()\n]/g,' ').trim();insAt('\n\n!['+cap+']('+r.url+')\n\n');toast('تمت إضافة الصورة ('+fmtB(r.size)+') — لا تنسَ الحفظ','s')}}catch(err){toast(err.message||'تعذر رفع الصورة','e')}finally{b.disabled=false;b.innerHTML=t0}};f.click()}};
-/* preview (same rules as the public article page) */
-const eh=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),unh=t=>t.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&amp;/g,'&');
-function pvVid(u){let m;const f=x=>'<div class="vid"><iframe src="'+x+'" loading="lazy" allowfullscreen></iframe></div>';
-if(m=u.match(/^https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?(?:[^#\s]*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/i))return f('https://www.youtube-nocookie.com/embed/'+m[1]);
-if(m=u.match(/^https?:\/\/(?:www\.)?vimeo\.com\/(?:[^?#]*\/)?(\d+)/i))return f('https://player.vimeo.com/video/'+m[1]);
-if(/^https?:\/\/(?:www\.|m\.|web\.)?(?:facebook\.com\/[^\s]*(?:videos?|watch|reel)|fb\.watch\/)/i.test(u))return f('https://www.facebook.com/plugins/video.php?show_text=false&href='+encodeURIComponent(u));
-if(/^(?:https?:\/\/|\/api\/img\/)[^\s]+\.(?:mp4|webm|ogg|mov)(?:\?[^\s]*)?$/i.test(u))return '<div class="vid"><video controls preload="metadata" src="'+eh(u)+'"></video></div>';return ''}
-function pvMedia(l){const t=unh(l);let m;if(m=t.match(/^!\[([^\]]*)\]\(\s*((?:https?:\/\/|\/api\/img\/)[^\s)]+)\s*\)$/))return '<figure><img src="'+eh(m[2])+'" alt="">'+(m[1]?'<figcaption>'+eh(m[1])+'</figcaption>':'')+'</figure>';
-if(m=t.match(/^(?:\[(?:video|فيديو)\]\(\s*(\S+?)\s*\)|@(?:video|فيديو)\s+(\S+)|(https?:\/\/\S+))$/i)){const v=pvVid(m[1]||m[2]||m[3]);if(v)return v}return ''}
-function pvFmt(b){const ln=eh(b).replace(/\r/g,'').split('\n'),inl=x=>x.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');let h='',ul=0,prev=true;const cu=()=>{if(ul){h+='</ul>';ul=0}};
-ln.forEach((raw,k)=>{const l=raw.trim();if(!l){cu();prev=true;return}let m;const mm=pvMedia(l);if(mm){cu();h+=mm;prev=false;return}
-if(m=l.match(/^#{1,4}\s+(.+)/)){cu();h+='<h2>'+inl(m[1])+'</h2>'}else if(m=l.match(/^[-•*]\s+(.+)/)){if(!ul){h+='<ul>';ul=1}h+='<li>'+inl(m[1])+'</li>'}else if(m=l.match(/^&gt;\s*(.+)/)){cu();h+='<blockquote>'+inl(m[1])+'</blockquote>'}
-else{cu();const nx=(ln[k+1]||'').trim();if(prev&&nx&&l.length<=70&&!/[.،,؛:!؟?…"”»)]$/.test(l))h+='<h2>'+inl(l)+'</h2>';else h+='<p>'+inl(l)+'</p>'}prev=false});cu();return h}
-$('bpv').onclick=()=>{const bx=$('bpvbox');if(bx.style.display=='none'){bx.innerHTML=pvFmt($('body').value)||'<div class="empty">لا يوجد نص بعد</div>';bx.style.display='block';$('bpv').textContent='إخفاء المعاينة'}else{bx.style.display='none';$('bpv').textContent='معاينة'}};
+/* ===== article editor (public/js/rich-editor.js): toolbar, / menu, shortcuts, live preview, autosave, Word/PDF import ===== */
+RichEd.init({ta:$('body'),toast,fmtB,upload:f=>upImg(f,{max:1600}),api:(u,m,b)=>api(u,m,b),
+getFields:()=>({type:$('type').value,title:$('title').value,slug:$('slug').value,desc:$('desc').value,body:$('body').value,image:$('image').value,draft:$('draft').checked}),
+setFields:d=>{['title','slug','desc','body','image'].forEach(k=>{if(k in d)$(k).value=d[k]||''});slugTouched=!!$('slug').value;wordc();slugPrev();prevImg()},
+setField:(k,v)=>{$(k).value=v;if(k=='title'&&!editing&&!slugTouched)$('slug').value=SLG(v);seo();slugPrev()},
+editingId:()=>editing,onServerSaved:(id,d)=>{const it=ITEMS.find(x=>x._id==id);if(it)Object.assign(it,d)},
+importDocx:async f=>{const r=await fetch('/api/import/docx',{method:'POST',headers:{'Content-Type':'application/octet-stream',Authorization:'Bearer '+tk},body:f});if(r.status==401){localStorage.removeItem('tk');location.reload();return null}let j=null;try{j=await r.json()}catch(e){}if(!r.ok)throw new Error((j&&j.error)||(r.status==413?'الملف أكبر من 4MB':'تعذر استيراد الملف — تأكد من رفع lib/app.js و lib/docx.js إلى الخادم'));return j},
+importPdf:f=>PdfImport.load(f)});
 applyType();
 /* bookings */
 const WA_DEF='مرحباً {name}، شكراً لتواصلك مع د. ممدوح حمدي. استلمنا طلبك ويسعدنا تحديد الموعد المناسب لك.';
@@ -437,7 +422,7 @@ const MORE=['texts','fonts','storage','settings'],go0=go;go=function(v){go0(v);$
 document.addEventListener('focusin',e=>{if(innerWidth<=900&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)&&e.target.type!='checkbox')document.body.classList.add('kb')});
 document.addEventListener('focusout',()=>setTimeout(()=>{if(!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||''))document.body.classList.remove('kb')},120));
 /* warn before leaving with an unsaved article */
-addEventListener('beforeunload',e=>{if(($('title').value.trim()||$('body').value.trim())&&!editing&&$('v-content').classList.contains('on')){e.preventDefault();e.returnValue=''}});
+addEventListener('beforeunload',e=>{if((($('title').value.trim()||$('body').value.trim())&&!editing&&$('v-content').classList.contains('on'))||RichEd.isDirty()){e.preventDefault();e.returnValue=''}});
 
 /* ===== v2: dashboard ===== */
 function drawDash(){const t0=new Date(),k=d=>d.toLocaleDateString('en-CA'),D=[],fm=d=>d.toLocaleDateString('ar-EG',{day:'numeric',month:'short'});
@@ -460,8 +445,7 @@ $('items').addEventListener('click',async e=>{const d=e.target.closest('[data-dp
 /* ===== v2: editor — SEO counters, autosave, Ctrl+S ===== */
 $('title').insertAdjacentHTML('afterend','<div class="cnt2" id="tc"></div>');$('desc').insertAdjacentHTML('afterend','<div class="cnt2" id="dc"></div>');
 function seo(){const a=$('type').value=='article',m=(el,n,lo,hi,l)=>{el.textContent=a&&n?l+': '+n+' حرفاً (الأمثل '+lo+'–'+hi+' لمحركات البحث)':'';el.className='cnt2 '+(n<lo||n>hi?'bad':'good')};m($('tc'),$('title').value.trim().length,20,65,'العنوان');m($('dc'),$('desc').value.trim().length,80,160,'الملخص')}
-const svDr=()=>{if(editing||$('type').value!='article')return;const d={title:$('title').value,slug:$('slug').value,desc:$('desc').value,body:$('body').value,image:$('image').value};if(d.title.trim()||d.body.trim())localStorage.dr=JSON.stringify(d)};
-['title','desc','body','image'].forEach(k=>$(k).addEventListener('input',()=>{clearTimeout(svDr.t);svDr.t=setTimeout(svDr,800);seo()}));
+['title','desc','body','image'].forEach(k=>$(k).addEventListener('input',seo));
 function restoreDraft(){try{const d=JSON.parse(localStorage.dr||'null');if(!d)return;if(!editing&&!$('title').value&&confirm('وُجد مقال غير محفوظ من جلسة سابقة ("'+(d.title||'بدون عنوان')+'"). استعادته؟')){['title','slug','desc','body','image'].forEach(k=>$(k).value=d[k]||'');slugTouched=!!d.slug;wordc();slugPrev();prevImg();go('content')}else localStorage.removeItem('dr')}catch(e){}}
 addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='s'){e.preventDefault();if($('v-content').classList.contains('on'))$('sv').click();else if($('v-settings').classList.contains('on'))$('ss').click();else if($('v-texts').classList.contains('on'))saveTexts()}});
 /* ===== v2: bookings export / bulk, backup ===== */
@@ -491,10 +475,6 @@ $('cap').onclick=()=>cB('ok','اعتماد كل التعليقات المعلّ�
 $('bx').insertAdjacentHTML('beforebegin','<select id="brng" style="width:auto"><option value="0">كل الأوقات</option><option value="1">آخر 24 ساعة</option><option value="7">آخر 7 أيام</option><option value="30">آخر 30 يوماً</option></select><button class="btn d sm" id="bdd">حذف المعالَجة</button>');
 const inR=b=>{const n=+(($('brng')||{}).value)||0;return !n||Date.now()-new Date(b.createdAt)<=n*864e5};$('brng').onchange=drawBK;
 $('bdd').onclick=async()=>{const ids=BK.filter(b=>b.status=='done').map(b=>b._id);if(!ids.length)return toast('لا توجد طلبات معالَجة');if(!confirm('حذف '+ids.length+' طلب معالَج نهائياً؟ (يُنصح بتصدير CSV أولاً)'))return;const r=await api('bookings/bulk','POST',{action:'delete',ids});if(r){toast('تم الحذف','s');load()}else toast('تعذر الحذف','e')};
-/* paste / drop images into article body */
-const bodyUp=async f=>{toast('جارٍ رفع الصورة…');try{const r=await upImg(f,{max:1600});if(r){insAt('\n\n![]('+r.url+')\n\n');toast('تمت إضافة الصورة — لا تنسَ الحفظ','s')}}catch(err){toast(err.message||'تعذر الرفع','e')}};
-$('body').addEventListener('paste',e=>{const f=[...((e.clipboardData&&e.clipboardData.files)||[])].find(x=>/^image\//.test(x.type));if(f){e.preventDefault();bodyUp(f)}});
-$('body').addEventListener('drop',e=>{const f=e.dataTransfer&&[...e.dataTransfer.files].find(x=>/^image\//.test(x.type));if(f){e.preventDefault();bodyUp(f)}});
 /* live notification: new booking */
 setInterval(async()=>{if(document.hidden||!tk)return;const b=await api('bookings');if(Array.isArray(b)&&b.length>BK.length){toast('🔔 وصل طلب حجز جديد','s');BK=b;drawAll()}},60000);
 /* command palette (Ctrl+K or /) */
