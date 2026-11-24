@@ -130,6 +130,20 @@ body{overflow-x:clip}
 .top h1{font-size:18px}
 main{padding-left:10px!important;padding-right:10px!important}
 }
+/* إدارة الموقع: تبويبات + عرض التخزين */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--bd);margin-bottom:18px;overflow-x:auto;scrollbar-width:thin}.tabs button{padding:11px 18px;border:0;border-bottom:3px solid transparent;background:none;color:var(--mu);font-weight:600;font-size:14.5px;font-family:inherit;cursor:pointer;white-space:nowrap;display:flex;gap:8px;align-items:center;margin-bottom:-1px;min-height:44px}.tabs button:hover{color:var(--tx)}.tabs button[aria-selected=true]{color:var(--pt);border-bottom-color:var(--p2)}.tabs button:focus-visible{outline:2px solid var(--p2);outline-offset:-2px;border-radius:8px}
+[role=tabpanel]:focus{outline:0}.empty.soon{display:grid;gap:6px;padding:60px 20px}.empty.soon b{font-size:20px;color:var(--tx)}.empty.soon span{font-size:15px}
+.sth{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}.stu{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}.stt{background:var(--in);border:1px solid var(--bd);border-radius:14px;padding:12px 14px}.stt span{display:block;color:var(--mu);font-size:12.5px}.stt b{font-size:22px;line-height:1.3}.stt.w b{color:#d9a53a}.stt.x b{color:var(--dg)}
+.pgr{position:relative;height:18px;border-radius:20px;background:var(--in);border:1px solid var(--bd);overflow:hidden}.pgr i{display:block;height:100%;border-radius:20px;background-image:linear-gradient(to left,#2fb980 0,#2fb980 45%,#e8c13a 80%,#e5646b 100%);background-repeat:no-repeat;background-position:right center;transition:width .6s}.pgr .t{position:absolute;top:0;bottom:0;width:2px;background:var(--tx);opacity:.4}
+.pgl{position:relative;height:18px;color:var(--mu);font-size:11.5px;margin-top:4px}.pgl span{position:absolute;top:0;white-space:nowrap}[dir=rtl] .pgl span[style*='translateX']{transform:translateX(50%)}@media(min-width:701px){.card .ctb{display:table!important;width:100%}}
+.sal{display:grid;gap:2px;padding:12px 14px;border-radius:12px;margin:12px 0;font-size:14px;border:1px solid}.sal.w{background:#e8c13a1f;border-color:#e8c13a88}.sal.x{background:#e5646b1f;border-color:#e5646b99}.sal span{color:var(--mu);font-size:13px}
+.stk{display:flex;height:26px;border-radius:13px;overflow:hidden;background:var(--in);border:1px solid var(--bd);margin:14px 0 4px}.stk i{display:block;height:100%;min-width:2px}.stl{display:flex;justify-content:space-between;color:var(--mu);font-size:12px;margin-bottom:10px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:4px;margin-inline-end:8px;vertical-align:-1px}.ctb tr.sum td{font-weight:700;border-top:2px solid var(--bd)}
+.spl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.spl div{background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:10px 12px}.spl span{display:block;color:var(--mu);font-size:12.5px}.spl b{font-size:17px}.spl .tt{border-color:var(--p2)}
+.tbw{overflow-x:auto;max-width:100%}.tbw .top20{display:table;width:100%}
+.top20 .t20{width:44px;height:44px;border-radius:10px;object-fit:cover;background:var(--in);border:1px solid var(--bd);display:grid;place-items:center;font-size:11px;color:var(--mu)}.top20 .nm{max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.top20 .ac2{white-space:nowrap}.top20 .ac2 .btn{margin-inline-start:4px}
+@media(max-width:700px){.stq{grid-template-columns:1fr 1fr}.spl{grid-template-columns:1fr}.tbw .top20{min-width:640px}.stt b{font-size:19px}}
 </style><link rel="stylesheet" href="/css/rich-editor.css?v=1"></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
@@ -164,7 +178,7 @@ main{padding-left:10px!important;padding-right:10px!important}
 <button class="nv" data-v="bookings"><svg class="i"><use href="#a-cal"/></svg>الحجوزات<span class="bdg z" id="nb"></span></button>
 <button class="nv dsk" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button>
 <button class="nv dsk" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button>
-<button class="nv dsk" data-v="storage"><svg class="i"><use href="#a-db"/></svg>التخزين</button>
+<button class="nv dsk" data-v="site"><svg class="i"><use href="#a-db"/></svg>إدارة الموقع</button>
 <button class="nv dsk" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
 <button class="nv mob" id="mb" type="button"><svg class="i"><use href="#a-set"/></svg>المزيد</button>
 <div class="sp"></div><a class="nv lo" href="/" target="_blank"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="nv lo" id="out"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></aside>
@@ -200,7 +214,14 @@ main{padding-left:10px!important;padding-right:10px!important}
 <label class="sw"><input type="checkbox" id="cmod"> اعتماد التعليقات يدوياً قبل ظهورها (إن لم تفعّله تظهر مباشرة)</label>
 <div class="tools"><input id="cq" placeholder="ابحث بالاسم أو النص أو عنوان المقال..."><div class="chips" id="cfl"><button class="ch on" data-s="">الكل</button><button class="ch" data-s="pending">بانتظار الاعتماد</button><button class="ch" data-s="ok">معتمد</button></div></div><div class="tbar"><button class="btn ok sm" id="cap">اعتماد كل المعلّقة</button><button class="btn d sm" id="cdp">حذف كل المعلّقة</button></div><div id="cml"></div></div></div>
 
-<div class="view" id="v-storage"><div id="stBox"><div class="empty">جارٍ التحميل…</div></div></div>
+<div class="view" id="v-site">
+<div class="tabs" role="tablist" aria-label="أقسام إدارة الموقع" id="siteTabs">
+<button type="button" role="tab" id="tb-storage" aria-controls="tp-storage" aria-selected="true" data-tab="storage">التخزين</button>
+<button type="button" role="tab" id="tb-speed" aria-controls="tp-speed" aria-selected="false" tabindex="-1" data-tab="speed">فحص السرعة <span class="tag n" style="margin:0">قريباً</span></button></div>
+<div role="tabpanel" id="tp-storage" aria-labelledby="tb-storage" tabindex="0"><div id="stBox"><div class="empty">جارٍ التحميل…</div></div></div>
+<!-- مكان تبويب «فحص السرعة»: سيُبنى في مهمة منفصلة؛ املأ #speedBox لاحقاً (الدالة siteTab تستدعي window.onSpeedTab إن وُجدت) -->
+<div role="tabpanel" id="tp-speed" aria-labelledby="tb-speed" tabindex="0" hidden><div id="speedBox" class="empty soon"><b>فحص السرعة</b><span>قريباً</span></div></div>
+</div>
 
 <div class="view" id="v-bookings"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>طلبات الحجز</h3>
 <div class="tools"><input id="bq" placeholder="ابحث بالاسم أو الهاتف..."><div class="chips" id="bf"><button class="ch on" data-s="">الكل</button><button class="ch" data-s="new">جديد</button><button class="ch" data-s="done">تمت المعالجة</button></div></div><div class="tbar"><span class="hint" id="bsum"></span><button class="btn o sm" id="bx">تصدير CSV</button><button class="btn o sm" id="bdn">تعليم كل الجديد كمعالَج</button></div><div id="bk"></div></div></div>
@@ -228,7 +249,7 @@ main{padding-left:10px!important;padding-right:10px!important}
 <input type="file" id="file" accept="image/*" hidden>
 </main></div></div>
 <div class="sheet" id="sheet" aria-hidden="true"><div class="sh-bg" data-close></div><div class="sh-box" role="dialog" aria-label="المزيد"><div class="sh-grip"></div><div class="sh-grid">
-<button class="shi" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button><button class="shi" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button><button class="shi" data-v="storage"><svg class="i"><use href="#a-db"/></svg>التخزين</button><button class="shi" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
+<button class="shi" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button><button class="shi" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button><button class="shi" data-v="site"><svg class="i"><use href="#a-db"/></svg>إدارة الموقع</button><button class="shi" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
 <a class="shi" href="/" target="_blank" rel="noopener"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="shi out" id="out3" type="button"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></div></div></div>
 <div id="toast"></div>
 <script src="/js/rich.js?v=1"></script><script src="/js/pdf-import.js?v=1"></script><script src="/js/rich-editor.js?v=1"></script>
@@ -238,7 +259,7 @@ let tk=localStorage.tk||'',ITEMS=[],BK=[],ft='',bs='',editing=null;
 const U=n=>'<svg class="i"><use href="#a-'+n+'"/></svg>';
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const N={article:'مقال',podcast:'بودكاست',book:'كتاب',course:'دورة'},IC={article:'file',podcast:'mic',book:'book',course:'cap'};
-const VT={dash:['الرئيسية','نظرة عامة على نشاط الموقع'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],texts:['نصوص الموقع','تعديل كل النصوص الظاهرة في الصفحة الرئيسية'],fonts:['الخطوط','جرّب أكثر من 25 خطاً واختر الأنسب لكل جزء من الموقع'],comments:['التعليقات','مراجعة تعليقات الزوار على المقالات وإدارتها'],storage:['التخزين','مساحة قاعدة البيانات المتبقية وإدارة الصور'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
+const VT={dash:['الرئيسية','نظرة عامة على نشاط الموقع'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],texts:['نصوص الموقع','تعديل كل النصوص الظاهرة في الصفحة الرئيسية'],fonts:['الخطوط','جرّب أكثر من 25 خطاً واختر الأنسب لكل جزء من الموقع'],comments:['التعليقات','مراجعة تعليقات الزوار على المقالات وإدارتها'],site:['إدارة الموقع','التخزين وأدوات فحص أداء الموقع'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
 function toast(m,t=''){const e=$('toast');e.textContent=m;e.className='on '+t;clearTimeout(toast.t);toast.t=setTimeout(()=>e.className='',2600)}
 async function api(u,m='GET',b){try{const r=await fetch('/api/'+u,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+tk},body:b?JSON.stringify(b):undefined});if(r.status==401){localStorage.removeItem('tk');location.reload();return null}if(!r.ok){let j=null;try{j=await r.json()}catch(e){}api.err={status:r.status,msg:(j&&j.error)||''};return null}api.err=null;return await r.json()}catch(e){api.err={status:0,msg:'network'};return null}}
 /* theme */
@@ -249,12 +270,21 @@ async function login(){const b=$('lgb'),v=$('pw').value;if(!v){toast('أدخل �
 $('lgb').onclick=login;$('pw').onkeydown=e=>{if(e.key=='Enter'&&!e.isComposing){e.preventDefault();login()}};
 const logout=()=>{localStorage.removeItem('tk');location.reload()};$('out').onclick=$('out2').onclick=logout;
 /* nav */
-function go(v){Q('.view').forEach(x=>x.classList.toggle('on',x.id=='v-'+v));Q('.nv[data-v]').forEach(x=>x.classList.toggle('on',x.dataset.v==v));$('ttl').textContent=VT[v][0];$('sbt').textContent=VT[v][1];scrollTo({top:0});if(v=='storage')loadStorage();if(v=='comments')loadComments()}
+let curView='dash',curTab='storage';const TABS=['storage','speed'];
+/* المسار القديم: view=storage أو #storage يُحوَّل إلى إدارة الموقع ← التخزين */
+function go(v,tab,silent){if(v=='storage'){v='site';tab='storage'}if(!VT[v])v='dash';curView=v;Q('.view').forEach(x=>x.classList.toggle('on',x.id=='v-'+v));Q('.nv[data-v]').forEach(x=>x.classList.toggle('on',x.dataset.v==v));$('ttl').textContent=VT[v][0];$('sbt').textContent=VT[v][1];scrollTo({top:0});if(v=='site')siteTab(tab||curTab,true);if(v=='comments')loadComments();if(!silent)urlSync()}
+function siteTab(t,silent){if(!TABS.includes(t))t='storage';curTab=t;TABS.forEach(x=>{const b=$('tb-'+x);$('tp-'+x).hidden=x!=t;b.setAttribute('aria-selected',x==t);b.tabIndex=x==t?0:-1});if(t=='storage')loadStorage();else if(typeof window.onSpeedTab=='function')window.onSpeedTab($('speedBox'));if(!silent)urlSync()}
+/* الرابط يحفظ القسم والتبويب: /admin/?view=site&tab=storage */
+function urlSync(){try{const u=new URL(location.href);u.hash='';u.searchParams.set('view',curView);if(curView=='site')u.searchParams.set('tab',curTab);else u.searchParams.delete('tab');if(u.href!=location.href)history.pushState(null,'',u)}catch(e){}}
+function route(first){const u=new URL(location.href);let v=u.searchParams.get('view')||(location.hash||'').slice(1),t=u.searchParams.get('tab');if(!v)return false;go(v,t,true);if(first)try{u.hash='';u.searchParams.set('view',curView);if(curView=='site')u.searchParams.set('tab',curTab);else u.searchParams.delete('tab');history.replaceState(null,'',u)}catch(e){}return true}
+addEventListener('popstate',()=>{if($('app').style.display=='block'&&!route())go('dash',null,true)});
+$('siteTabs').onclick=e=>{const b=e.target.closest('[data-tab]');if(b)siteTab(b.dataset.tab)};
+$('siteTabs').onkeydown=e=>{if(!/^Arrow(Left|Right)$|^(Home|End)$/.test(e.key))return;e.preventDefault();const i=TABS.indexOf(curTab),n=e.key=='Home'?0:e.key=='End'?TABS.length-1:(i+(e.key=='ArrowLeft'?1:-1)+TABS.length)%TABS.length;siteTab(TABS[n]);$('tb-'+TABS[n]).focus()};
 Q('.nv[data-v]').forEach(b=>b.onclick=()=>go(b.dataset.v));
 Q('[data-go]').forEach(b=>b.onclick=()=>{go(b.dataset.go);if(b.dataset.new){resetForm();$('type').value=b.dataset.new}});
 /* init */
 async function init(){if(!tk)return;$('lg').style.display='none';$('app').style.display='block';
-const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram','img_hero','img_about','img_mark','announce_text','announce_url','announce_link_text','wa_reply'].forEach(k=>$(k).value=s[k]||'');$('cmod').checked=s.comments_mode=='moderate';['image','img_hero','img_about','img_mark'].forEach(showPrev);await load();loadComments(true);restoreDraft();loadAn();drawTexts();drawFonts()}
+const s=await api('settings')||{};SET=s;['phone','whatsapp','email','address','hours','facebook','instagram','youtube','tiktok','telegram','img_hero','img_about','img_mark','announce_text','announce_url','announce_link_text','wa_reply'].forEach(k=>$(k).value=s[k]||'');$('cmod').checked=s.comments_mode=='moderate';['image','img_hero','img_about','img_mark'].forEach(showPrev);await load();loadComments(true);restoreDraft();loadAn();drawTexts();drawFonts();route(true)}
 async function load(){const[a,b]=await Promise.all([api('items'),api('bookings')]);ITEMS=Array.isArray(a)?a:[];BK=Array.isArray(b)?b:[];drawAll();loadLog()}
 function drawAll(){stats();drawItems();drawBK();drawRecent();drawDash();health()}
 const nw=b=>b.status!='done';
@@ -374,15 +404,28 @@ $('frs').onclick=()=>{FS[FT]='';drawFonts()};
 $('fsv').onclick=async()=>{const d={};['f_hero','f_head','f_body'].forEach(k=>d[k]=(FS[k]&&FS[k]!=FD[k])?FS[k]:'');const b=$('fsv');b.disabled=true;const r=await api('settings','PUT',d);b.disabled=false;if(r){Object.assign(SET,d);toast('تم حفظ الخطوط — ستظهر في الموقع بعد التحديث','s')}else toast('تعذر الحفظ','e')};
 /* ===== storage manager ===== */
 let ST=null,sFil='',sSort='date',SEL=new Set();
-async function loadStorage(){const r=await api('storage');if(!r){$('stBox').innerHTML='<div class="empty">تعذر تحميل بيانات التخزين — تأكد من رفع آخر نسخة من lib/app.js ثم أعد المحاولة.</div>';return}ST=r;SEL=new Set([...SEL].filter(id=>r.images.some(x=>x._id==id)));drawStorage()}
-const dsz=n=>'<bdi dir="ltr">'+fmtB(n)+'</bdi>';
-function drawStorage(){const r=ST,quota=r.quotaMB*1048576,used=(r.dataSize||0)+(r.indexSize||0),left=Math.max(0,quota-used),pct=Math.min(100,used/quota*100),cls=pct>=90?'x':pct>=75?'w':'';
+let stBusy=0;async function loadStorage(force){if(stBusy)return;stBusy=1;const rb=$('srf');if(rb){rb.disabled=true;rb.textContent='جارٍ التحديث…'}const r=await api('storage'+(force?'?refresh=1':''));stBusy=0;if(!r){$('stBox').innerHTML='<div class="empty">تعذر تحميل بيانات التخزين — تأكد من رفع آخر نسخة من lib/app.js ثم أعد المحاولة.</div>';return}ST=r;SEL=new Set([...SEL].filter(id=>r.images.some(x=>x._id==id)));drawStorage();if(force)toast('تم تحديث بيانات التخزين','s')}
+const fmtS=n=>n==null?'—':n>=1073741824?(n/1073741824).toFixed(2)+' GB':fmtB(n),dsz=n=>'<bdi dir="ltr">'+fmtS(n)+'</bdi>';
+const SEGC={images:'#4aa8ee',video:'#a78bfa',files:'#2dd4bf',database:'#d9b25a',indexes:'#f472b6',other:'#94a3b8'};
+const pc=(a,b)=>b>0?(a/b*100):0,pcs=x=>'<bdi dir="ltr">'+(x>=10?x.toFixed(0):x.toFixed(1))+'%</bdi>';
+function drawStorage(){const r=ST,quota=r.quotaBytes||r.quotaMB*1048576,used=r.usedBytes??((r.dataSize||0)+(r.indexSize||0)),left=Math.max(0,quota-used),pct=Math.min(100,pc(used,quota)),over=used>quota,lv=pct>=95?'x':pct>=80?'w':'';
 const imgB=r.images.reduce((a,x)=>a+x.size,0),un=r.images.filter(x=>!x.usedBy.length),unB=un.reduce((a,x)=>a+x.size,0);
 let L=r.images.filter(x=>sFil=='unused'?!x.usedBy.length:sFil=='used'?x.usedBy.length:true);L=[...L].sort((a,b)=>sSort=='size'?b.size-a.size:new Date(b.createdAt)-new Date(a.createdAt));
-const tot=r.collections.reduce((a,c)=>a+(c.bytes||0),0)||1;
-$('stBox').innerHTML=`<div class="card"><h3>${U('db')}المساحة المتبقية في قاعدة البيانات</h3><p class="sub">${r.exact?'القيم مأخوذة مباشرة من MongoDB.':'تقدير تقريبي لأن الخادم لم يرجع إحصاءات القاعدة.'} الخطة المجانية في Atlas تتيح 512 ميجابايت.</p>
-<div class="big">${dsz(left)} <span style="font-size:15px;color:var(--mu);font-weight:500">متبقية من ${dsz(quota)}</span></div>
-<div class="pbar ${cls}"><i style="width:${pct.toFixed(1)}%"></i></div><div style="display:flex;justify-content:space-between;color:var(--mu);font-size:13px;flex-wrap:wrap;gap:6px"><span>المستخدم: ${dsz(used)} (<bdi dir="ltr">${pct.toFixed(1)}%</bdi>)</span><span>${pct>=90?'⚠ المساحة شبه ممتلئة — احذف صوراً غير مستخدمة':pct>=75?'تنبيه: اقتربت من الحد':'المساحة جيدة'}</span></div></div>
+const tot=r.collections.reduce((a,c)=>a+(c.bytes||0),0)||1,top=[...r.images].sort((a,b)=>b.size-a.size).slice(0,20);
+const bd=r.breakdown||[],bsum=bd.reduce((a,x)=>a+x.bytes,0),den=Math.max(quota,bsum)||1,sp=r.split||{};
+const alert=pct>=95?`<div class="sal x" role="alert"><b>⛔ المساحة شبه منتهية (${pcs(pct)})</b><span>${over?'تجاوزتَ الحد المسجَّل. ':''}احذف الصور غير المستخدمة الآن أو ارفع خطتك لتفادي فشل الحفظ والرفع.</span></div>`:pct>=80?`<div class="sal w" role="alert"><b>⚠ تنبيه: اقتربت من الحد (${pcs(pct)})</b><span>تجاوزت 80% من المساحة — راجع أكبر الملفات أو احذف غير المستخدم منها.</span></div>`:'';
+const upd=r.generatedAt?'آخر تحديث: '+E(dt(r.generatedAt))+(r.cached?' <span class="tag n" style="margin:0">من الذاكرة المؤقتة</span>':''):'';
+$('stBox').innerHTML=`<div class="card"><div class="sth"><h3 style="margin:0">${U('db')}المساحة الكلية</h3><div class="stu"><span class="sub" style="margin:0">${upd}</span><button class="btn o sm" id="srf" type="button">↻ تحديث</button></div></div>
+<p class="sub">${r.exact?'القيم مأخوذة مباشرة من MongoDB':'تقدير تقريبي لأن الخادم لم يرجع إحصاءات القاعدة'}${r.provider?' (المزوّد: '+E(r.provider)+')':''}. تُخزَّن الصور والملفات داخل القاعدة نفسها، فالمساحة واحدة. الحد الحالي ${r.quotaSource=='env'?'من متغير البيئة STORAGE_QUOTA_MB':r.quotaSource=='setting'?'من إعداد اللوحة':'الافتراضي'} — يمكنك تغييره أدناه.</p>${alert}
+<div class="stq"><div class="stt"><span>المساحة الإجمالية</span><b>${dsz(quota)}</b></div><div class="stt"><span>المستخدمة</span><b>${dsz(used)}</b></div><div class="stt ${lv}"><span>المتبقية</span><b>${dsz(left)}</b></div><div class="stt ${lv}"><span>نسبة الاستخدام</span><b>${pcs(pct)}</b></div></div>
+<div class="pgr ${lv}" role="progressbar" aria-label="نسبة استخدام المساحة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct.toFixed(1)}"><i style="width:${pct.toFixed(1)}%;background-size:${(10000/Math.max(pct,1)).toFixed(0)}% 100%"></i><b class="t" style="inset-inline-start:80%"></b><b class="t" style="inset-inline-start:95%"></b></div>
+<div class="pgl"><span style="inset-inline-start:0">0%</span><span style="inset-inline-start:80%;transform:translateX(50%)">80% تنبيه</span><span style="inset-inline-start:95%;transform:translateX(50%)">95% حرج</span></div></div>
+${bd.length?`<div class="card"><h3>${U('file')}تفصيل الاستخدام حسب النوع</h3>
+<div class="stk" role="img" aria-label="مخطط مكدّس لاستخدام المساحة حسب النوع">${bd.filter(x=>x.bytes>0).map(x=>`<i style="width:${(x.bytes/den*100).toFixed(2)}%;background:${SEGC[x.key]}" title="${E(x.label)}: ${fmtS(x.bytes)}"></i>`).join('')}</div>
+<div class="stl"><span>0</span><span>الفارغ من الحد: ${dsz(left)}</span></div>
+<table class="ctb"><tr><th>النوع</th><th>العدد</th><th>الحجم</th><th>% من الحد</th></tr>${bd.map(x=>`<tr><td><span class="sw" style="background:${SEGC[x.key]}"></span>${E(x.label)}</td><td>${x.count||'—'}</td><td>${dsz(x.bytes)}</td><td>${pcs(pc(x.bytes,quota))}</td></tr>`).join('')}<tr class="sum"><td>الإجمالي المستخدم</td><td></td><td>${dsz(used)}</td><td>${pcs(pc(used,quota))}</td></tr></table>
+${sp.files?`<div class="spl"><div><span>الصور والملفات</span><b>${dsz(sp.files.bytes)}</b></div><div><span>+ بيانات القاعدة</span><b>${dsz(sp.database.bytes)}</b></div><div class="tt"><span>= الإجمالي</span><b>${dsz(sp.total)}</b></div></div><p class="sub" style="margin:10px 0 0">لا يوجد تخزين ملفات خارجي منفصل (مثل S3 أو Blob) في هذا المشروع؛ لذلك لا تظهر مساحة منفصلة للفيديو أو الملفات إلا إذا رُفعت إلى قاعدة البيانات (الفيديو يُضمَّن عبر رابط ولا يشغل مساحة).</p>`:''}</div>`:''}
+<div class="card"><h3>${U('up')}أكبر 20 ملفاً</h3>${top.length?`<div class="tbw"><table class="ctb top20"><tr><th>#</th><th>معاينة</th><th>الاسم</th><th>الحجم</th><th>التاريخ</th><th>الحالة</th><th></th></tr>${top.map((x,i)=>`<tr><td>${i+1}</td><td>${/^image\//.test(x.type||'')?`<img class="t20" src="/api/img/${x._id}" alt="" loading="lazy">`:'<span class="t20">'+E((x.type||'ملف').split('/')[0])+'</span>'}</td><td class="nm">${E(x.name||'بدون اسم')}</td><td>${dsz(x.size)}</td><td>${E(dt(x.createdAt))}</td><td>${x.usedBy.length?'<span class="tag k" style="margin:0">مستخدمة</span>':'<span class="tag n" style="margin:0">غير مستخدمة</span>'}</td><td class="ac2"><a class="btn o sm" href="/api/img/${x._id}" target="_blank" rel="noopener">${U('ext')}معاينة</a><button class="btn d sm" type="button" data-di="${x._id}">${U('tr')}حذف</button></td></tr>`).join('')}</table></div>`:'<div class="empty">لا توجد ملفات مرفوعة</div>'}</div>
 <div class="stats"><div class="stat"><svg class="i"><use href="#a-db"/></svg><b>${dsz(left)}</b><span>المساحة المتبقية</span></div><div class="stat"><svg class="i"><use href="#a-db"/></svg><b>${dsz(r.storageSize)}</b><span>حجم التخزين الفعلي</span></div><div class="stat g"><svg class="i"><use href="#a-up"/></svg><b>${r.images.length}</b><span>صورة (${fmtB(imgB)})</span></div><div class="stat"><svg class="i"><use href="#a-tr"/></svg><b>${un.length}</b><span>غير مستخدمة (${fmtB(unB)})</span></div></div>
 <div class="card"><h3>${U('file')}ما الذي يستهلك المساحة؟</h3><table class="ctb"><tr><th>القسم</th><th>العدد</th><th>الحجم</th><th></th></tr>${r.collections.map(c=>`<tr><td>${E(c.label)}</td><td>${c.count}</td><td>${dsz(c.bytes)}</td><td><div class="mini"><i style="width:${c.bytes?(c.bytes/tot*100).toFixed(1):0}%"></i></div></td></tr>`).join('')}</table>
 <label style="margin-top:16px">الحد الأقصى للتخزين (ميجابايت) — غيّره إن رفعت خطتك</label><div class="upl" style="max-width:320px"><input id="qmb" type="number" min="64" step="64" dir="ltr" value="${r.quotaMB}"><button class="btn o sm" id="qsv">حفظ</button></div></div>
@@ -391,14 +434,15 @@ $('stBox').innerHTML=`<div class="card"><h3>${U('db')}المساحة المتب�
 <select id="ssr" style="width:auto"><option value="date" ${sSort=='date'?'selected':''}>الأحدث أولاً</option><option value="size" ${sSort=='size'?'selected':''}>الأكبر حجماً أولاً</option></select><button class="btn o sm" id="sall">تحديد الكل</button>
 <button class="btn d sm" id="sdel" ${SEL.size?'':'disabled'}>${U('tr')}حذف المحدد (${SEL.size})</button><button class="btn g sm" id="sclean" ${un.length?'':'disabled'}>${U('tr')}حذف غير المستخدمة (${un.length}) — يوفّر ${fmtB(unB)}</button></div>
 <div class="igs">${L.map(x=>`<div class="ig ${SEL.has(x._id)?'sel':''}"><label class="ck"><input type="checkbox" data-sel="${x._id}" ${SEL.has(x._id)?'checked':''}></label><img src="/api/img/${x._id}" alt="" loading="lazy"><div class="im"><b>${dsz(x.size)}</b><span>${E(dt(x.createdAt))}</span>${x.usedBy.length?x.usedBy.slice(0,2).map(u=>`<span class="tag k" style="margin:0;white-space:normal">${u.kind=='setting'?'إعدادات: '+E(({img_hero:'صورة الغلاف',img_about:'من أنا',img_mark:'الشعار'})[u.label]||u.label):E((N[u.type]||'محتوى')+': '+u.label)}</span>`).join(''):'<span class="tag n" style="margin:0">غير مستخدمة</span>'}</div><div class="ac"><a class="btn o sm" href="/api/img/${x._id}" target="_blank" rel="noopener">${U('ext')}عرض</a><button class="btn d sm" data-di="${x._id}">${U('tr')}حذف</button></div></div>`).join('')||'<div class="empty" style="grid-column:1/-1">لا توجد صور</div>'}</div></div>`}
-async function delImgs(ids,msg){if(!ids.length||!confirm(msg))return;const r=await api('images/delete','POST',{ids});if(r){toast('تم حذف '+r.deleted+' صورة وتوفير '+fmtB(r.freed),'s');SEL.clear();await loadStorage();load()}else toast('تعذر الحذف','e')}
+async function delImgs(ids,msg){if(!ids.length||!confirm(msg))return;const r=await api('images/delete','POST',{ids});if(r){toast('تم حذف '+r.deleted+' صورة وتوفير '+fmtB(r.freed),'s');SEL.clear();await loadStorage(true);load()}else toast('تعذر الحذف','e')}
 $('stBox').onclick=async e=>{const t=e.target,f=t.closest('[data-f]'),di=t.closest('[data-di]');
+if(t.closest('#srf')){loadStorage(true);return}
 if(f){sFil=f.dataset.f;drawStorage();return}
 if(di){const x=ST.images.find(i=>i._id==di.dataset.di);delImgs([x._id],x.usedBy.length?'هذه الصورة مستخدمة في الموقع وستُزال من مكانها. متابعة الحذف؟':'حذف هذه الصورة نهائياً؟');return}
 if(t.closest('#sall')){const vis=[...document.querySelectorAll('#stBox [data-sel]')].map(i=>i.dataset.sel),all=vis.every(id=>SEL.has(id));vis.forEach(id=>all?SEL.delete(id):SEL.add(id));drawStorage();return}
 if(t.closest('#sdel')){const used=ST.images.filter(x=>SEL.has(x._id)&&x.usedBy.length).length;delImgs([...SEL],'حذف '+SEL.size+' صورة نهائياً؟'+(used?'\n('+used+' منها مستخدمة وستُزال من أماكنها)':''));return}
-if(t.closest('#sclean')){const un=ST.images.filter(x=>!x.usedBy.length);if(!un.length||!confirm('حذف '+un.length+' صورة غير مستخدمة نهائياً؟'))return;const r=await api('images/cleanup','POST',{});if(r){toast('تم حذف '+r.deleted+' صورة وتوفير '+fmtB(r.freed),'s');SEL.clear();loadStorage()}else toast('تعذر الحذف','e');return}
-if(t.closest('#qsv')){const v=Math.max(64,parseInt($('qmb').value)||512),r=await api('settings','PUT',{storage_quota_mb:String(v)});if(r){toast('تم حفظ الحد الأقصى','s');loadStorage()}else toast('تعذر الحفظ','e')}};
+if(t.closest('#sclean')){const un=ST.images.filter(x=>!x.usedBy.length);if(!un.length||!confirm('حذف '+un.length+' صورة غير مستخدمة نهائياً؟'))return;const r=await api('images/cleanup','POST',{});if(r){toast('تم حذف '+r.deleted+' صورة وتوفير '+fmtB(r.freed),'s');SEL.clear();loadStorage(true)}else toast('تعذر الحذف','e');return}
+if(t.closest('#qsv')){const v=Math.max(64,parseInt($('qmb').value)||512),r=await api('settings','PUT',{storage_quota_mb:String(v)});if(r){toast('تم حفظ الحد الأقصى','s');loadStorage(true)}else toast('تعذر الحفظ','e')}};
 $('stBox').onchange=e=>{const c=e.target.closest('[data-sel]');if(c){c.checked?SEL.add(c.dataset.sel):SEL.delete(c.dataset.sel);drawStorage();return}if(e.target.id=='ssr'){sSort=e.target.value;drawStorage()}};
 
 /* ===== comments ===== */
@@ -418,7 +462,7 @@ shEl.onclick=e=>{if(e.target.closest('[data-close]'))closeSheet()};
 Q('.shi[data-v]').forEach(b=>b.onclick=()=>{go(b.dataset.v);closeSheet()});
 $('out3').onclick=logout;
 addEventListener('keydown',e=>{if(e.key=='Escape')closeSheet()});
-const MORE=['texts','fonts','storage','settings'],go0=go;go=function(v){go0(v);$('mb').classList.toggle('on',MORE.includes(v))};
+const MORE=['texts','fonts','site','settings'],go0=go;go=function(v,t,q){go0(v,t,q);$('mb').classList.toggle('on',MORE.includes(curView))};
 document.addEventListener('focusin',e=>{if(innerWidth<=900&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)&&e.target.type!='checkbox')document.body.classList.add('kb')});
 document.addEventListener('focusout',()=>setTimeout(()=>{if(!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||''))document.body.classList.remove('kb')},120));
 /* warn before leaving with an unsaved article */
