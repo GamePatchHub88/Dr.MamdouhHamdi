@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ar" dir="rtl" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#2b7bd0"><meta name="description" id="md" content="اختبارات تقييم ذاتي مجانية وسرّية من د. ممدوح حمدي: التوتر، النوم، الاحتراق النفسي، القلق، وجودة العلاقة. تُحسب النتيجة في متصفحك ولا تُرسل لأي جهة.">
+<!DOCTYPE html><html lang="ar" dir="rtl" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#2b7bd0"><meta name="description" id="md" content="اختبارات تقييم ذاتي مجانية وسرّية من د. ممدوح حمدي: التوتر، النوم، الاحتراق النفسي، القلق، الاكتئاب، الغضب، الحقد والضغينة، تقدير الذات، الغيرة وغيرها. تُحسب النتيجة في متصفحك ولا تُرسل لأي جهة.">
 <title>اختبارات التقييم الذاتي | دوبامين — د. ممدوح حمدي</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
@@ -60,6 +60,21 @@ header{position:sticky;top:0;z-index:60;background:var(--hd);-webkit-backdrop-fi
 .sh{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
 footer{margin-top:60px;padding:22px var(--gut) calc(22px + env(safe-area-inset-bottom));text-align:center;color:var(--mu);font-size:14px;border-top:1px solid var(--bd)}footer a{color:var(--pt);font-weight:600}
 [hidden]{display:none!important}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.srch{flex:1;min-width:200px;min-block-size:var(--tap);border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;padding:8px 16px;font:inherit;font-size:15px}
+.fl{display:flex;gap:8px;flex-wrap:wrap}.fl button{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--bd);background:var(--card);color:var(--mu);border-radius:40px;padding:6px 16px;cursor:pointer;min-block-size:38px}
+.fl button[aria-pressed=true]{background:var(--gr);color:#fff;border-color:transparent}
+.emp{text-align:center;color:var(--mu);padding:30px 10px}
+.alert{display:flex;gap:12px;align-items:flex-start;background:#d9534f1a;border:1.5px solid #d9534f77;border-radius:18px;padding:16px 18px;margin-bottom:20px;line-height:1.8}.alert .i{color:var(--bad);margin-top:5px;width:1.5em;height:1.5em}
+.alert strong{display:block;color:var(--bad);margin-bottom:2px}
+.cmp{margin-top:14px;padding:12px 16px;border-radius:14px;background:var(--bg);border:1px solid var(--bd);font-size:14.5px}
+.cmp b.up{color:var(--bad)}.cmp b.dn{color:var(--ok)}
+.fx{list-style:none;padding:0;display:grid;gap:8px;margin:10px 0 0}.fx li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--tx)}.fx li:before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--wn);margin-top:11px}
+.sv{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px;padding:12px 16px;border:1px dashed var(--bd);border-radius:14px;font-size:14px;color:var(--mu)}.sv label{display:flex;gap:8px;align-items:center;cursor:pointer}.sv input{inline-size:18px;block-size:18px;accent-color:var(--p)}
+.hs{display:grid;gap:8px;margin-top:6px}.hs .r{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 14px;border:1px solid var(--bd);border-radius:14px;background:var(--card);font-size:14.5px}.hs .r small{color:var(--mu)}
+.rel{margin-top:22px}.rel h3{font-size:17px;margin-bottom:10px}
+.kh{font-size:12.5px;color:var(--mu);margin-top:10px}
+@media print{.tools,.sv,.rel,.hsb,#pr{display:none!important}}
 .sk{height:120px;border-radius:var(--r);background:linear-gradient(90deg,var(--bd),transparent,var(--bd));background-size:200% 100%;animation:sk 1.4s infinite}@keyframes sk{to{background-position:-200% 0}}
 @media(max-width:640px){.ops{grid-template-columns:1fr}.op span{min-height:52px}.brand>span>small{display:none}.nav .btn.o{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
@@ -70,7 +85,7 @@ footer{margin-top:60px;padding:22px var(--gut) calc(22px + env(safe-area-inset-b
 <header><div class="nav"><a class="brand" href="/"><img src="/img/mark.png" alt="شعار دوبامين" width="46" height="46"><span><span data-t="brand">دوبامين</span><small data-t="brand_sub">د. ممدوح حمدي</small></span></a><a class="btn o sm" href="/" aria-label="الرئيسية"><svg class="i"><use href="#i-home"/></svg><span data-t="nav_home">الرئيسية</span></a><a class="btn sm" href="/#book"><svg class="i"><use href="#i-cal"/></svg><span data-t="btn_book">احجز استشارتك</span></a><button class="ib" id="th" aria-label="theme"></button></div></header>
 <main><div class="wrap" id="app"><div id="ssr"></div><div id="view"><div class="ph"><div class="sk"></div></div></div></div></main>
 <footer>© <span id="yr"></span> <span data-t="copy">دوبامين — د. ممدوح حمدي. جميع الحقوق محفوظة</span> · <a href="/">الصفحة الرئيسية</a> · <a href="/articles">المقالات</a></footer>
-<script src="/js/tests-data.js?v=1"></script>
+<script src="/js/tests-data.js?v=2"></script>
 <script>
 const $=s=>document.querySelector(s),U=n=>'<svg class="i" aria-hidden="true"><use href="#i-'+n+'"/></svg>',R=document.documentElement;
 R.dataset.theme=localStorage.theme||R.dataset.theme||'light';const sy=()=>th.innerHTML=U(R.dataset.theme=='dark'?'sun':'moon');sy();
@@ -83,35 +98,60 @@ const FN={'IBM Plex Sans Arabic':'IBM+Plex+Sans+Arabic:wght@400;500;600;700','El
 function applyT(){document.querySelectorAll('[data-t]').forEach(e=>{const v=(S['t_'+e.dataset.t]||'').trim();if(v)e.textContent=v})}
 function applyF(){const g=new Set(),css=[],pick=(k,sel)=>{const n=(S[k]||'').trim();if(!FN[n])return;g.add('family='+FN[n]);css.push(sel+"{font-family:'"+n+"','IBM Plex Sans Arabic',Tahoma,sans-serif!important}")};pick('f_body','body');pick('f_head','h1,h2,h3,.brand');if(!g.size)return;const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?'+[...g].join('&')+'&display=swap';document.head.appendChild(l);const st=document.createElement('style');st.textContent=css.join('');document.head.appendChild(st)}
 const SP=jget('/api/settings').then(s=>{s=s&&typeof s=='object'?s:{};Object.assign(S,s);applyT();applyF();if(s.img_mark)document.querySelectorAll('.brand img').forEach(i=>i.src=s.img_mark)}).catch(()=>{});
-const V=$('#view'),SS=$('#ssr'),DISC='هذا الاختبار أداة توعوية مبسّطة وليس تشخيصاً طبياً أو نفسياً، ولا يغني عن تقييم مختص. تُحسب نتيجتك داخل متصفحك فقط، ولا تُحفظ ولا تُرسل إلى أي خادم.';
+const V=$('#view'),SS=$('#ssr'),DISC='هذا الاختبار أداة توعوية مبسّطة وليس تشخيصاً طبياً أو نفسياً، ولا يغني عن تقييم مختص. تُحسب نتيجتك داخل متصفحك فقط ولا تُرسل إلى أي خادم، ولا تُحفظ إلا على جهازك إذا اخترت ذلك بنفسك.';
 const SAFE='إذا كانت لديك أفكار لإيذاء نفسك أو شعور بالخطر، فتوجّه فوراً إلى أقرب طوارئ أو تواصل مع رقم الطوارئ في بلدك، ولا تنتظر نتيجة أي اختبار.';
 const cur=()=>{let id=(location.pathname.match(/^\/tests\/([^\/]+)/)||[])[1]||new URLSearchParams(location.search).get('t')||'';try{id=decodeURIComponent(id)}catch(e){}return TESTS.byId(id)};
 const cardH=t=>`<a class="tc" href="/tests/${encodeURIComponent(t.id)}"><div class="ci">${U(t.icon)}</div><h3>${esc(t.title)}</h3><p>${esc(t.short)}</p><div class="mt"><span>${t.q.length} أسئلة · ${t.min==1?'دقيقة':'دقيقتان'}</span><span class="go">ابدأ ${U('arr')}</span></div></a>`;
 const setSeo=(t,d)=>{if(!R.dataset.ssr){document.title=t;const m=document.getElementById('md');if(m)m.content=d}};
-function showIndex(){SS.innerHTML='';setSeo('اختبارات التقييم الذاتي | دوبامين — د. ممدوح حمدي','اختبارات تقييم ذاتي مجانية وسرّية: التوتر، النوم، الاحتراق النفسي، القلق، وجودة العلاقة.');
-V.innerHTML=`<div class="ph"><span class="ey">اختبر نفسك</span><h1>اختبارات التقييم الذاتي</h1><p>اختبارات قصيرة تساعدك على فهم حالتك النفسية والأسرية وتعطيك خطوات عملية. مجانية وسرّية، وتُحسب نتيجتك في متصفحك دون إرسال أي بيانات.</p></div><div class="tg">${TESTS.list.map(cardH).join('')}</div><div class="note">${U('shield')}<span>${esc(DISC)}</span></div>`}
+function showIndex(){SS.innerHTML='';setSeo('اختبارات التقييم الذاتي | دوبامين — د. ممدوح حمدي','اختبارات تقييم ذاتي مجانية وسرّية: التوتر، النوم، الاحتراق النفسي، القلق، الاكتئاب، الغضب، الحقد والضغينة، تقدير الذات وغيرها.');
+let cat='all',q='';const H=hist();
+V.innerHTML=`<div class="ph"><span class="ey">اختبر نفسك</span><h1>اختبارات التقييم الذاتي</h1><p>${TESTS.list.length} اختباراً قصيراً تساعدك على فهم حالتك النفسية والأسرية وتعطيك خطوات عملية. مجانية وسرّية، وتُحسب نتيجتك في متصفحك دون إرسال أي بيانات.</p></div>
+<div class="tools"><input class="srch" id="sq" type="search" placeholder="ابحث عن اختبار (مثال: حقد، نوم، غضب)…" aria-label="بحث في الاختبارات"><div class="fl" id="fl"><button type="button" data-c="all" aria-pressed="true">الكل</button>${TESTS.CATS.map(c=>`<button type="button" data-c="${c.id}" aria-pressed="false">${esc(c.label)}</button>`).join('')}</div></div>
+<div class="tg" id="tg"></div><div class="emp" id="em" hidden>لا توجد اختبارات مطابقة لبحثك.</div>
+<div id="hsb" class="hsb"></div>
+<div class="note">${U('shield')}<span>${esc(DISC)}</span></div>`;
+const norm=x=>String(x||'').replace(/[\u064B-\u065F\u0670]/g,'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').toLowerCase();
+const draw=()=>{const nq=norm(q),L=TESTS.list.filter(x=>(cat=='all'||x.cat==cat)&&(!nq||norm(x.title+' '+x.short+' '+x.desc).indexOf(nq)>-1));
+$('#tg').innerHTML=L.map(x=>{const l=lastOf(x.id);return cardH(x).replace(/<\/a>$/,(l?'<div class="kh">آخر نتيجة لك: '+esc(l.label)+'</div>':'')+'</a>')}).join('');$('#em').hidden=!!L.length};
+draw();
+$('#sq').oninput=e=>{q=e.target.value.trim();draw()};
+$('#fl').onclick=e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.c;document.querySelectorAll('#fl button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()};
+if(H.length){const rows=H.slice().reverse().slice(0,8).map(x=>{const T=TESTS.byId(x.id);return T?`<div class="r"><span><a href="/tests/${encodeURIComponent(x.id)}" style="font-weight:600">${esc(T.title)}</a> — ${esc(x.label)} (${x.pct}%)</span><small>${esc(fmtD(x.ts))}</small></div>`:''}).join('');
+$('#hsb').innerHTML=`<div class="box" style="margin-top:6px"><h3 style="font-size:18px;margin-bottom:6px">نتائجك السابقة <small style="color:var(--mu);font-weight:500">(محفوظة على جهازك فقط)</small></h3><div class="hs">${rows}</div><div class="more"><button class="btn o sm" id="clh">مسح كل نتائجي المحفوظة</button></div></div>`;
+$('#clh').onclick=()=>{if(confirm('هل تريد مسح كل النتائج المحفوظة على هذا الجهاز؟')){try{localStorage.removeItem(HK)}catch(e){}showIndex()}}}}
+const HK='tr_hist_v1',hist=()=>{try{const a=JSON.parse(localStorage.getItem(HK)||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}},
+saveH=a=>{try{localStorage.setItem(HK,JSON.stringify(a.slice(-60)))}catch(e){}},
+lastOf=id=>hist().filter(x=>x.id==id).pop(),
+fmtD=ts=>{try{return new Date(ts).toLocaleDateString('ar-EG',{day:'numeric',month:'long',year:'numeric'})}catch(e){return''}};
 let t,ans,qi;
 function showIntro(){SS.innerHTML='';setSeo(t.title+' | دوبامين — د. ممدوح حمدي',t.desc);
 V.innerHTML=`<div class="ph"><span class="ey">اختبار تقييم ذاتي</span><h1>${esc(t.title)}</h1><p>${esc(t.desc)}</p></div><div class="box"><div class="chips"><span>${U('list')} ${t.q.length} أسئلة</span><span>${U('clk')} ${t.min==1?'أقل من دقيقة':'نحو دقيقتين'}</span><span>${U('shield')} سرّي بدون تسجيل</span></div><p>${esc(t.period)}</p><div style="margin-top:18px"><button class="btn lg" id="go">${U('arr')} ابدأ الاختبار</button></div><div class="note">${U('alert')}<span>${esc(DISC)}</span></div></div><div class="more"><a class="btn o sm" href="/tests">${U('list')} كل الاختبارات</a></div>`;
 $('#go').onclick=()=>{ans=[];qi=0;showQ()}}
 function showQ(){const q=t.q[qi],n=t.q.length,v=ans[qi];
-V.innerHTML=`<div class="ph" style="padding-bottom:10px"><span class="ey">${esc(t.title)}</span></div><div class="box"><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${qi}"><i style="width:${qi/n*100}%"></i></div><div class="pm"><span>السؤال ${qi+1} من ${n}</span><span>${Math.round(qi/n*100)}%</span></div><h2 class="qt" id="qt" tabindex="-1">${esc(q.t)}</h2><fieldset class="ops" aria-labelledby="qt">${TESTS.FREQ.map((f,k)=>`<label class="op"><input type="radio" name="o" value="${k}"${v===k?' checked':''}><span>${f}</span></label>`).join('')}</fieldset><div class="qa"><button class="btn o sm" id="bk"${qi?'':' disabled'}><span style="display:inline-block;transform:scaleX(-1)">${U('arr')}</span> السابق</button><button class="btn sm" id="nx"${v==null?' disabled':''}>${qi==n-1?'إظهار النتيجة':'التالي'}</button></div></div>`;
+V.innerHTML=`<div class="ph" style="padding-bottom:10px"><span class="ey">${esc(t.title)}</span></div><div class="box"><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${qi}"><i style="width:${qi/n*100}%"></i></div><div class="pm"><span>السؤال ${qi+1} من ${n}</span><span>${Math.round(qi/n*100)}%</span></div><h2 class="qt" id="qt" tabindex="-1">${esc(q.t)}</h2><fieldset class="ops" aria-labelledby="qt">${TESTS.FREQ.map((f,k)=>`<label class="op"><input type="radio" name="o" value="${k}"${v===k?' checked':''}><span>${f}</span></label>`).join('')}</fieldset><div class="kh" aria-hidden="true">تلميح: اضغط الأرقام 1–5 من لوحة المفاتيح للإجابة.</div><div class="qa"><button class="btn o sm" id="bk"${qi?'':' disabled'}><span style="display:inline-block;transform:scaleX(-1)">${U('arr')}</span> السابق</button><button class="btn sm" id="nx"${v==null?' disabled':''}>${qi==n-1?'إظهار النتيجة':'التالي'}</button></div></div>`;
 const nx=()=>{if(ans[qi]==null)return;if(qi==n-1)showRes();else{qi++;showQ()}};
 document.querySelectorAll('.op input').forEach(i=>i.onchange=()=>{ans[qi]=+i.value;$('#nx').disabled=false;clearTimeout(showQ.t);showQ.t=setTimeout(nx,260)});
 $('#bk').onclick=()=>{clearTimeout(showQ.t);if(qi){qi--;showQ()}};$('#nx').onclick=()=>{clearTimeout(showQ.t);nx()};
+document.onkeydown=e=>{if(!t||e.ctrlKey||e.metaKey||e.altKey||!$('.ops'))return;const k=+e.key;if(k>=1&&k<=5){const i=document.querySelectorAll('.op input')[k-1];if(i){i.checked=true;i.dispatchEvent(new Event('change'))}}};
 if(qi||ans.length)$('#qt').focus({preventScroll:true});scrollTo({top:0,behavior:'smooth'})}
-function showRes(){const r=TESTS.score(t,ans),b=r.band,lvIc={low:'chk',mid:'alert',high:'alert'}[r.level];
+function showRes(){const r=TESTS.score(t,ans),b=r.band,lvIc={low:'chk',mid:'alert',high:'alert'}[r.level],prev=lastOf(t.id),tp=TESTS.top(t,ans,3),rel=TESTS.list.filter(x=>x.id!=t.id&&x.cat==t.cat).slice(0,3);
+const safeBox=r.flag?`<div class="alert" role="alert">${U('alert')}<div><strong>أمانك أولاً</strong>${esc(SAFE)} يمكنك أيضاً أن تخبر شخصاً قريباً منك الآن بما تشعر به، وأن تطلب مساعدة مختص في أقرب وقت.</div></div>`:'';
+const diff=prev?(r.pct-prev.pct):null,cmp=prev?`<div class="cmp">آخر مرة (${esc(fmtD(prev.ts))}) كانت نتيجتك ${prev.pct}% — ${diff==0?'لم تتغير نتيجتك.':diff<0?'تحسّنت بمقدار <b class="dn">'+Math.abs(diff)+'%</b>.':'ارتفعت بمقدار <b class="up">'+diff+'%</b>.'}</div>`:'';
+const fxH=tp.length?`<h3 style="margin-top:18px;font-size:17px">أكثر ما أثّر في نتيجتك</h3><ul class="fx">${tp.map(x=>`<li>${esc(x.r?'ضعف في: '+x.text:x.text)}</li>`).join('')}</ul>`:'';
+const relH=rel.length?`<div class="rel"><h3>اختبارات قد تهمّك أيضاً</h3><div class="tg" style="padding-bottom:0">${rel.map(cardH).join('')}</div></div>`:'';
 const msg='أجريت اختبار «'+t.title.replace('اختبار ','')+'» في موقعكم وكانت نتيجتي: '+b.label+'. أرغب في حجز جلسة.';
 const wn=(S.whatsapp||'').replace(/\D/g,''),wa=wn?'https://wa.me/'+wn+'?text='+encodeURIComponent(msg):'';
 const cta=r.level=='low'?`<div class="cta soft"><h3>واصل رحلتك نحو توازن أفضل</h3><p>نتيجتك مطمئنة. تابع مقالاتنا العملية، وإن أحببت جلسة وقائية أو لديك أسئلة فنحن هنا.</p><div class="acts"><a class="btn" href="/articles">${U('file')} اقرأ المقالات</a><button class="btn o" id="bkb">${U('cal')} احجز جلسة</button><a class="btn o" href="/#ask">${U('msg')} اسأل الدكتور</a></div></div>`:
 `<div class="cta"><h3>${r.level=='high'?'ننصحك بعدم تأجيل الاستشارة':'جلسة واحدة قد تغيّر الكثير'}</h3><p>${r.level=='high'?'نتيجتك تستحق اهتماماً متخصصاً. احجز جلسة سرّية ونضع معاً خطة مناسبة لحالتك.':'احجز جلسة استشارية لنفهم وضعك ونضع خطوات عملية قبل أن تتفاقم الأمور.'}</p><div class="acts"><button class="btn g" id="bkb">${U('cal')} احجز جلسة</button>${wa?`<a class="btn wa" target="_blank" rel="noopener" href="${esc(wa)}">${U('wa')} واتساب</a>`:''}<a class="btn" href="/#ask">${U('msg')} اسأل الدكتور</a></div></div>`;
-V.innerHTML=`<div class="ph" style="padding-bottom:10px"><span class="ey">${esc(t.title)}</span></div><div class="box rs"><span class="lv ${r.level}">${U(lvIc)} ${esc(b.label)}</span><h2>${esc(b.label)}</h2><div class="pc">مؤشر النتيجة: ${r.pct}%</div><div class="gauge" aria-hidden="true"><b id="mk"></b></div><div class="gl" aria-hidden="true"><span>منخفض</span><span>متوسط</span><span>مرتفع</span></div><p style="margin-top:16px">${esc(b.text)}</p><h3 style="margin-top:18px;font-size:17px">خطوات تساعدك الآن</h3><ul class="tips">${b.tips.map(x=>`<li>${U('chk')}<span>${esc(x)}</span></li>`).join('')}</ul></div>${cta}
+V.innerHTML=`<div class="ph" style="padding-bottom:10px"><span class="ey">${esc(t.title)}</span></div>${safeBox}<div class="box rs"><span class="lv ${r.level}">${U(lvIc)} ${esc(b.label)}</span><h2>${esc(b.label)}</h2><div class="pc">مؤشر النتيجة: ${r.pct}%</div><div class="gauge" aria-hidden="true"><b id="mk"></b></div><div class="gl" aria-hidden="true"><span>منخفض</span><span>متوسط</span><span>مرتفع</span></div>${cmp}<p style="margin-top:16px">${esc(b.text)}</p>${fxH}<h3 style="margin-top:18px;font-size:17px">خطوات تساعدك الآن</h3><ul class="tips">${b.tips.map(x=>`<li>${U('chk')}<span>${esc(x)}</span></li>`).join('')}</ul><div class="sv"><label><input type="checkbox" id="svc"> احفظ هذه النتيجة على جهازي فقط لأقارن بها لاحقاً</label></div></div>${cta}
 <div class="note">${U('alert')}<span>${esc(DISC)}</span></div><div class="sf">${esc(SAFE)}</div>
-<div class="more"><button class="btn o sm" id="rt">${U('arr')} أعد الاختبار</button><a class="btn o sm" href="/tests">${U('list')} اختبار آخر</a></div>
+<div class="more"><button class="btn o sm" id="rt">${U('arr')} أعد الاختبار</button><a class="btn o sm" href="/tests">${U('list')} اختبار آخر</a><button class="btn o sm" id="pr">${U('file')} طباعة / حفظ كـ PDF</button></div>${relH}
 <div class="sh"><a class="btn o sm" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(t.title+' — اختبار مجاني وسرّي: '+location.origin+'/tests/'+t.id)}">${U('wa')} شارك الاختبار</a><button class="btn o sm" id="cp">${U('copy')} <span>نسخ رابط الاختبار</span></button></div>`;
 requestAnimationFrame(()=>requestAnimationFrame(()=>{const m=$('#mk');if(m)m.style.insetInlineStart=r.pct+'%'}));
 const bb=$('#bkb');if(bb)bb.onclick=()=>{try{sessionStorage.bookMsg=msg}catch(e){}location.href='/#book'};
 $('#rt').onclick=()=>{ans=[];qi=0;showQ()};
+$('#pr').onclick=()=>window.print();
+$('#svc').onchange=e=>{let a=hist();if(e.target.checked){a.push({id:t.id,pct:r.pct,label:b.label,ts:Date.now()});saveH(a);e.target.parentNode.lastChild.textContent=' تم الحفظ على جهازك ✓ (يمكنك مسحها من صفحة كل الاختبارات)'}else{for(let i=a.length-1;i>=0;i--)if(a[i].id==t.id){a.splice(i,1);break}saveH(a);e.target.parentNode.lastChild.textContent=' احفظ هذه النتيجة على جهازي فقط لأقارن بها لاحقاً'}};
 $('#cp').onclick=async()=>{const u=location.origin+'/tests/'+t.id,l=$('#cp span');try{await navigator.clipboard.writeText(u);l.textContent='تم النسخ ✓'}catch(e){prompt('انسخ الرابط',u)}setTimeout(()=>l.textContent='نسخ رابط الاختبار',2200)};
 scrollTo({top:0,behavior:'smooth'})}
 t=cur();t?showIntro():showIndex();
