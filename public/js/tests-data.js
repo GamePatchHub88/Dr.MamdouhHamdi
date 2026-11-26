@@ -592,5 +592,174 @@
     return arr.filter(function (x) { return x.v >= 3; }).slice(0, n || 3);
   }
 
-  return { list: TESTS, byId: byId, score: score, top: top, FREQ: FREQ, CATS: CATS };
+  /* ===== إضافات v4: مستوى النتيجة، أسماء مختصرة، كاشف الارتباط، اختبار «نحن الاثنان» =====
+     لا تغيّر صيغة TESTS؛ كل ما يلي منفصل عنها. القواعد أدناه إشارات عامة غير تشخيصية. */
+  var LV = { low: 0, mid: 1, high: 2 };
+
+  /* الفئة التي تقع فيها نسبة مئوية لاختبار معيّن (تُستعمل لنتائج قديمة لا تحمل مستواها) */
+  function bandOf(t, pct) {
+    var b = t.bands[t.bands.length - 1];
+    for (var j = 0; j < t.bands.length; j++) if (pct <= t.bands[j].max) { b = t.bands[j]; break; }
+    return b;
+  }
+
+  /* أسماء مختصرة لتسميات الرسم الراداري */
+  var SHORT = {
+    stress: 'التوتر', sleep: 'النوم', burnout: 'الاحتراق', anxiety: 'القلق', relationship: 'التواصل',
+    grudge: 'الضغينة', depression: 'المزاج', anger: 'الغضب', selfesteem: 'تقدير الذات',
+    socialanxiety: 'القلق الاجتماعي', procrastination: 'التسويف', perfectionism: 'الكمالية',
+    phone: 'الهاتف', loneliness: 'الوحدة', jealousy: 'الغيرة', eq: 'الذكاء العاطفي',
+    ptsd: 'أثر الصدمات', worklife: 'العمل والحياة'
+  };
+
+  /* قواعد كاشف الارتباط. all: كل الشروط لازمة. any: يكفي شرط واحد منها (اختياري).
+     lv: أدنى مستوى مطلوب ('mid' = متوسط فأعلى، 'high' = مرتفع).
+     next: اختبارات مقترحة بالترتيب؛ يُختار أول ما لم يُجرِه الزائر بعد. */
+  var RULES = [
+    { id: 'sleep-stress', all: [{ t: 'sleep', lv: 'mid' }, { t: 'stress', lv: 'high' }],
+      note: 'نومٌ متقطع مع توتر مرتفع قد يكونان علامة على أن طاقتك تُستنزف. كثيراً ما يسبق ذلك إرهاقٌ ممتد، فمن اللطيف أن تتفقد نفسك مبكراً. هذه ليست تشخيصاً، بل إشارة عامة تستحق الانتباه.',
+      next: ['burnout', 'worklife'] },
+    { id: 'burnout-worklife', all: [{ t: 'burnout', lv: 'mid' }, { t: 'worklife', lv: 'mid' }],
+      note: 'يبدو أن العمل أو الدراسة يتمدد على حساب راحتك، وهذا يتوافق مع مؤشرات الإرهاق التي ظهرت. قد يفيدك تحديد حدود صغيرة وثابتة لوقتك.',
+      next: ['stress', 'sleep'] },
+    { id: 'stress-anxiety', all: [{ t: 'stress', lv: 'mid' }, { t: 'anxiety', lv: 'mid' }],
+      note: 'التوتر والقلق يغذّي أحدهما الآخر أحياناً: ضغوط كثيرة تُبقي الذهن في حالة استنفار. التنفس البطيء وتنظيم النوم يخففان الكثير من ذلك، وهذه ملاحظة عامة وليست حكماً على حالتك.',
+      next: ['sleep', 'perfectionism'] },
+    { id: 'mood-lonely', all: [{ t: 'depression', lv: 'mid' }, { t: 'loneliness', lv: 'mid' }],
+      note: 'المزاج المنخفض والشعور بالوحدة يتشابكان كثيراً: كلٌّ منهما يجعل الآخر أثقل. خطوة تواصل صغيرة مع شخص تثق به قد تكون بداية لطيفة، ولا بأس أن تطلب دعماً متخصصاً. هذه إشارة عامة وليست تشخيصاً.',
+      next: ['sleep', 'anxiety'] },
+    { id: 'phone-sleep', all: [{ t: 'phone', lv: 'mid' }, { t: 'sleep', lv: 'mid' }],
+      note: 'قد يكون للهاتف في آخر اليوم أثر على نومك؛ الضوء والتصفح المتواصل يؤخران النوم عند كثيرين. جرّب إبعاده نصف ساعة قبل النوم.',
+      next: ['procrastination', 'stress'] },
+    { id: 'procrast-perfect', all: [{ t: 'procrastination', lv: 'mid' }, { t: 'perfectionism', lv: 'mid' }],
+      note: 'أحياناً يكون التسويف خوفاً من ألا يخرج العمل مثالياً، لا كسلاً. البدء بنسخة غير كاملة قد يخفف هذا الضغط.',
+      next: ['anxiety', 'selfesteem'] },
+    { id: 'anger-stress', all: [{ t: 'anger', lv: 'mid' }, { t: 'stress', lv: 'mid' }],
+      note: 'حين يرتفع التوتر يصبح الغضب أقرب وأسرع. الاستراحة القصيرة قبل الرد قد تغيّر كثيراً في اللحظات الساخنة.',
+      next: ['eq', 'sleep'] },
+    { id: 'esteem-social', all: [{ t: 'selfesteem', lv: 'high' }, { t: 'socialanxiety', lv: 'mid' }],
+      note: 'نظرة قاسية للذات قد تجعل المواقف الاجتماعية أثقل. التدرّج في مواقف صغيرة مع أشخاص مريحين يبني الثقة خطوة بخطوة.',
+      next: ['perfectionism', 'loneliness'] },
+    { id: 'rel-jealous', all: [{ t: 'relationship', lv: 'mid' }], any: [{ t: 'jealousy', lv: 'mid' }, { t: 'grudge', lv: 'mid' }],
+      note: 'قد يكون في العلاقة مشاعر قديمة أو مخاوف تؤثر على طريقة الحوار بينكما. الحديث عنها بهدوء وبصيغة «أشعر…» غالباً ما يفتح باباً أفضل.',
+      next: ['eq', 'anger'] },
+    { id: 'ptsd-sleep', all: [{ t: 'ptsd', lv: 'mid' }, { t: 'sleep', lv: 'mid' }],
+      note: 'الأحداث الصعبة قد تنعكس على النوم والراحة. إن كان ذلك يؤثر على يومك فالحديث مع مختص يساعد كثيراً، ولا داعي لتحمّل ذلك وحدك.',
+      next: ['anxiety', 'depression'] },
+    { id: 'lonely-social', all: [{ t: 'loneliness', lv: 'mid' }, { t: 'socialanxiety', lv: 'mid' }],
+      note: 'الشعور بالوحدة مع التحفظ في المواقف الاجتماعية يتغذيان على بعضهما أحياناً. البدء بلقاءات صغيرة قصيرة قد يكون أسهل مدخل.',
+      next: ['selfesteem', 'eq'] }
+  ];
+
+  var NEXT_PRIORITY = ['stress', 'sleep', 'burnout', 'anxiety', 'selfesteem', 'relationship', 'eq', 'worklife', 'phone',
+    'procrastination', 'perfectionism', 'anger', 'loneliness', 'depression', 'socialanxiety', 'jealousy', 'grudge', 'ptsd'];
+
+  /* الاختبار المقترح التالي عندما لا تحدّد قاعدة بعينها: أول اختبار لم يجرِه الزائر */
+  function suggestNext(L) {
+    for (var i = 0; i < NEXT_PRIORITY.length; i++) if (!L[NEXT_PRIORITY[i]] && byId(NEXT_PRIORITY[i])) return NEXT_PRIORITY[i];
+    return null;
+  }
+  function pickNext(list, L) {
+    for (var i = 0; i < list.length; i++) if (!L[list[i]] && byId(list[i])) return list[i];
+    return suggestNext(L);
+  }
+  function condOK(c, L) {
+    var x = L[c.t], T = byId(c.t);
+    if (!x || !T) return false;
+    return LV[x.lv || bandOf(T, x.pct).k] >= LV[c.lv];
+  }
+
+  /* L: { testId: { pct, lv? } } — آخر نتيجة لكل اختبار. focus (اختياري): لا تُعاد إلا القواعد التي تشمل هذا الاختبار.
+     تُعيد حتى قاعدتين، الأشد أولاً: [{ id, note, ids, next }] */
+  function correlate(L, focus) {
+    var out = [];
+    for (var i = 0; i < RULES.length; i++) {
+      var r = RULES[i], ok = true, ids = [], sev = 0, j;
+      for (j = 0; j < r.all.length; j++) { if (!condOK(r.all[j], L)) { ok = false; break; } ids.push(r.all[j].t); }
+      if (!ok) continue;
+      if (r.any) {
+        var hit = false;
+        for (j = 0; j < r.any.length; j++) if (condOK(r.any[j], L)) { hit = true; ids.push(r.any[j].t); break; }
+        if (!hit) continue;
+      }
+      if (focus && ids.indexOf(focus) < 0) continue;
+      for (j = 0; j < ids.length; j++) sev += LV[L[ids[j]].lv || bandOf(byId(ids[j]), L[ids[j]].pct).k];
+      out.push({ id: r.id, note: r.note, ids: ids, sev: sev, next: pickNext(r.next, L) });
+    }
+    out.sort(function (a, b) { return b.sev - a.sev; });
+    return out.slice(0, 2);
+  }
+
+  /* ===== اختبار «نحن الاثنان» (جودة التواصل بين الزوجين) =====
+     ليس ضمن TESTS عمداً (لا يظهر في القوائم ولا sitemap). الدرجة الأعلى بعد التطبيع = تواصل أفضل.
+     r:1 = بند عكسي. d = المحور. */
+  var COUPLE = {
+    id: 'couple',
+    title: 'اختبار «نحن الاثنان»: جودة التواصل بين الزوجين',
+    short: 'يجيب كلٌّ منكما على جهازه، ثم تظهر الفجوات بين إجابتيكما لتبدآ حواراً هادئاً.',
+    desc: 'اختبار لجودة التواصل بين الزوجين: يجيب كل طرف على جهازه بسرّية، وتُعرض الفجوات بين إجابتيهما بعد اكتمال الطرفين. أداة توعوية غير تشخيصية، وتُحفظ الإجابات مشفّرة ومؤقتاً فقط.',
+    period: 'أجب بما تشعر به أنت تجاه علاقتكما خلال الشهرين الأخيرين، لا بما تتوقع أن يجيب به شريكك.',
+    icon: 'users', min: 2,
+    dims: [
+      { id: 'listen', label: 'الإصغاء والفهم' },
+      { id: 'respect', label: 'الاحترام في الحوار' },
+      { id: 'conflict', label: 'إدارة الخلاف' },
+      { id: 'close', label: 'القرب والتقدير' },
+      { id: 'repair', label: 'المصالحة والتجاوز' }
+    ],
+    q: [
+      { t: 'أشعر بأن شريكي يُصغي لي حين أتحدث دون أن يقاطعني.', d: 'listen' },
+      { t: 'أشعر بأن شريكي يفهم ما أقصده فعلاً لا ظاهر كلامي فقط.', d: 'listen' },
+      { t: 'أستطيع أن أقول لشريكي ما أحتاجه بوضوح دون خوف من رد فعله.', d: 'respect' },
+      { t: 'نتحدث مع بعضنا بنبرة محترمة حتى ونحن غاضبان.', d: 'respect' },
+      { t: 'يحدث أن نتبادل السخرية أو الإهانة أثناء النقاش.', d: 'respect', r: 1 },
+      { t: 'نستطيع مناقشة خلافاتنا دون أن تتحول إلى شجار طويل.', d: 'conflict' },
+      { t: 'أتجنب فتح مواضيع مهمة مع شريكي لأنني أتوقع أن ينتهي النقاش بسوء.', d: 'conflict', r: 1 },
+      { t: 'حين نختلف نبحث عن حل يناسب الطرفين.', d: 'conflict' },
+      { t: 'نخصص وقتاً للحديث معاً عن أمور غير المسؤوليات والالتزامات.', d: 'close' },
+      { t: 'أشعر بأن شريكي يقدّر ما أفعله من أجل الأسرة والعلاقة.', d: 'close' },
+      { t: 'بعد أي خلاف نعود إلى بعضنا ونصلح الأمور بسرعة.', d: 'repair' },
+      { t: 'تبقى بيننا أمور قديمة لم تُحسم ونعود لفتحها في كل خلاف.', d: 'repair', r: 1 }
+    ],
+    steps: [
+      'اختارا وقتاً هادئاً نحو 20 دقيقة، وابدآ بما تتفقان عليه قبل الحديث عن الفجوات.',
+      'ناقشا فجوة واحدة فقط في كل جلسة، وليتحدث كلٌّ منكما بصيغة «أشعر…» بدل «أنت دائماً…».',
+      'كرّرا الاختبار بعد شهر لتريا هل تقلّصت الفجوات، واطلبا مساعدة مختص إذا تكرر التوتر بينكما.'
+    ]
+  };
+
+  /* a, b: مصفوفتا إجابات الطرفين (0..4). تُعيد null إن كانت غير صالحة.
+     a/b في النتيجة بعد التطبيع (الأعلى = أفضل)، وra/rb الإجابة الخام كما اختارها كل طرف. */
+  function coupleCompare(a, b) {
+    var q = COUPLE.q, n = q.length, items = [], i;
+    function ok(v) { return typeof v === 'number' && v >= 0 && v <= 4 && v === Math.floor(v); }
+    if (!a || !b || a.length !== n || b.length !== n) return null;
+    for (i = 0; i < n; i++) {
+      if (!ok(a[i]) || !ok(b[i])) return null;
+      var na = q[i].r ? 4 - a[i] : a[i], nb = q[i].r ? 4 - b[i] : b[i];
+      items.push({ i: i, d: q[i].d, text: q[i].t, ra: a[i], rb: b[i], a: na, b: nb, gap: Math.abs(na - nb) });
+    }
+    var dims = COUPLE.dims.map(function (d) {
+      var xs = items.filter(function (x) { return x.d === d.id; }), sa = 0, sb = 0;
+      xs.forEach(function (x) { sa += x.a; sb += x.b; });
+      var m = xs.length * 4;
+      return { id: d.id, label: d.label, a: Math.round(sa / m * 100), b: Math.round(sb / m * 100) };
+    });
+    var tg = 0;
+    items.forEach(function (x) { tg += x.gap; });
+    var avg = tg / n;
+    var byGap = items.slice().sort(function (x, y) { return y.gap - x.gap || x.i - y.i; });
+    return {
+      dims: dims, items: items, avgGap: avg,
+      gaps: byGap.filter(function (x) { return x.gap >= 2; }).slice(0, 4),
+      agree: items.filter(function (x) { return x.gap <= 1 && x.a >= 3 && x.b >= 3; }).slice(0, 3),
+      level: avg < 0.8 ? 'close' : avg < 1.5 ? 'some' : 'wide'
+    };
+  }
+
+  return {
+    list: TESTS, byId: byId, score: score, top: top, FREQ: FREQ, CATS: CATS,
+    bandOf: bandOf, SHORT: SHORT, RULES: RULES, correlate: correlate, suggestNext: suggestNext,
+    couple: COUPLE, coupleCompare: coupleCompare
+  };
 });
