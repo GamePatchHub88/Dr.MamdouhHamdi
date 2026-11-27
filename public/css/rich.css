@@ -2,9 +2,9 @@
    كل القواعد داخل .rich وتقرأ ألوان الصفحة (--card --bd --mu --pt --p --tx …) مع قيم احتياطية. */
 
 .rich{
-  --r-card:var(--card,#fff);--r-bd:var(--bd,#dfe9f5);--r-mu:var(--mu,#566b82);--r-pt:var(--pt,#2b7bd0);--r-p:var(--p,#2b7bd0);--r-p2:var(--p2,#4aa8ee);
+  --r-card:var(--card,#fff);--r-bd:var(--bd,#dfe9f5);--r-mu:var(--mu,#566b82);--r-pt:var(--pt,var(--p,#2b7bd0));--r-p:var(--p,var(--p,#2b7bd0));--r-p2:var(--p2,var(--p2,#4aa8ee));
   --r-tx:var(--tx,#0f2236);--r-sh:var(--sh,0 10px 40px #0f2a4a14);--r-sk:var(--sk1,#e6eef9);--r-gold:#d9b25a;
-  --r-serif:var(--serif,'El Messiri','IBM Plex Sans Arabic',serif);
+  --r-serif:var(--serif,'Cairo','IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif);
   --code-bg:#f6f8fa;--code-hd:#eef1f5;--code-tx:#24292f;--code-ln:#8c959f;--code-bd:#d8dee4;
   --t-k:#cf222e;--t-s:#0a3069;--t-c:#6e7781;--t-n:#0550ae;--t-f:#8250df;--t-a:#0550ae;--t-t:#953800;--t-ins:#116329;--t-del:#82071e;--t-insbg:#dafbe1;--t-delbg:#ffebe9;
   font-size:var(--rich-fs,clamp(1.0625rem,1rem + .3vw,1.1875rem));line-height:2.05;overflow-wrap:anywhere;word-break:normal;color:inherit
@@ -65,14 +65,14 @@
 .rich blockquote{margin-block:1.4em;padding:18px 24px;background:var(--r-card);border:1px solid var(--r-bd);border-inline-start:4px solid var(--r-gold);border-radius:18px;font-size:1.05em;color:var(--r-mu)}
 .rich blockquote p{margin:0}.rich blockquote p+p{margin-block-start:.5em}
 .rich blockquote footer{margin-block-start:.8em;font-size:.82em;font-style:normal;color:var(--r-mu);opacity:.9}
-.rich blockquote.q-card{background:#2b7bd014;border:0;border-inline-start:4px solid var(--r-p);color:var(--r-tx);border-radius:14px}
+.rich blockquote.q-card{background:rgb(var(--prgb,43 123 208)/0.08);border:0;border-inline-start:4px solid var(--r-p);color:var(--r-tx);border-radius:14px}
 .rich blockquote.q-minimal{background:none;border:0;border-inline-start:3px solid var(--r-bd);border-radius:0;padding:4px 18px;font-style:italic}
 .rich blockquote.q-pull{position:relative;background:none;border:0;border-block:2px solid var(--r-gold);border-radius:0;text-align:center;color:var(--r-tx);font-family:var(--r-serif);font-size:clamp(1.2rem,1.05rem + .9vw,1.55rem);line-height:1.8;padding:40px 12px 20px;margin-block:2em}
 .rich blockquote.q-pull::before{content:"\201D";position:absolute;inset-block-start:-.05em;inset-inline-start:50%;transform:translateX(-50%);font-size:3.6em;line-height:1;color:var(--r-gold);font-family:Georgia,serif}
 [dir=rtl] .rich blockquote.q-pull::before{content:"\201C"}
 
 /* ---------- صناديق التنبيه ---------- */
-.rich .co{--co:#2b7bd0;margin-block:1.5em;padding:14px 18px 14px;border:1px solid #2b7bd033;border-inline-start:4px solid var(--co);border-radius:14px;background:#2b7bd012;font-size:.96em;line-height:1.95}
+.rich .co{--co:var(--p,#2b7bd0);margin-block:1.5em;padding:14px 18px 14px;border:1px solid rgb(var(--prgb,43 123 208)/0.2);border-inline-start:4px solid var(--co);border-radius:14px;background:rgb(var(--prgb,43 123 208)/0.07);font-size:.96em;line-height:1.95}
 .rich .co-tip{--co:#16a34a;border-color:#16a34a33;background:#16a34a12}
 .rich .co-warning{--co:#d97706;border-color:#d9770633;background:#d9770614}
 .rich .co-danger{--co:#dc2626;border-color:#dc262633;background:#dc262612}
@@ -121,8 +121,8 @@
 .rich .tw th,.rich .tw td{min-width:7.5rem;max-width:26rem;padding:9px 14px;text-align:start;vertical-align:top;border-block-end:1px solid var(--r-bd);border-inline-end:1px solid var(--r-bd)}
 .rich .tw th:last-child,.rich .tw td:last-child{border-inline-end:0}.rich .tw tbody tr:last-child td{border-block-end:0}
 .rich .tw thead th{position:sticky;inset-block-start:0;z-index:2;background:var(--r-sk);font-weight:700;box-shadow:0 1px 0 var(--r-bd)}
-.rich .tw tbody tr:nth-child(even) td{background:#2b7bd00a}
-@media(hover:hover){.rich .tw tbody tr:hover td{background:#2b7bd014}}
+.rich .tw tbody tr:nth-child(even) td{background:rgb(var(--prgb,43 123 208)/0.04)}
+@media(hover:hover){.rich .tw tbody tr:hover td{background:rgb(var(--prgb,43 123 208)/0.08)}}
 .rich .tw .ta-r{text-align:right}.rich .tw .ta-l{text-align:left}.rich .tw .ta-c{text-align:center}
 
 /* ---------- عناصر HTML خام خارج المغلِّفات (جدول/كود/iframe/video): لا تتجاوز عرض الشاشة ---------- */

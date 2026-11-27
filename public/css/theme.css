@@ -1,0 +1,45 @@
+/* theme.css — ألوان حسب وقت الزائر + انتقالات الصفحات + خطوط (يُحمَّل من كل صفحات الموقع)
+   data-tod يُضبط قبل الرسم من سكربت صغير في <head> (morning 5–12 · day 12–17 · evening 17–20 · night 20–5).
+   كل التغيير عبر متغيرات CSS فقط. قيم النص والأزرار مفحوصة لتباين WCAG AA. */
+@property --p{syntax:'<color>';inherits:true;initial-value:#2468c0}
+@property --pd{syntax:'<color>';inherits:true;initial-value:#1b55a0}
+@property --pg{syntax:'<color>';inherits:true;initial-value:#2a6fc7}
+@property --p2{syntax:'<color>';inherits:true;initial-value:#4aa3ea}
+@property --pt{syntax:'<color>';inherits:true;initial-value:#1d5cab}
+@property --bg{syntax:'<color>';inherits:true;initial-value:#f2f7fd}
+@property --card{syntax:'<color>';inherits:true;initial-value:#ffffff}
+@property --tx{syntax:'<color>';inherits:true;initial-value:#0f2236}
+@property --mu{syntax:'<color>';inherits:true;initial-value:#516780}
+@property --bd{syntax:'<color>';inherits:true;initial-value:#dfe9f5}
+@property --hd{syntax:'<color>';inherits:true;initial-value:#f2f7fdd9}
+:root{--gr:linear-gradient(135deg,var(--pd),var(--pg));--fh:'Cairo','IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif;--fb:'IBM Plex Sans Arabic','Segoe UI',Tahoma,'Noto Sans Arabic',sans-serif;transition:--p .7s ease,--pd .7s ease,--pg .7s ease,--p2 .7s ease,--pt .7s ease,--bg .7s ease,--card .7s ease,--tx .7s ease,--mu .7s ease,--bd .7s ease,--hd .7s ease}
+@media (prefers-reduced-motion:reduce){:root{transition:none}}
+html[data-tod=morning][data-theme=light]{--p:#1d68cc;--pd:#1553a8;--pg:#2f74d0;--p2:#3d9af0;--pt:#1a5db3;--prgb:29 104 204;--p2rgb:61 154 240;--h1:#0b3d86;--h2:#1660bd;--hs:#d6e7fb;--ring:rgb(29 104 204/.2)}
+html[data-tod=morning][data-theme=light]:not(.calm){--bg:#edf5ff;--card:#ffffff;--tx:#0f2236;--mu:#4f647b;--bd:#d6e4f5;--hd:#edf5ffd9}
+html[data-tod=day][data-theme=light]{--p:#2468c0;--pd:#1b55a0;--pg:#3876c6;--p2:#4aa3ea;--pt:#1d5cab;--prgb:36 104 192;--p2rgb:74 163 234;--h1:#0c3a7a;--h2:#175aae;--hs:#d6e7fb;--ring:rgb(36 104 192/.2)}
+html[data-tod=day][data-theme=light]:not(.calm){--bg:#f2f7fd;--card:#ffffff;--tx:#0f2236;--mu:#516780;--bd:#dfe9f5;--hd:#f2f7fdd9}
+html[data-tod=evening][data-theme=light]{--p:#3a6ca6;--pd:#2e5887;--pg:#4a78ad;--p2:#6b9bd0;--pt:#2d5c92;--prgb:58 108 166;--p2rgb:107 155 208;--h1:#16365f;--h2:#2b5890;--hs:#e1e5ea;--ring:rgb(58 108 166/.2)}
+html[data-tod=evening][data-theme=light]:not(.calm){--bg:#f6f3ee;--card:#fdfbf8;--tx:#1c2733;--mu:#56626f;--bd:#e6dfd3;--hd:#f6f3eed9;--sh:0 10px 40px #2a211818}
+html[data-tod=night][data-theme=light]{--p:#3a6498;--pd:#2d5079;--pg:#5478a5;--p2:#648fc0;--pt:#2b5282;--prgb:58 100 152;--p2rgb:100 143 192;--h1:#122c4e;--h2:#244b7c;--hs:#e1e5ea;--ring:rgb(58 100 152/.2)}
+html[data-tod=night][data-theme=light]:not(.calm){--bg:#f0eeea;--card:#f9f7f3;--tx:#1e2935;--mu:#58636f;--bd:#ddd6ca;--hd:#f0eeead9;--sh:0 10px 40px #2a211818}
+html[data-tod=morning][data-theme=dark],html[data-tod=day][data-theme=dark]{--p:#2a6fc7;--pd:#1f5aa6;--pg:#3576ca;--p2:#4aa8ee;--pt:#7cc4ff;--prgb:42 111 199;--p2rgb:74 168 238;--h1:#06234a;--h2:#0e4a93;--hs:#d6e7fb;--ring:rgb(74 168 238/.27)}
+html[data-tod=morning][data-theme=dark]:not(.calm),html[data-tod=day][data-theme=dark]:not(.calm){--bg:#08121f;--card:#11233a;--tx:#eaf2fc;--mu:#a9bdd4;--bd:#223a58;--hd:#08121fcc}
+html[data-tod=evening][data-theme=dark]{--p:#3a6cad;--pd:#2d5788;--pg:#4876b3;--p2:#6a9acc;--pt:#92c4ee;--prgb:58 108 173;--p2rgb:106 154 204;--h1:#0a2342;--h2:#1c4678;--hs:#e1e5ea;--ring:rgb(106 154 204/.27)}
+html[data-tod=evening][data-theme=dark]:not(.calm){--bg:#0b121b;--card:#131f2d;--tx:#ece9e2;--mu:#b0bac6;--bd:#26364a;--hd:#0b121bcc}
+html[data-tod=night][data-theme=dark]{--p:#38679f;--pd:#2b5380;--pg:#4e78aa;--p2:#5f8dbf;--pt:#9cc3e6;--prgb:56 103 159;--p2rgb:95 141 191;--h1:#091c36;--h2:#163a66;--hs:#e1e5ea;--ring:rgb(95 141 191/.27)}
+html[data-tod=night][data-theme=dark]:not(.calm){--bg:#0d1219;--card:#151d27;--tx:#ece8e1;--mu:#b0b9c3;--bd:#27323f;--hd:#0d1219cc}
+
+/* ===== خطوط: عناوين Cairo، نص IBM Plex Sans Arabic (اختيار المدير من لوحة الإدارة يغلب عبر !important) ===== */
+h1,h2,h3,h4,.brand{font-family:var(--fh)}
+body{font-family:var(--fb);font-synthesis:none}
+.rich{line-height:2.1}.rich p{margin-block-end:1.3em}.rich li{line-height:2.05}.rich p,.rich li{text-wrap:pretty}.rich pre{line-height:1.7}
+.rd .lead{line-height:2.1}.body{line-height:2.2}
+/* ===== انتقالات الصفحات: تلاشٍ هادئ (View Transitions) — تُعطَّل مع prefers-reduced-motion ===== */
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+::view-transition-old(root){animation:dvt-out .18s ease-in both}
+::view-transition-new(root){animation:dvt-in .3s ease-out both}
+@keyframes dvt-out{to{opacity:0}}
+@keyframes dvt-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+/* بديل آمن للمتصفحات غير الداعمة: ظهور هادئ قصير للصفحة (بلا تغيير في التخطيط) */
+@supports not (view-transition-name:none){@media (prefers-reduced-motion:no-preference){body{animation:dvt-in .28s ease-out both}}}
