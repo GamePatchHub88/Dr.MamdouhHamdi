@@ -175,24 +175,16 @@ span.sw{display:inline-block;width:12px;height:12px;border-radius:4px;margin-inl
 body.kdrag,body.kdrag *{user-select:none!important;-webkit-user-select:none!important;cursor:grabbing!important}
 @media(max-width:900px){.tds{grid-template-columns:minmax(0,1fr)}.tdc{border-inline-start:0;border-top:1px solid var(--bd)}.tdc:first-child{border-top:0}.tdh{padding:14px 16px}.kc{flex-basis:80vw;min-width:80vw;scroll-snap-align:center}}
 @media(prefers-reduced-motion:reduce){.kc{transition:none}.tdi.fl{animation:none}}
-/* ===== الإحصاءات (رسوم SVG بلا مكتبات؛ الألوان من متغيرات الثيم فتتبع الوضع الداكن تلقائياً) ===== */
-.sr-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}.sr-h .chips{flex:1 1 auto}
-.sg{display:grid;gap:18px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:start}.sg>.card{margin-bottom:0}.sg .wide{grid-column:1/-1}
-@media(max-width:900px){.sg{grid-template-columns:minmax(0,1fr)}}
-#v-stats .stq{margin:0 0 18px}#v-stats.ld .sc{opacity:.45;transition:opacity .2s}
-.sc{position:relative;min-height:60px}.sc svg{display:block;width:100%;height:auto;overflow:visible;direction:ltr}
-.sc .gl{stroke:var(--bd);stroke-width:1}.sc .ax{fill:var(--mu);font-size:11.5px;font-family:inherit}
-.sc .ln{fill:none;stroke:var(--p2);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}.sc .ar{fill:var(--p2);opacity:.14}
-.sc .dt{fill:var(--p2);stroke:var(--card);stroke-width:2}.sc .cx{stroke:var(--mu);stroke-dasharray:3 3}
-.sc .tip{position:absolute;pointer-events:none;background:var(--sb);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:4px 10px;font-size:12.5px;box-shadow:var(--sh);white-space:nowrap;transform:translate(-50%,-100%);z-index:2}
-.sc text.t{fill:var(--tx);font-size:13px;font-family:inherit}.sc text.n{fill:var(--mu);font-size:12.5px;font-family:inherit}
-.sc .bg{fill:var(--in);stroke:var(--bd)}.sc .fg{fill:var(--p2)}.sc .fg.ok{fill:var(--ok)}
-.sc .sl{fill:none;stroke-width:22}.sc .c-direct{stroke:var(--p)}.sc .c-search{stroke:var(--ok)}.sc .c-social{stroke:var(--gold)}.sc .c-other{stroke:var(--mu)}.sc .dtr{fill:none;stroke:var(--in);stroke-width:22}
-.sc .dn{max-width:170px;margin:0 auto}.sc .dc{fill:var(--tx);font-size:24px;font-weight:700;font-family:inherit}.sc .dl{fill:var(--mu);font-size:12px;font-family:inherit}
-.lgd{display:grid;gap:8px;margin-top:14px}.lgd div{display:flex;align-items:center;gap:8px;font-size:13.5px}.lgd i{width:12px;height:12px;border-radius:4px;flex:none}.lgd b{margin-inline-start:auto}.lgd small{color:var(--mu);min-width:48px;text-align:end}
-.lgd .c-direct{background:var(--p)}.lgd .c-search{background:var(--ok)}.lgd .c-social{background:var(--gold)}.lgd .c-other{background:var(--mu)}
-.cvb{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:2px 0 10px}.cvb b{font-size:34px;line-height:1.2}.cvb span{color:var(--mu);font-size:13.5px}
-.st-err{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;border-color:#e5646b66}.st-err[hidden]{display:none}
+/* ===== مؤشرات الدكتور ===== */
+.ins-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.ins-g{display:grid;gap:18px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;margin-bottom:18px}.ins-g>.card,#v-ins>.card{margin-bottom:0}#v-ins>.card{margin-bottom:18px}
+@media(max-width:900px){.ins-g{grid-template-columns:minmax(0,1fr)}}
+#v-ins .stq{margin:0 0 18px}#v-ins.ld .card{opacity:.5;transition:opacity .2s}
+.ins-s{border:1px solid var(--bd);background:var(--in);border-radius:14px;padding:14px 16px;margin-top:10px}.ins-s .sh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.ins-s b{font-size:15.5px;line-height:1.6}.ins-s .sub{margin:4px 0 10px}.ins-s.cv{opacity:.85}
+.ins-q{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--bd)}.ins-q:first-child{border-top:0}.ins-q .nn{flex:none;min-width:44px;text-align:center;font-weight:700;color:var(--gold)}.ins-q div{min-width:0;overflow-wrap:anywhere}
+.ins-kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.ins-kw span{border:1px solid var(--bd);background:var(--in);border-radius:20px;padding:3px 12px;font-size:13px}.ins-kw b{color:var(--gold);margin-inline-start:6px}
+.ins-sc{position:relative;min-height:40px}.ins-sc svg{display:block;width:100%;height:auto;direction:ltr}.ins-sc text.t{fill:var(--tx);font-size:13px;font-family:inherit}.ins-sc text.n{fill:var(--mu);font-size:12.5px;font-family:inherit}.ins-sc .bg{fill:var(--in);stroke:var(--bd)}.ins-sc .fg{fill:var(--p2)}.ins-sc .fg.g{fill:var(--gold)}
+.ins-err{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;border-color:#e5646b66}.ins-err[hidden]{display:none}
 </style><link rel="stylesheet" href="/css/rich-editor.css?v=1"><link rel="stylesheet" href="/css/speed-check.css?v=1"></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="a-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.500" height="9" rx="2"/><rect x="13.500" y="3" width="7.500" height="5" rx="2"/><rect x="13.500" y="11" width="7.500" height="10" rx="2"/><rect x="3" y="15" width="7.500" height="6" rx="2"/></symbol>
@@ -216,7 +208,7 @@ body.kdrag,body.kdrag *{user-select:none!important;-webkit-user-select:none!impo
 <symbol id="a-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.700 3.600 3 8 3s8-1.300 8-3V6M4 12v6c0 1.700 3.600 3 8 3s8-1.300 8-3v-6"/></symbol>
 <symbol id="a-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
 <symbol id="a-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
-<symbol id="a-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/></symbol>
+<symbol id="a-ins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.500 10.900c.6.5 1 1.200 1 2.100h5c0-.9.4-1.600 1-2.100A6 6 0 0012 3z"/></symbol>
 </defs></svg>
 
 <div id="lg"><div class="card box"><img src="/img/mark.png" alt="دوبامين"><h2>لوحة الإدارة</h2><p>دوبامين — د. ممدوح حمدي</p><label style="text-align:start">كلمة المرور</label><input id="pw" name="password" type="password" dir="ltr" placeholder="••••••••" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go"><button class="btn" id="lgb">دخول</button></div></div>
@@ -225,7 +217,7 @@ body.kdrag,body.kdrag *{user-select:none!important;-webkit-user-select:none!impo
 <aside><div class="logo"><img src="/img/mark.png" alt=""><span><b>دوبامين</b><small>لوحة الإدارة</small></span></div>
 <button class="nv on" data-v="today"><svg class="i"><use href="#a-today"/></svg>اليوم<span class="bdg z" id="nt"></span></button>
 <button class="nv dsk" data-v="dash"><svg class="i"><use href="#a-home"/></svg>الرئيسية</button>
-<button class="nv dsk" data-v="stats"><svg class="i"><use href="#a-chart"/></svg>الإحصاءات</button>
+<button class="nv dsk" data-v="ins"><svg class="i"><use href="#a-ins"/></svg>مؤشرات الدكتور</button>
 <button class="nv" data-v="content"><svg class="i"><use href="#a-file"/></svg>المحتوى</button>
 <button class="nv" data-v="comments"><svg class="i"><use href="#a-msg"/></svg>التعليقات<span class="bdg z" id="nc"></span></button>
 <button class="nv" data-v="bookings"><svg class="i"><use href="#a-cal"/></svg>الحجوزات<span class="bdg z" id="nb"></span></button>
@@ -256,16 +248,17 @@ body.kdrag,body.kdrag *{user-select:none!important;-webkit-user-select:none!impo
 <div class="two"><div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>أحدث الحجوزات</h3><div id="rb"></div></div>
 <div class="card"><h3><svg class="i"><use href="#a-plus"/></svg>إجراءات سريعة</h3><div class="qa" style="margin-top:10px"><button class="btn" data-go="content" data-new="article">إضافة مقال</button><button class="btn o" data-go="content" data-new="podcast">إضافة حلقة بودكاست</button><button class="btn o" data-go="content" data-new="book">إضافة كتاب</button><button class="btn o" data-go="content" data-new="course">إضافة دورة</button><button class="btn o" data-go="content" data-new="testimonial">إضافة رأي عميل</button><button class="btn o" data-go="settings">إعدادات التواصل</button></div></div></div></div>
 
-<div class="view" id="v-stats">
-<div class="sr-h"><div class="chips" id="st-rng" role="group" aria-label="الفترة"><button class="ch" type="button" data-r="7" aria-pressed="false">7 أيام</button><button class="ch on" type="button" data-r="30" aria-pressed="true">30 يوماً</button><button class="ch" type="button" data-r="90" aria-pressed="false">90 يوماً</button></div><button class="btn o sm" id="st-ref" type="button">تحديث</button></div>
-<div class="card st-err" id="st-err" role="alert" hidden><span id="st-errm">تعذّر تحميل الإحصاءات.</span><button class="btn o sm" id="st-retry" type="button">إعادة المحاولة</button></div>
-<div class="stq" id="st-kpi"><div class="stt"><span>الزيارات</span><b id="st-k1">—</b></div><div class="stt"><span>اختبارات أُتمّت</span><b id="st-k2">—</b></div><div class="stt"><span>طلبات الحجز</span><b id="st-k3">—</b></div><div class="stt"><span>نسبة التحويل</span><b id="st-k4">—</b></div></div>
-<div class="sg">
-<div class="card wide"><h3><svg class="i"><use href="#a-chart"/></svg>الزيارات اليومية</h3><p class="sub" id="st-lsub"></p><div class="sc" id="st-line"></div></div>
-<div class="card"><h3><svg class="i"><use href="#a-ck"/></svg>أكثر الاختبارات إجراءً</h3><p class="sub">عدد مرات ظهور النتيجة للزائر.</p><div class="sc" id="st-tests"></div></div>
-<div class="card"><h3><svg class="i"><use href="#a-ext"/></svg>مصادر الزيارة</h3><p class="sub">فئات عامة فقط، بلا روابط أو بيانات زوّار.</p><div class="sc" id="st-src"></div><div class="lgd" id="st-lgd"></div></div>
-<div class="card wide"><h3><svg class="i"><use href="#a-cal"/></svg>من الزيارة إلى حجز</h3><div class="cvb"><b id="st-cv">—</b><span id="st-cvs"></span></div><div class="sc" id="st-conv"></div><p class="sub" id="st-cvn" style="margin:8px 0 0"></p></div>
-</div></div>
+<div class="view" id="v-ins">
+<div class="ins-h"><span class="tag n" id="ins-mo" style="margin:0"></span><button class="btn o sm" id="ins-ref" type="button">تحديث</button></div>
+<div class="card ins-err" id="ins-err" role="alert" hidden><span id="ins-errm">تعذّر تحميل المؤشرات.</span><button class="btn o sm" id="ins-retry" type="button">إعادة المحاولة</button></div>
+<div class="stq"><div class="stt"><span>اختبارات أُتمّت</span><b id="ins-k1">—</b></div><div class="stt"><span>أسئلة الزوار</span><b id="ins-k2">—</b></div><div class="stt"><span>طلبات الحجز</span><b id="ins-k3">—</b></div><div class="stt"><span>موضوعات مقترحة</span><b id="ins-k4">—</b></div></div>
+<div class="card"><h3><svg class="i"><use href="#a-ins"/></svg>موضوعات مقترحة</h3><p class="sub">قواعد ثابتة تربط الاختبارات والأسئلة وكلمات رسائل الحجز بموضوع ونوعه، مع الأرقام التي استند إليها الاقتراح. لا يُقترح موضوع غُطّي بمقال منشور.</p><div id="ins-sug"></div><div id="ins-cov"></div></div>
+<div class="ins-g">
+<div class="card"><h3><svg class="i"><use href="#a-ck"/></svg>أكثر الاختبارات إجراءً</h3><p class="sub">هذا الشهر — عدد مرات ظهور النتيجة.</p><div class="ins-sc" id="ins-tests"></div></div>
+<div class="card"><h3><svg class="i"><use href="#a-msg"/></svg>أسئلة وشكاوى متكررة</h3><p class="sub">أسئلة متشابهة تكررت هذا الشهر (نصوص منظّفة من أي بيانات تعريفية).</p><div id="ins-qs"></div><div class="ins-sc" id="ins-cats" style="margin-top:10px"></div></div>
+</div>
+<div class="card"><h3><svg class="i"><use href="#a-cal"/></svg>كلمات متكررة في رسائل الحجز</h3><p class="sub">كلمات مفتاحية مجمّعة وأعدادها فقط — لا تُعرض الرسائل ولا أسماء ولا أرقام هواتف.</p><div class="ins-kw" id="ins-kw"></div></div>
+</div>
 
 <div class="view" id="v-content">
 <div class="card" id="fm"><h3 id="fmt"><svg class="i"><use href="#a-plus"/></svg>إضافة محتوى جديد</h3><div id="edn">أنت تعدّل عنصراً موجوداً</div>
@@ -326,7 +319,7 @@ body.kdrag,body.kdrag *{user-select:none!important;-webkit-user-select:none!impo
 <input type="file" id="file" accept="image/*" hidden>
 </main></div></div>
 <div class="sheet" id="sheet" aria-hidden="true"><div class="sh-bg" data-close></div><div class="sh-box" role="dialog" aria-label="المزيد"><div class="sh-grip"></div><div class="sh-grid">
-<button class="shi" data-v="dash"><svg class="i"><use href="#a-home"/></svg>الرئيسية</button><button class="shi" data-v="stats"><svg class="i"><use href="#a-chart"/></svg>الإحصاءات</button><button class="shi" data-v="asks"><svg class="i"><use href="#a-msg"/></svg>الأسئلة</button><button class="shi" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button><button class="shi" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button><button class="shi" data-v="site"><svg class="i"><use href="#a-db"/></svg>إدارة الموقع</button><button class="shi" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
+<button class="shi" data-v="dash"><svg class="i"><use href="#a-home"/></svg>الرئيسية</button><button class="shi" data-v="ins"><svg class="i"><use href="#a-ins"/></svg>مؤشرات الدكتور</button><button class="shi" data-v="asks"><svg class="i"><use href="#a-msg"/></svg>الأسئلة</button><button class="shi" data-v="texts"><svg class="i"><use href="#a-ed"/></svg>نصوص الموقع</button><button class="shi" data-v="fonts"><svg class="i"><use href="#a-ed"/></svg>الخطوط</button><button class="shi" data-v="site"><svg class="i"><use href="#a-db"/></svg>إدارة الموقع</button><button class="shi" data-v="settings"><svg class="i"><use href="#a-set"/></svg>الإعدادات</button>
 <a class="shi" href="/" target="_blank" rel="noopener"><svg class="i"><use href="#a-ext"/></svg>عرض الموقع</a><button class="shi out" id="out3" type="button"><svg class="i"><use href="#a-out"/></svg>تسجيل الخروج</button></div></div></div>
 <div id="toast"></div>
 <script src="/js/rich.js?v=1"></script><script src="/js/pdf-import.js?v=1"></script><script src="/js/rich-editor.js?v=1"></script>
@@ -337,7 +330,7 @@ let tk=localStorage.tk||'',ITEMS=[],BK=[],ft='',bs='',editing=null,FROMQ=null,QS
 const U=n=>'<svg class="i"><use href="#a-'+n+'"/></svg>';
 const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const N={article:'مقال',podcast:'بودكاست',book:'كتاب',course:'دورة',testimonial:'رأي عميل'},IC={article:'file',podcast:'mic',book:'book',course:'cap',testimonial:'msg'};
-const VT={today:['اليوم','ما يحتاج انتباهك الآن: حجوزات وأسئلة وتعليقات'],dash:['الرئيسية','نظرة عامة على نشاط الموقع'],stats:['الإحصاءات','الزيارات ومصادرها والاختبارات ونسبة التحويل إلى حجز'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],texts:['نصوص الموقع','تعديل كل النصوص الظاهرة في الصفحة الرئيسية'],fonts:['الخطوط','جرّب أكثر من 25 خطاً واختر الأنسب لكل جزء من الموقع'],comments:['التعليقات','مراجعة تعليقات الزوار على المقالات وإدارتها'],asks:['الأسئلة','أسئلة الزوار المجهولة وتحويلها إلى مقالات'],site:['إدارة الموقع','التخزين وأدوات فحص أداء الموقع'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
+const VT={today:['اليوم','ما يحتاج انتباهك الآن: حجوزات وأسئلة وتعليقات'],dash:['الرئيسية','نظرة عامة على نشاط الموقع'],ins:['مؤشرات الدكتور','ما يهمّ الزوار هذا الشهر واقتراحات المحتوى'],content:['المحتوى','إضافة وتعديل المقالات والبودكاست والكتب والدورات'],bookings:['الحجوزات','متابعة طلبات الحجز والرد عليها'],texts:['نصوص الموقع','تعديل كل النصوص الظاهرة في الصفحة الرئيسية'],fonts:['الخطوط','جرّب أكثر من 25 خطاً واختر الأنسب لكل جزء من الموقع'],comments:['التعليقات','مراجعة تعليقات الزوار على المقالات وإدارتها'],asks:['الأسئلة','أسئلة الزوار المجهولة وتحويلها إلى مقالات'],site:['إدارة الموقع','التخزين وأدوات فحص أداء الموقع'],settings:['الإعدادات','بيانات التواصل وروابط السوشيال']};
 function toast(m,t=''){const e=$('toast');e.textContent=m;e.className='on '+t;clearTimeout(toast.t);toast.t=setTimeout(()=>e.className='',2600)}
 async function api(u,m='GET',b){try{const r=await fetch('/api/'+u,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+tk},body:b?JSON.stringify(b):undefined});if(r.status==401){localStorage.removeItem('tk');location.reload();return null}if(!r.ok){let j=null;try{j=await r.json()}catch(e){}api.err={status:r.status,msg:(j&&j.error)||''};return null}api.err=null;return await r.json()}catch(e){api.err={status:0,msg:'network'};return null}}
 /* theme */
@@ -350,7 +343,7 @@ const logout=()=>{localStorage.removeItem('tk');location.reload()};$('out').oncl
 /* nav */
 let curView='today',curTab='storage';const TABS=['storage','speed'];
 /* المسار القديم: view=storage أو #storage يُحوَّل إلى إدارة الموقع ← التخزين */
-function go(v,tab,silent){if(v=='storage'){v='site';tab='storage'}if(!VT[v])v='today';curView=v;Q('.view').forEach(x=>x.classList.toggle('on',x.id=='v-'+v));Q('.nv[data-v]').forEach(x=>x.classList.toggle('on',x.dataset.v==v));$('ttl').textContent=VT[v][0];$('sbt').textContent=VT[v][1];scrollTo({top:0});if(v=='site')siteTab(tab||curTab,true);if(v=='comments')loadComments();if(v=='asks')loadAsks();if(v=='today')drawToday();if(v=='stats')loadStats();if(!silent)urlSync()}
+function go(v,tab,silent){if(v=='storage'){v='site';tab='storage'}if(!VT[v])v='today';curView=v;Q('.view').forEach(x=>x.classList.toggle('on',x.id=='v-'+v));Q('.nv[data-v]').forEach(x=>x.classList.toggle('on',x.dataset.v==v));$('ttl').textContent=VT[v][0];$('sbt').textContent=VT[v][1];scrollTo({top:0});if(v=='site')siteTab(tab||curTab,true);if(v=='comments')loadComments();if(v=='asks')loadAsks();if(v=='today')drawToday();if(v=='ins')loadIns();if(!silent)urlSync()}
 function siteTab(t,silent){if(!TABS.includes(t))t='storage';curTab=t;TABS.forEach(x=>{const b=$('tb-'+x);$('tp-'+x).hidden=x!=t;b.setAttribute('aria-selected',x==t);b.tabIndex=x==t?0:-1});if(t=='storage')loadStorage();else if(typeof window.onSpeedTab=='function')window.onSpeedTab($('speedBox'));if(!silent)urlSync()}
 /* الرابط يحفظ القسم والتبويب: /admin/?view=site&tab=storage */
 function urlSync(){try{const u=new URL(location.href);u.hash='';u.searchParams.set('view',curView);if(curView=='site')u.searchParams.set('tab',curTab);else u.searchParams.delete('tab');if(u.href!=location.href)history.pushState(null,'',u)}catch(e){}}
@@ -554,7 +547,7 @@ shEl.onclick=e=>{if(e.target.closest('[data-close]'))closeSheet()};
 Q('.shi[data-v]').forEach(b=>b.onclick=()=>{go(b.dataset.v);closeSheet()});
 $('out3').onclick=logout;
 addEventListener('keydown',e=>{if(e.key=='Escape')closeSheet()});
-const MORE=['dash','stats','texts','fonts','site','settings','asks'],go0=go;go=function(v,t,q){go0(v,t,q);$('mb').classList.toggle('on',MORE.includes(curView))};
+const MORE=['dash','ins','texts','fonts','site','settings','asks'],go0=go;go=function(v,t,q){go0(v,t,q);$('mb').classList.toggle('on',MORE.includes(curView))};
 document.addEventListener('focusin',e=>{if(innerWidth<=900&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)&&e.target.type!='checkbox')document.body.classList.add('kb')});
 document.addEventListener('focusout',()=>setTimeout(()=>{if(!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||''))document.body.classList.remove('kb')},120));
 /* warn before leaving with an unsaved article */
@@ -751,58 +744,29 @@ if(e.target.closest('#tdr')){const b=$('tdr');b.disabled=true;Promise.all([load(
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&curView=='today')drawToday()});
 bvSet(bvm);
 
-/* ===== الإحصاءات: تحميل كسول عند فتح القسم، رسوم SVG مرسومة بالجافاسكربت (بلا مكتبات) ===== */
-const ST_SRC={direct:'مباشر',search:'بحث',social:'تواصل اجتماعي',other:'موقع آخر'};
-let stR=30,stD=null,stT=0,stQ=0,stRz;try{const v=+localStorage.getItem('stR');if([7,30,90].includes(v))stR=v}catch(e){}
-const stN=n=>(+n||0).toLocaleString('ar-EG'),stP=x=>(x*100).toLocaleString('ar-EG',{maximumFractionDigits:1})+'%',stDt=d=>new Date(d+'T00:00:00Z').toLocaleDateString('ar-EG',{day:'numeric',month:'short',timeZone:'UTC'});
-const stMax=m=>{if(m<=4)return 4;const r=m/4,p=Math.pow(10,Math.floor(Math.log10(r))),f=r/p;return(f<=1?1:f<=2?2:f<=5?5:10)*p*4};
-const stEmpty=(el,t)=>{el.innerHTML='<div class="empty">'+t+'</div>'};
-function stChips(){Q('#st-rng .ch').forEach(b=>{const on=+b.dataset.r==stR;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)})}
-async function loadStats(force){const k=++stQ;stChips();
-if(!force&&stD&&stD.range==stR&&Date.now()-stT<6e4){stDraw();return}
-$('st-err').hidden=true;$('v-stats').classList.add('ld');
-const r=await api('admin/analytics?range='+stR+(force?'&fresh=1':''));if(k!=stQ)return;$('v-stats').classList.remove('ld');
-if(!r||!Array.isArray(r.days)){$('st-errm').textContent=r?'الخادم لا يدعم الإحصاءات بعد — حدّث lib/app.js.':'تعذّر تحميل الإحصاءات'+(api.err&&api.err.status?' ('+api.err.status+')':'')+'.';$('st-err').hidden=false;return}
-stD=r;stT=Date.now();stDraw()}
-function stDraw(){const D=stD;if(!D||curView!='stats')return;stChips();
-$('st-k1').textContent=stN(D.visits);$('st-k2').textContent=stN(D.testsTotal);$('st-k3').textContent=stN(D.bookings);$('st-k4').textContent=D.conv==null?'—':stP(D.conv);
-stLine();stBars();stDonut();stFunnel()}
-/* 1) خط الزيارات اليومية — الأقدم يميناً كبقية رسوم اللوحة */
-function stLine(){const el=$('st-line'),D=stD&&stD.days;if(!el||!D)return;const W=Math.floor(el.clientWidth);if(W<120)return;
-const tot=D.reduce((a,x)=>a+x.v,0);$('st-lsub').textContent=tot?'إجمالي '+stN(tot)+' زيارة · متوسط '+stN(Math.round(tot/D.length))+' يومياً':'';
-if(!tot){stEmpty(el,'لا زيارات مسجّلة في هذه الفترة بعد. يبدأ التسجيل من لحظة نشر هذا التحديث.');return}
-const H=W<480?180:220,L=6,Rr=38,T=12,B=26,pw=W-L-Rr,ph=H-T-B,n=D.length,mxv=Math.max(...D.map(x=>x.v)),mx=stMax(mxv),X=i=>L+pw-(n>1?i*pw/(n-1):pw/2),Y=v=>T+ph*(1-v/mx);
-const pts=D.map((x,i)=>[X(i),Y(x.v)]),ln='M'+pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join('L'),ar=ln+'L'+X(n-1).toFixed(1)+','+(T+ph)+'L'+X(0).toFixed(1)+','+(T+ph)+'Z';
-const g=[0,1,2,3,4].map(j=>{const v=mx*j/4,y=Y(v);return'<line class="gl" x1="'+L+'" x2="'+(L+pw)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"/><text class="ax" x="'+(L+pw+7)+'" y="'+(y+4).toFixed(1)+'" text-anchor="start">'+stN(v)+'</text>'}).join('');
-const xl=[[0,'end'],[Math.round((n-1)/2),'middle'],[n-1,'start']].map(([i,a])=>'<text class="ax" x="'+X(i).toFixed(1)+'" y="'+(H-6)+'" text-anchor="'+a+'">'+(i==n-1?'اليوم':stDt(D[i].d))+'</text>').join('');
-const dots=n<=14?pts.map(p=>'<circle class="dt" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4"/>').join(''):'';
-const top=D.reduce((a,x)=>x.v>a.v?x:a,D[0]);
-el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="'+E('خط الزيارات اليومية: الإجمالي '+stN(tot)+'، الأعلى '+stN(top.v)+' في '+stDt(top.d))+'">'+g+'<path class="ar" d="'+ar+'"/><path class="ln" d="'+ln+'"/>'+dots+xl+'<g id="st-hv" style="display:none"><line class="cx" y1="'+T+'" y2="'+(T+ph)+'"/><circle class="dt" r="5"/></g></svg><div class="tip" id="st-tip" style="display:none"></div>';
-const svg=el.firstChild,hv=$('st-hv'),tip=$('st-tip'),show=e=>{const r=svg.getBoundingClientRect(),i=Math.max(0,Math.min(n-1,Math.round((L+pw-(e.clientX-r.left))/pw*(n-1)))),x=X(i),y=Y(D[i].v);
-hv.style.display='';hv.firstChild.setAttribute('x1',x);hv.firstChild.setAttribute('x2',x);hv.lastChild.setAttribute('cx',x);hv.lastChild.setAttribute('cy',y);
-tip.style.display='';tip.textContent=stDt(D[i].d)+' · '+stN(D[i].v)+' زيارة';tip.style.left=Math.max(60,Math.min(W-60,x))+'px';tip.style.top=Math.max(26,y-8)+'px'},hide=()=>{hv.style.display='none';tip.style.display='none'};
-svg.onpointermove=svg.onpointerdown=show;svg.onpointerleave=svg.onpointercancel=hide}
-/* 2) أكثر الاختبارات إجراءً — أعمدة أفقية تنمو من اليمين */
-function stBars(){const el=$('st-tests'),T=stD&&stD.tests;if(!el||!T)return;if(!T.length){stEmpty(el,'لا اختبارات مُتمَّة في هذه الفترة بعد.');return}
-const W=Math.floor(el.clientWidth);if(W<120)return;const RH=46,mx=Math.max(...T.map(x=>x.n)),mc=Math.max(10,Math.floor((W-90)/6.6)),tt=stD.testsTotal||1;
-const rows=T.map((x,i)=>{const y=i*RH,fw=Math.max(4,Math.round((W-2)*x.n/mx)),nm=x.title.replace(/^اختبار\s+/,''),lb=nm.length>mc?nm.slice(0,mc-1)+'…':nm;
-return'<g><title>'+E(nm+': '+stN(x.n))+'</title><text class="t" x="'+W+'" y="'+(y+14)+'" text-anchor="end">'+E(lb)+'</text><text class="n" x="0" y="'+(y+14)+'" text-anchor="start">'+stP(x.n/tt)+'\u200E · \u200E'+stN(x.n)+'</text><rect class="bg" x="0.5" y="'+(y+22)+'" width="'+(W-1)+'" height="12" rx="6"/><rect class="fg" x="'+(W-1-fw+1)+'" y="'+(y+23)+'" width="'+fw+'" height="10" rx="5"/></g>'}).join('');
-el.innerHTML='<svg viewBox="0 0 '+W+' '+(T.length*RH)+'" width="'+W+'" height="'+(T.length*RH)+'" role="img" aria-label="'+E('أكثر الاختبارات إجراءً: '+T.map(x=>x.title.replace(/^اختبار\s+/,'')+' '+stN(x.n)).join('، '))+'">'+rows+'</svg>'}
-/* 3) مصادر الزيارة — حلقة + مفتاح بالأرقام والنسب */
-function stDonut(){const el=$('st-src'),lg=$('st-lgd'),S=stD&&stD.sources;if(!el||!S)return;const ks=Object.keys(ST_SRC),tot=ks.reduce((a,k)=>a+(S[k]||0),0);
-lg.innerHTML=ks.map(k=>'<div><i class="c-'+k+'"></i>'+ST_SRC[k]+'<b>'+stN(S[k]||0)+'</b><small>'+(tot?stP((S[k]||0)/tot):'—')+'</small></div>').join('');
-if(!tot){stEmpty(el,'لا زيارات مسجّلة بعد.');return}
-const r=62,C=2*Math.PI*r,vis=ks.filter(k=>S[k]>0),gap=vis.length>1?3:0;let off=0;
-const seg=ks.map(k=>{if(!S[k])return'';const len=S[k]/tot*C,d=Math.max(1,len-gap),s='<circle class="sl c-'+k+'" cx="90" cy="90" r="'+r+'" stroke-dasharray="'+d.toFixed(2)+' '+(C-d).toFixed(2)+'" stroke-dashoffset="'+(-off).toFixed(2)+'" transform="rotate(-90 90 90)"><title>'+E(ST_SRC[k]+': '+stN(S[k])+' ('+stP(S[k]/tot)+')')+'</title></circle>';off+=len;return s}).join('');
-el.innerHTML='<svg class="dn" viewBox="0 0 180 180" role="img" aria-label="'+E('مصادر الزيارة: '+ks.map(k=>ST_SRC[k]+' '+stP((S[k]||0)/tot)).join('، '))+'"><circle class="dtr" cx="90" cy="90" r="'+r+'"/>'+seg+'<text class="dc" x="90" y="92" text-anchor="middle">'+stN(tot)+'</text><text class="dl" x="90" y="110" text-anchor="middle">زيارة</text></svg>'}
-/* 4) التحويل من الزيارة إلى حجز = الحجوزات ÷ الزيارات في الفترة (الحجوزات من مجموعة Booking) */
-function stFunnel(){const el=$('st-conv'),D=stD;if(!el||!D)return;$('st-cv').textContent=D.conv==null?'—':stP(D.conv);
-$('st-cvs').textContent=D.conv==null?'':stN(D.bookings)+' حجز من '+stN(D.visits)+' زيارة';
-const nt=$('st-cvn');nt.textContent=D.since?(D.since>D.from?'بدأ تسجيل الزيارات يوم '+stDt(D.since)+'؛ تُحسب النسبة من هذا اليوم فقط حتى لا تتضخم بحجوزات سابقة.':''):'لا زيارات مسجّلة بعد، فلا تُحسب نسبة التحويل.';
-if(!D.visits){stEmpty(el,'');el.innerHTML='';return}
-const W=Math.floor(el.clientWidth);if(W<120)return;const bw=Math.max(4,Math.round((W-1)*Math.min(1,D.conv||0)));
-el.innerHTML='<svg viewBox="0 0 '+W+' 86" width="'+W+'" height="86" role="img" aria-label="'+E('التحويل: '+stN(D.bookings)+' حجز من '+stN(D.visits)+' زيارة، '+stP(D.conv||0))+'"><text class="t" x="'+W+'" y="14" text-anchor="end">زيارات</text><text class="n" x="0" y="14" text-anchor="start">'+stN(D.visits)+'</text><rect class="fg" x="0.5" y="22" width="'+(W-1)+'" height="12" rx="6"/><text class="t" x="'+W+'" y="58" text-anchor="end">حجوزات</text><text class="n" x="0" y="58" text-anchor="start">'+stN(D.bookings)+'</text><rect class="bg" x="0.5" y="66" width="'+(W-1)+'" height="12" rx="6"/><rect class="fg ok" x="'+(W-.5-bw)+'" y="67" width="'+bw+'" height="10" rx="5"/></svg>'}
-$('st-rng').onclick=e=>{const b=e.target.closest('[data-r]');if(!b||+b.dataset.r==stR)return;stR=+b.dataset.r;try{localStorage.setItem('stR',stR)}catch(x){}loadStats()};
-$('st-ref').onclick=()=>loadStats(true);$('st-retry').onclick=()=>loadStats(true);
-try{new ResizeObserver(()=>{clearTimeout(stRz);stRz=setTimeout(()=>{if(curView=='stats')stDraw()},120)}).observe($('v-stats'))}catch(e){addEventListener('resize',()=>{clearTimeout(stRz);stRz=setTimeout(()=>{if(curView=='stats')stDraw()},120)})}
+/* ===== مؤشرات الدكتور: تحميل كسول عند فتح القسم + كاش 60 ثانية في المتصفح ===== */
+let insD=null,insT=0,insQ=0,insRz;
+const insN=n=>(+n||0).toLocaleString('ar-EG'),insP=x=>(x*100).toLocaleString('ar-EG',{maximumFractionDigits:0})+'%';
+const insWhy=x=>[x.t?insN(x.t)+' إجراءً لاختبارات ذات صلة':'',x.q?insN(x.q)+' سؤالاً يتناوله':'',x.b?insN(x.b)+' رسالة حجز تذكر كلمات متصلة':''].filter(Boolean).join(' · ');
+async function loadIns(force){const k=++insQ;if(!force&&insD&&Date.now()-insT<6e4){insDraw();return}
+$('ins-err').hidden=true;$('v-ins').classList.add('ld');const r=await api('admin/insights'+(force?'?fresh=1':''));if(k!=insQ)return;$('v-ins').classList.remove('ld');
+if(!r||!Array.isArray(r.suggestions)){$('ins-errm').textContent=r?'الخادم لا يدعم المؤشرات بعد — حدّث lib/app.js.':'تعذّر تحميل المؤشرات'+(api.err&&api.err.status?' ('+api.err.status+')':'')+'.';$('ins-err').hidden=false;return}
+insD=r;insT=Date.now();insDraw()}
+function insBars(el,T,cls){if(!T.length)return;const W=Math.floor(el.clientWidth);if(W<120)return;const RH=46,mx=Math.max(...T.map(x=>x.n)),tt=T.reduce((a,x)=>a+x.n,0)||1,mc=Math.max(10,Math.floor((W-90)/6.6));
+const rows=T.map((x,i)=>{const y=i*RH,fw=Math.max(4,Math.round((W-2)*x.n/mx)),nm=String(x.t).replace(/^اختبار\s+/,''),lb=nm.length>mc?nm.slice(0,mc-1)+'…':nm;
+return'<g><title>'+E(nm+': '+insN(x.n))+'</title><text class="t" x="'+W+'" y="'+(y+14)+'" text-anchor="end">'+E(lb)+'</text><text class="n" x="0" y="'+(y+14)+'" text-anchor="start">'+insP(x.n/tt)+'‎ · ‎'+insN(x.n)+'</text><rect class="bg" x="0.5" y="'+(y+22)+'" width="'+(W-1)+'" height="12" rx="6"/><rect class="fg '+(cls||'')+'" x="'+(W-fw)+'" y="'+(y+23)+'" width="'+fw+'" height="10" rx="5"/></g>'}).join('');
+el.innerHTML='<svg viewBox="0 0 '+W+' '+T.length*RH+'" width="'+W+'" height="'+T.length*RH+'" role="img" aria-label="'+E(T.map(x=>String(x.t).replace(/^اختبار\s+/,'')+' '+insN(x.n)).join('، '))+'">'+rows+'</svg>'}
+function insDraw(){const D=insD;if(!D||curView!='ins')return;
+$('ins-mo').textContent='منذ '+new Date(D.from+'T00:00:00Z').toLocaleDateString('ar-EG',{day:'numeric',month:'long',timeZone:'UTC'});
+$('ins-k1').textContent=D.testsAvailable?insN(D.testsTotal):'—';$('ins-k2').textContent=insN(D.questions.total);$('ins-k3').textContent=insN(D.bookings);$('ins-k4').textContent=insN(D.suggestions.length);
+$('ins-sug').innerHTML=D.suggestions.map((x,i)=>`<div class="ins-s"><div class="sh"><b>${E(x.title)}</b><span class="tag ${x.kind=='course'?'n':'k'}" style="margin:0">${x.kind=='course'?'دورة':'مقال'}</span></div><p class="sub">${E(insWhy(x))}</p><button class="btn sm" type="button" data-ins="${i}">${x.kind=='course'?'ابدأ دورة':'ابدأ مقالاً'}</button></div>`).join('')||'<div class="empty">لا توجد اقتراحات بعد — تظهر عندما تتراكم بيانات كافية هذا الشهر.</div>';
+$('ins-cov').innerHTML=D.covered.length?'<p class="sub" style="margin:16px 0 0">مواضيع عليها طلب لكنها مغطّاة بمقال منشور (لم تُقترح):</p>'+D.covered.map(x=>`<div class="ins-s cv"><div class="sh"><b>${E(x.title)}</b><span class="tag" style="margin:0">${insN(x.score)} نقطة</span></div><p class="sub" style="margin:4px 0 0">مقال قائم: <a target="_blank" rel="noopener" href="/articles/${encodeURIComponent(x.art.slug)}" style="color:var(--pt)">${E(x.art.title)}</a></p></div>`).join(''):'';
+const te=$('ins-tests');if(!D.testsAvailable)te.innerHTML='<div class="empty">تسجيل إتمام الاختبارات غير مفعّل بعد على الخادم.</div>';else if(!D.tests.length)te.innerHTML='<div class="empty">لا اختبارات مُتمَّة هذا الشهر بعد.</div>';else{te.innerHTML='';insBars(te,D.tests.map(x=>({t:x.title,n:x.n})))}
+$('ins-qs').innerHTML=D.questions.top.map(x=>`<div class="ins-q"><span class="nn">×${insN(x.n)}</span><div>${E(x.q)}${x.cat?`<div><span class="tag" style="margin:4px 0 0">${E(x.cat)}</span></div>`:''}</div></div>`).join('')||'<div class="empty">لا أسئلة متكررة هذا الشهر بعد.</div>';
+const ce=$('ins-cats');ce.innerHTML='';if(D.questions.cats.length)insBars(ce,D.questions.cats.map(x=>({t:x.cat,n:x.n})),'g');
+$('ins-kw').innerHTML=D.keywords.map(x=>`<span>${E(x.w)}<b>${insN(x.n)}</b></span>`).join('')||'<div class="empty" style="flex:1">لا كلمات متكررة بعد.</div>'}
+$('ins-sug').onclick=e=>{const b=e.target.closest('[data-ins]');const x=b&&insD&&insD.suggestions[+b.dataset.ins];if(!x)return;go('content');resetForm();$('type').value=x.kind;applyType();$('title').value=x.title;if(x.kind=='article'){$('slug').value=SLG(x.title);slugTouched=false}$('desc').value='';wordc();slugPrev();
+$('edn').style.display='block';$('edn').textContent='اقتراح من «مؤشرات الدكتور» ('+insWhy(x)+'): اكتب المحتوى ثم انشر';$('fm').scrollIntoView({behavior:'smooth'});$('title').focus()};
+$('ins-ref').onclick=$('ins-retry').onclick=()=>loadIns(true);
+try{new ResizeObserver(()=>{clearTimeout(insRz);insRz=setTimeout(()=>{if(curView=='ins')insDraw()},120)}).observe($('v-ins'))}catch(e){addEventListener('resize',()=>{clearTimeout(insRz);insRz=setTimeout(()=>{if(curView=='ins')insDraw()},120)})}
 </script></body></html>
