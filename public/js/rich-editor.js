@@ -494,8 +494,8 @@
       '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&display=swap"><link rel="stylesheet" href="/css/rich.css">' +
       '<style>:root{--p:#2b7bd0;--p2:#4aa8ee;--serif:\'El Messiri\',\'IBM Plex Sans Arabic\',serif;--hh:0px}[data-theme=light]{color-scheme:light;--bg:#f2f7fd;--card:#fff;--tx:#0f2236;--mu:#566b82;--bd:#dfe9f5;--sh:0 10px 40px #0f2a4a14;--pt:#2b7bd0;--sk1:#e6eef9}' +
       '[data-theme=dark]{color-scheme:dark;--bg:#08121f;--card:#11233a;--tx:#eaf2fc;--mu:#9db3cc;--bd:#223a58;--sh:0 10px 40px #0007;--pt:#7cc4ff;--sk1:#142c47}' +
-      '*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--tx);font-family:\'IBM Plex Sans Arabic\',Tahoma,sans-serif;line-height:1.85;padding:20px 16px 60px;overflow-x:hidden}' +
-      '#w{max-width:44rem;margin:auto}#t{font-family:var(--serif);font-size:clamp(1.6rem,1.2rem + 1.6vw,2.2rem);line-height:1.4;margin:0 0 14px}.e{color:var(--mu);text-align:center;padding:40px 0}a{cursor:pointer}</style></head>' +
+      '*,*::before,*::after{box-sizing:border-box}*{margin:0}img,video,iframe{max-width:100%}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{background:var(--bg);color:var(--tx);font-family:\'IBM Plex Sans Arabic\',Tahoma,sans-serif;line-height:1.85;padding:20px 16px 60px;overflow-x:auto}' +
+      '#w{max-width:44rem;margin:auto;min-width:0}#t{font-family:var(--serif);font-size:clamp(1.6rem,1.2rem + 1.6vw,2.2rem);line-height:1.4;margin:0 0 14px}.e{color:var(--mu);text-align:center;padding:40px 0}a{cursor:pointer}</style></head>' +
       '<body><div id="w"><h1 id="t"></h1><article class="rich" id="c"></article></div></body></html>';
   }
   function ensureFrame() {
@@ -522,10 +522,14 @@
   }
   function layoutFrame() {
     var fw = $('.re-fw'), fs = $('.re-fs'); if (!fw || !fs || S.view === 'write') return;
-    var W = DEV[S.device], avail = fw.clientWidth - 2, k = Math.min(1, avail / W), hh = Math.max(380, Math.min(innerHeight * 0.7, 760));
-    fs.style.width = (W + 2) + 'px'; fs.style.height = hh / k + 'px'; fs.style.transform = 'scale(' + k + ')'; fs.style.transformOrigin = 'top center';
-    fw.style.height = hh + 2 + 'px'; var lb = $('.re-wl'); if (lb) lb.textContent = nf(W) + ' بكسل' + (k < 1 ? ' (مُصغَّر ' + nf(Math.round(k * 100)) + '٪)' : '');
-    fs.style.marginInline = 'auto';
+    /* السبب الجذري لقطع المعاينة على الهاتف: الإطار بعرض ثابت (390) داخل حاوية RTL أضيق منه، فيفيض نحو اليسار
+       ثم يُصغَّر بـ transform من «top center» فينزاح عن الحاوية ويُقصّ. الحل: حاوية LTR نسبية + تموضع مطلق + أصل التحويل 0 0 */
+    var W = DEV[S.device], avail = Math.max(200, fw.clientWidth - 2), k = Math.min(1, avail / W), hh = Math.max(380, Math.min(innerHeight * 0.7, 760));
+    if (S.device === 'mobile' && avail < W) { W = avail; k = 1; } // على الهاتف نعرض بعرض الشاشة الفعلي بدل تصغير غير مقروء
+    fw.style.position = 'relative'; fw.style.direction = 'ltr';
+    fs.style.position = 'absolute'; fs.style.top = '0'; fs.style.left = Math.max(0, (avail + 2 - W * k) / 2) + 'px'; fs.style.margin = '0';
+    fs.style.width = (W + 2) + 'px'; fs.style.height = hh / k + 'px'; fs.style.transform = k < 1 ? 'scale(' + k + ')' : 'none'; fs.style.transformOrigin = '0 0';
+    fw.style.height = hh + 2 + 'px'; var lb = $('.re-wl'); if (lb) lb.textContent = nf(Math.round(W)) + ' بكسل' + (k < 1 ? ' (مُصغَّر ' + nf(Math.round(k * 100)) + '٪)' : '');
   }
   function setView(v) {
     S.view = v; var re = $('#re'); if (!re) return;
@@ -623,7 +627,7 @@
     var re = $('#re'), tb = $('#etb'); buildToolbar(tb);
     var pv = h('div', { class: 're-pv', id: 'repv', hidden: true }, [
       h('div', { class: 're-pvh' }, [h('div', { class: 're-dev', role: 'group', 'aria-label': 'حجم المعاينة' }, [['mobile', '📱 موبايل'], ['tablet', 'تابلت'], ['desktop', '🖥 ديسكتوب']].map(function (d) { return h('button', { type: 'button', 'data-d': d[0], 'aria-pressed': 'false', text: d[1] }); })), h('span', { class: 're-wl' })]),
-      h('div', { class: 're-fw' }, [h('div', { class: 're-fs' }, [h('iframe', { id: 'refr', title: 'معاينة مباشرة للمقال', loading: 'lazy' })])])]);
+      h('div', { class: 're-fw' }, [h('div', { class: 're-fs' }, [h('iframe', { id: 'refr', title: 'معاينة مباشرة للمقال' })])])]);
     $('#remain').appendChild(pv);
     var sv, sd; try { sv = localStorage.reView; sd = localStorage.reDev; } catch (e) { }
     S.device = DEV[sd] ? sd : 'desktop'; bind(); setDevice(S.device); setView(sv === 'split' || sv === 'prev' ? sv : 'write');

@@ -550,7 +550,7 @@
 
   /* ---------------------------------------------------------- public: render */
   function countWords(text) { return (String(text).match(/\S+/g) || []).length; }
-  var minutesOf = function (w) { return w ? Math.max(1, Math.round(w / 180)) : 0; };
+  var minutesOf = function (w) { return w ? Math.max(1, Math.ceil(w / 200)) : 0; }; // وقت القراءة = الكلمات ÷ 200
 
   function render(src, opts) {
     opts = opts || {};

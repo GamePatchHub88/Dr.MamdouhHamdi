@@ -12,6 +12,9 @@
 [data-theme=dark] .rich{--code-bg:#0b1626;--code-hd:#10213a;--code-tx:#d7e3f4;--code-ln:#5f7694;--code-bd:#223a58;
   --t-k:#ff7b72;--t-s:#a5d6ff;--t-c:#8b949e;--t-n:#79c0ff;--t-f:#d2a8ff;--t-a:#79c0ff;--t-t:#ffa657;--t-ins:#7ee787;--t-del:#ffa198;--t-insbg:#12261e;--t-delbg:#3a1618}
 .rich>*:first-child{margin-block-start:0}
+/* لا نفترض أن الصفحة المضيفة تصفّر الهوامش (معاينة المحرر لم تكن تفعل: figure/blockquote كانت تأخذ هامش 40px من كل جانب فيضيق العرض على الهاتف) */
+.rich :is(figure,blockquote,pre,dl,dd){margin-inline:0}
+.rich{min-width:0;max-width:100%}
 .rich p{margin-block-end:1.15em}
 
 /* ---------- محاذاة واتجاه ---------- */
@@ -122,6 +125,13 @@
 @media(hover:hover){.rich .tw tbody tr:hover td{background:#2b7bd014}}
 .rich .tw .ta-r{text-align:right}.rich .tw .ta-l{text-align:left}.rich .tw .ta-c{text-align:center}
 
+/* ---------- عناصر HTML خام خارج المغلِّفات (جدول/كود/iframe/video): لا تتجاوز عرض الشاشة ---------- */
+.rich :not(.tw)>table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-collapse:collapse;margin-block:1.5em}
+.rich :not(.tw)>table :is(th,td){min-width:6rem;padding:8px 12px;border:1px solid var(--r-bd);vertical-align:top;text-align:start}
+.rich :not(.cb)>pre{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-block:1.5em;padding:12px 14px;white-space:pre;direction:ltr;text-align:left;font:.85rem/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--code-bg);color:var(--code-tx);border:1px solid var(--code-bd);border-radius:12px}
+.rich :not(.vid)>iframe{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:16/9;border:0;border-radius:14px;margin-block:1.5em;background:#000}
+.rich :not(.vid)>video{display:block;width:100%;max-width:100%;height:auto;border-radius:14px;margin-block:1.5em;background:#000}
+
 /* ---------- صور / فيديو / بطاقات الروابط ---------- */
 .rich img{max-width:100%;height:auto}
 .rich figure.md{margin-block:1.6em;text-align:center}
@@ -143,6 +153,11 @@
 @media(max-width:480px){.rich a.lc{flex-direction:column}.rich .lc-img{flex:none;aspect-ratio:16/9}}
 
 /* ---------- جوّال ---------- */
+/* اللمس: لا نحبس التمرير العمودي داخل الجدول (كان max-height + overscroll يجعل الصفحة «تعلق» تحت الإصبع) */
+@media(pointer:coarse),(max-width:700px){
+  .rich .tw{max-height:none;overscroll-behavior:auto;overscroll-behavior-x:contain}
+  .rich .tw thead th{position:static}
+}
 @media(max-width:560px){
   .rich blockquote{padding:14px 16px}.rich .co{padding:12px 14px}.rich .acc-b{padding-inline:14px}
   .rich .cb .l::before{min-width:1.8em;margin-inline-end:.8em}.rich .cb pre{font-size:.8rem}
